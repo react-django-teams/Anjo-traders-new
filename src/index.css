@@ -1,0 +1,471 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ANJO TRADERS — PREMIUM DESIGN SYSTEM v4.0
+   Theme: Brochure-Matched — Red · Green · White · Amber
+   "Export · Import: Traders of All Goods"
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+  opacity: 0;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal        { transform: translateY(30px); }
+.reveal-left   { transform: translateX(-36px); }
+.reveal-right  { transform: translateX(36px); }
+.reveal-scale  { transform: scale(0.93); }
+.reveal.is-visible, .reveal-left.is-visible,
+.reveal-right.is-visible, .reveal-scale.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.page-enter { animation: page-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ============================================================
+   STAGGER GRID
+   ============================================================ */
+.stagger-grid > *:nth-child(1) { transition-delay: 0s; }
+.stagger-grid > *:nth-child(2) { transition-delay: 0.08s; }
+.stagger-grid > *:nth-child(3) { transition-delay: 0.16s; }
+.stagger-grid > *:nth-child(4) { transition-delay: 0.24s; }
+.stagger-grid > *:nth-child(5) { transition-delay: 0.32s; }
+.stagger-grid > *:nth-child(6) { transition-delay: 0.40s; }
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(1.5deg); }
+}
+.animate-float-slow { animation: float-slow 9s ease-in-out infinite; }
+
+/* Marquee scrolling ticker */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 22s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Pulse ring glow */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45); }
+  50%       { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+}
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+/* Green glow pulse */
+@keyframes green-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(22, 163, 74, 0); }
+}
+.animate-green-pulse { animation: green-pulse 2.5s ease-in-out infinite; }
+
+/* Ambient ambient background wave */
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 0.05; }
+  50%       { opacity: 0.12; }
+}
+.animate-ambient { animation: ambient-pulse 8s ease-in-out infinite; }
+
+/* Wave sweep (red decorative divider) */
+@keyframes wave-sweep {
+  from { background-position: 0 0; }
+  to   { background-position: 100% 0; }
+}
+
+/* Product card bounce enter */
+@keyframes bounce-in {
+  0%   { transform: scale(0.85); opacity: 0; }
+  80%  { transform: scale(1.04); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.bounce-enter { animation: bounce-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* Rotating ring for puzzle section */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-slow-spin { animation: slow-spin 20s linear infinite; }
+
+/* ============================================================
+   ELECTRIC BORDER (hover left-line sweep)
+   ============================================================ */
+.electric-border { position: relative; overflow: hidden; }
+.electric-border::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, #DC2626, #F59E0B, transparent);
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+.electric-border:hover::before { transform: translateY(100%); }
+
+/* ============================================================
+   GLASSMORPHISM VARIANTS
+   ============================================================ */
+.glass-white {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.glass-red {
+  background: rgba(220, 38, 38, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(220, 38, 38, 0.18);
+}
+.glass-green {
+  background: rgba(22, 163, 74, 0.07);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(22, 163, 74, 0.18);
+}
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================================
+   CARD SYSTEM
+   ============================================================ */
+.card-premium {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.card-premium:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.14);
+}
+
+.card-white {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 1rem;
+  transition: all 0.35s ease;
+}
+.card-white:hover {
+  border-color: rgba(220, 38, 38, 0.3);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.07);
+}
+
+.card-product {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+.card-product:hover {
+  border-color: #DC2626;
+  box-shadow: 0 12px 32px rgba(220, 38, 38, 0.1);
+  transform: translateY(-5px);
+}
+
+/* ============================================================
+   BUTTON SYSTEM
+   ============================================================ */
+.btn-red {
+  background: #DC2626;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+  display: inline-block;
+  text-align: center;
+}
+.btn-red:hover {
+  background: #b91c1c;
+  box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-green {
+  background: #16A34A;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.35);
+  display: inline-block;
+  text-align: center;
+}
+.btn-green:hover {
+  background: #15803d;
+  box-shadow: 0 8px 30px rgba(22, 163, 74, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-outline-red {
+  background: transparent;
+  color: #DC2626;
+  font-weight: 700;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid #DC2626;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+.btn-outline-red:hover {
+  background: #DC2626;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Legacy alias used by some components */
+.btn-amber {
+  background: #F59E0B;
+  color: #1a1a1a;
+  font-weight: 800;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+  display: inline-block;
+  text-align: center;
+}
+.btn-amber:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+}
+
+.btn-primary { @apply btn-red; }
+
+/* Shine effect */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.22), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+}
+.btn-shine:hover::after { left: 150%; }
+
+/* ============================================================
+   IMAGE EFFECTS
+   ============================================================ */
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.img-zoom:hover img { transform: scale(1.06); }
+
+/* ============================================================
+   TYPOGRAPHY GRADIENTS
+   ============================================================ */
+.font-display { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #ef4444, #DC2626, #b91c1c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #4ade80, #16A34A, #15803d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #fca5a5, #ef4444, #DC2626);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   RAINBOW STRIP (matches brochure left strip)
+   ============================================================ */
+.rainbow-strip {
+  background: linear-gradient(to bottom, #f97316, #eab308, #22c55e, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+/* ============================================================
+   WAVE DIVIDER (Red, brochure-style)
+   ============================================================ */
+.wave-red {
+  background: #DC2626;
+  clip-path: ellipse(75% 100% at 50% 0%);
+}
+
+/* ============================================================
+   NAVBAR LINK
+   ============================================================ */
+.link-underline { position: relative; display: inline-block; }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: #DC2626;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+.nav-active {
+  color: #DC2626 !important;
+  position: relative;
+}
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: #DC2626;
+  border-radius: 1px;
+}
+
+/* ============================================================
+   SECTION EYEBROW
+   ============================================================ */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #DC2626;
+  margin-bottom: 0.75rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 22px; height: 2px;
+  background: #DC2626;
+  border-radius: 1px;
+}
+
+/* ============================================================
+   STAT CARD
+   ============================================================ */
+.stat-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.stat-card:hover {
+  border-color: #DC2626;
+  box-shadow: 0 8px 30px rgba(220,38,38,0.1);
+}
+
+/* COMMODITY CARD */
+.commodity-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: default;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.commodity-card:hover {
+  border-color: #DC2626;
+  box-shadow: 0 16px 36px rgba(220,38,38,0.1);
+  transform: translateY(-6px);
+}
+.commodity-card:hover .commodity-icon { transform: scale(1.25) rotate(5deg); }
+.commodity-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* GRADIENT DIVIDER */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #DC2626, #F59E0B, transparent);
+  border: none;
+}
+
+/* PROCESS CONNECTOR */
+.process-connector::after {
+  content: '';
+  position: absolute;
+  top: 28px; left: calc(50% + 36px);
+  width: calc(100% - 72px);
+  height: 2px;
+  background: linear-gradient(to right, #DC2626, #16A34A);
+  display: none;
+}
+@media (min-width: 768px) { .process-connector::after { display: block; } }
+
+/* COUNT UP */
+.count-up { display: inline-block; transition: transform 0.3s ease; }
+.count-up:hover { transform: scale(1.06); }

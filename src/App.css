@@ -1,0 +1,307 @@
+/* ============================================
+   APP-LEVEL RESPONSIVE STYLES
+   ============================================ */
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  max-height: 200px;
+}
+
+/* ============================================
+   COMPREHENSIVE MEDIA QUERIES FOR APP
+   ============================================ */
+
+/* Mobile First - Base styles for mobile devices */
+@media (max-width: 639px) {
+  .App {
+    font-size: 14px;
+  }
+
+  .App-logo {
+    height: 30vmin;
+    max-height: 120px;
+  }
+
+  .App-header {
+    min-height: 80vh;
+    padding: 1rem;
+    font-size: 14px;
+  }
+
+  .App-header h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .App-header p {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Small tablets and large phones */
+@media (min-width: 640px) and (max-width: 767px) {
+  .App {
+    font-size: 15px;
+  }
+
+  .App-logo {
+    height: 35vmin;
+    max-height: 150px;
+  }
+
+  .App-header {
+    min-height: 85vh;
+    font-size: 15px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .App {
+    font-size: 16px;
+  }
+
+  .App-logo {
+    height: 40vmin;
+    max-height: 180px;
+  }
+
+  .App-header {
+    min-height: 90vh;
+    font-size: 16px;
+  }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 1024px) {
+  .App {
+    font-size: 16px;
+  }
+
+  .App-logo {
+    height: 40vmin;
+    max-height: 200px;
+  }
+
+  .App-header {
+    min-height: 95vh;
+    font-size: 16px;
+  }
+}
+
+/* Large desktop screens */
+@media (min-width: 1280px) {
+  .App {
+    font-size: 17px;
+  }
+
+  .App-header {
+    font-size: 17px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1536px) {
+  .App {
+    font-size: 18px;
+  }
+
+  .App-header {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   APP-LEVEL RESPONSIVE UTILITIES
+   ============================================ */
+
+/* Responsive font sizes for app content */
+@media (max-width: 639px) {
+  .app-text-xs { font-size: 0.75rem !important; }
+  .app-text-sm { font-size: 0.875rem !important; }
+  .app-text-base { font-size: 1rem !important; }
+  .app-text-lg { font-size: 1.125rem !important; }
+  .app-text-xl { font-size: 1.25rem !important; }
+  .app-text-2xl { font-size: 1.5rem !important; }
+}
+
+@media (min-width: 640px) {
+  .app-text-xs { font-size: 0.75rem !important; }
+  .app-text-sm { font-size: 0.875rem !important; }
+  .app-text-base { font-size: 1rem !important; }
+  .app-text-lg { font-size: 1.125rem !important; }
+  .app-text-xl { font-size: 1.25rem !important; }
+  .app-text-2xl { font-size: 1.5rem !important; }
+}
+
+@media (min-width: 768px) {
+  .app-text-lg { font-size: 1.125rem !important; }
+  .app-text-xl { font-size: 1.25rem !important; }
+  .app-text-2xl { font-size: 1.5rem !important; }
+}
+
+@media (min-width: 1024px) {
+  .app-text-xl { font-size: 1.25rem !important; }
+  .app-text-2xl { font-size: 1.5rem !important; }
+}
+
+/* Responsive spacing for app */
+@media (max-width: 639px) {
+  .app-p-1 { padding: 0.25rem !important; }
+  .app-p-2 { padding: 0.5rem !important; }
+  .app-p-3 { padding: 0.75rem !important; }
+  .app-p-4 { padding: 1rem !important; }
+  .app-p-6 { padding: 1.5rem !important; }
+  .app-p-8 { padding: 2rem !important; }
+}
+
+@media (min-width: 640px) {
+  .app-p-1 { padding: 0.25rem !important; }
+  .app-p-2 { padding: 0.5rem !important; }
+  .app-p-3 { padding: 0.75rem !important; }
+  .app-p-4 { padding: 1rem !important; }
+  .app-p-6 { padding: 1.5rem !important; }
+  .app-p-8 { padding: 2rem !important; }
+}
+
+@media (min-width: 768px) {
+  .app-p-4 { padding: 1rem !important; }
+  .app-p-6 { padding: 1.5rem !important; }
+  .app-p-8 { padding: 2rem !important; }
+}
+
+@media (min-width: 1024px) {
+  .app-p-6 { padding: 1.5rem !important; }
+  .app-p-8 { padding: 2rem !important; }
+}
+
+/* ============================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .App-logo {
+    animation: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .App-header {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .App-link {
+    color: #ffffff !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .App {
+    background-color: #1f2937 !important;
+    color: #f9fafb !important;
+  }
+
+  .App-header {
+    background-color: #111827 !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .App {
+    background: white !important;
+    color: black !important;
+  }
+
+  .App-logo {
+    display: none !important;
+  }
+
+  .App-header {
+    background: white !important;
+    color: black !important;
+    min-height: auto !important;
+    padding: 1rem !important;
+  }
+
+  .App-link {
+    color: black !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .App-link:hover {
+    transform: none !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .App-header {
+    min-height: 100vh !important;
+    padding: 1rem !important;
+  }
+
+  .App-logo {
+    height: 20vmin !important;
+    max-height: 80px !important;
+  }
+
+  .App-header h1 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .App-header p {
+    font-size: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}

@@ -1,0 +1,507 @@
+/*
+  ANJO Traders — Anjo Salt Cinematic Gallery
+  Redesign: Premium Amber & Gold Split Layout
+  Font: Outfit (Google Fonts)
+*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --amber:  #fbbf24;
+  --orange: #f97316;
+  --bark:   #1a120b;
+  --cream:  #fffdf0;
+  --white:  #ffffff;
+  --font:   'Outfit', sans-serif;
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  /* per-section accent (overridden via inline style) */
+  --accent-r: 251;
+  --accent-g: 191;
+  --accent-b: 36;
+}
+
+/* ── PAGE SHELL ─────────────────────────────────────────────── */
+.salt-page {
+  font-family: var(--font);
+  background: var(--bark);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.salt-page::-webkit-scrollbar { display: none; }
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.salt-hero {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 6rem 8%;
+}
+
+.salt-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  z-index: 0;
+}
+
+/* Gradient scrim from bottom */
+.salt-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,18,11,0.95) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.salt-hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: saltHeroSlide 1.2s var(--ease) both;
+}
+
+@keyframes saltHeroSlide {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.salt-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--amber);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.salt-hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--amber);
+}
+
+.salt-hero-h1 {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.salt-hero-sub {
+  font-size: 1.25rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 600px;
+}
+
+/* Scroll cue */
+.salt-hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  right: 8%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.salt-hero-scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--amber), transparent);
+  animation: saltScrollPulse 2.5s infinite;
+}
+@keyframes saltScrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(0.5); }
+}
+
+/* ── GALLERY SECTION ─────────────────────────────────────────── */
+.salt-gs {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  overflow: hidden;
+  background: var(--bark);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.salt-gs.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.salt-gs--reverse {
+  grid-template-columns: 45% 55%;
+  direction: rtl;
+}
+.salt-gs--reverse > * { direction: ltr; }
+
+/* ── IMAGE COLUMN ─────────────────────────────────────────────── */
+.salt-gs-img-col {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.salt-gs-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.salt-gs-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  animation: saltGsReveal 0.9s var(--ease) both, saltKenBurns 25s linear infinite alternate;
+}
+
+@keyframes saltGsReveal {
+  from { opacity: 0; transform: scale(1.1); }
+  to   { opacity: 1; transform: scale(1.02); }
+}
+@keyframes saltKenBurns {
+  from { transform: scale(1.02) translate(0, 0); }
+  to   { transform: scale(1.15) translate(-1%, 1%); }
+}
+
+.salt-gs-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 50%, var(--bark) 100%);
+  z-index: 2;
+}
+.salt-gs--reverse .salt-gs-img-overlay {
+  background: linear-gradient(to left, transparent 50%, var(--bark) 100%);
+}
+
+.salt-gs-img-badge {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+.salt-gs-img-badge-num {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--amber);
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.salt-gs-img-badge-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.salt-gs-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: rgb(var(--accent-r), var(--accent-g), var(--accent-b));
+  z-index: 6;
+  box-shadow: 0 0 20px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+}
+.salt-gs--reverse .salt-gs-accent-bar {
+  left: auto;
+  right: 0;
+}
+
+/* ── CONTENT COLUMN ───────────────────────────────────────────── */
+.salt-gs-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10% 0 8%;
+  position: relative;
+  z-index: 3;
+}
+.salt-gs--reverse .salt-gs-content-col {
+  padding: 0 8% 0 10%;
+}
+
+.salt-gs-bg-number {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  font-size: clamp(8rem, 20vw, 15rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.salt-gs-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgb(var(--accent-r), var(--accent-g), var(--accent-b));
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: saltFadeUp 0.6s 0.2s var(--ease) both;
+}
+.salt-gs.is-visible .salt-gs-eyebrow { opacity: 1; }
+
+.salt-gs-title {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -1.5px;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: saltFadeUp 0.6s 0.3s var(--ease) both;
+}
+.salt-gs.is-visible .salt-gs-title { opacity: 1; }
+
+/* ── LIST ────────────────────────────────────────────────────── */
+.salt-gs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.salt-gs-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s var(--ease);
+  opacity: 0;
+  animation: saltFadeUp 0.5s var(--ease) both;
+}
+.salt-gs.is-visible .salt-gs-item { opacity: 1; }
+
+/* stagger each item */
+.salt-gs.is-visible .salt-gs-item:nth-child(1) { animation-delay: 0.4s; }
+.salt-gs.is-visible .salt-gs-item:nth-child(2) { animation-delay: 0.48s; }
+.salt-gs.is-visible .salt-gs-item:nth-child(3) { animation-delay: 0.56s; }
+.salt-gs.is-visible .salt-gs-item:nth-child(4) { animation-delay: 0.64s; }
+
+.salt-gs-item-num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.15);
+  min-width: 2rem;
+}
+
+.salt-gs-item-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  flex: 1;
+  letter-spacing: 0.5px;
+}
+
+.salt-gs-item-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+}
+
+.salt-gs-item.is-active .salt-gs-item-num {
+  color: rgb(var(--accent-r), var(--accent-g), var(--accent-b));
+}
+.salt-gs-item.is-active .salt-gs-item-name {
+  color: var(--white);
+  font-weight: 700;
+  transform: translateX(10px);
+}
+.salt-gs-item.is-active .salt-gs-item-dot {
+  background: rgb(var(--accent-r), var(--accent-g), var(--accent-b));
+  box-shadow: 0 0 15px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.8);
+  transform: scale(1.5);
+}
+
+.salt-gs-item-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: rgb(var(--accent-r), var(--accent-g), var(--accent-b));
+  animation: saltFill 3s linear forwards;
+  box-shadow: 0 0 10px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.6);
+}
+@keyframes saltFill {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes saltFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CRYSTAL PARTICLES ───────────────────────────────────────── */
+.salt-crystal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ── TOGGLE ─────────────────────────────────────────────────── */
+.salt-toggle {
+  position: fixed;
+  top: 5.5rem;
+  right: 2.5rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 99px;
+  backdrop-filter: blur(15px);
+  cursor: pointer;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: var(--font);
+  transition: all 0.3s var(--ease);
+}
+.salt-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-color: var(--amber);
+}
+
+.salt-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.salt-dot.playing { animation: saltDotPulse 1.5s infinite; }
+@keyframes saltDotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,0.6); }
+  100% { box-shadow: 0 0 0 15px rgba(249,115,22,0); }
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.salt-footer {
+  height: 100vh;
+  scroll-snap-align: start;
+  background: var(--bark);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 4rem;
+}
+
+.salt-footer-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: sepia(100%) saturate(150%) brightness(50%) contrast(120%);
+  animation: saltKenBurns 60s linear infinite alternate;
+}
+
+.salt-footer-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.salt-footer-eyebrow {
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+}
+
+.salt-footer-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.salt-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 3rem;
+  background: var(--amber);
+  color: var(--bark);
+  border-radius: 99px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.4s var(--ease);
+  box-shadow: 0 15px 40px rgba(251,191,36,0.3);
+}
+.salt-footer-btn:hover {
+  background: white;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(255,255,255,0.2);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .salt-gs, .salt-gs--reverse {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100vh;
+    direction: ltr;
+  }
+  .salt-gs-img-col { height: 60vw; }
+  .salt-gs-content-col { padding: 4rem 8%; }
+  .salt-footer { height: auto; padding: 10rem 4%; }
+}
