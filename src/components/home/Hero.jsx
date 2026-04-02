@@ -12,7 +12,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
       
       {/* 1. Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -61,9 +61,9 @@ const Hero = () => {
       </div>
 
       {/* 3. Central Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 flex flex-col items-center justify-center text-center h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full mt-24 md:mt-16">
         
-        <div className="max-w-5xl pt-16 flex flex-col items-center">
+        <div className="max-w-5xl flex flex-col items-center">
           
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-6 mb-12 opacity-0 animate-reveal" style={{ animationDelay: '0.2s' }}>
