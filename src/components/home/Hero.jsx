@@ -12,7 +12,10 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+    <section 
+      className="relative flex items-center justify-center overflow-hidden bg-slate-900"
+      style={{ minHeight: '85vh' }}
+    >
       
       {/* 1. Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -61,7 +64,7 @@ const Hero = () => {
       </div>
 
       {/* 3. Central Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full mt-24 md:mt-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full py-10">
         
         <div className="max-w-5xl flex flex-col items-center">
           
