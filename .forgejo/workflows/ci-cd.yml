@@ -49,10 +49,10 @@ jobs:
         run: |
           TAG=${{ steps.tag.outputs.tag }}
           docker build \
-            --build-arg VITE_API_URL=https://anjo-traders.vienstereoptic.com/api \
+            -f frontend/Dockerfile \
             -t ${{ env.FRONTEND_IMAGE }}:${TAG} \
             -t ${{ env.FRONTEND_IMAGE }}:latest \
-            frontend/
+            .
           docker push ${{ env.FRONTEND_IMAGE }}:${TAG}
           docker push ${{ env.FRONTEND_IMAGE }}:latest
 
