@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: anjo-traders-frontend-tls
+  namespace: anjo-traders-production
+spec:
+  dnsNames:
+    - anjo-traders.lab
+    - anjo-traders.vienstereoptic.com
+  issuerRef:
+    kind: ClusterIssuer
+    name: school-ca-issuer
+  secretName: anjo-traders-frontend-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: anjo-traders-api-tls
+  namespace: anjo-traders-production
+spec:
+  dnsNames:
+    - anjo-traders-api.lab
+    - anjo-traders-api.vienstereoptic.com
+  issuerRef:
+    kind: ClusterIssuer
+    name: school-ca-issuer
+  secretName: anjo-traders-api-tls

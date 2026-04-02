@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+images:
+  - name: anjo-traders/frontend
+    newName: harbor.lab/anjo-traders/frontend
+    newTag: latest # frontend
+  - name: anjo-traders/backend
+    newName: harbor.lab/anjo-traders/backend
+    newTag: latest # backend
