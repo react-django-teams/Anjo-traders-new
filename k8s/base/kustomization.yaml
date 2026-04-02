@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - network-policy.yaml
+  - traefik-egress-policy.yaml
+  - frontend-deployment.yaml
+  - backend-deployment.yaml
+  - certificates.yaml
+  - ingress.yaml

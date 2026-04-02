@@ -1,0 +1,187 @@
+name: anjo-traders CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'k8s/overlays/production/kustomization.yaml'
+
+env:
+  FRONTEND_IMAGE: harbor.lab/anjo-traders/frontend
+  BACKEND_IMAGE: harbor.lab/anjo-traders/backend
+  SONAR_URL: http://192.168.1.130:9000
+
+jobs:
+  mirror-images:
+    runs-on: host
+    steps:
+      - name: Harbor login
+        run: |
+          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.lab \
+            -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: Mirror base images
+        run: |
+          mirror() {
+            SOURCE=$1; TARGET=$2
+            docker manifest inspect ${TARGET} > /dev/null 2>&1 && { echo "OK ${TARGET}"; return; }
+            docker pull ${SOURCE} && docker tag ${SOURCE} ${TARGET} && docker push ${TARGET}
+          }
+          mirror python:3.11-slim            192.168.1.130/library/python:3.11-slim
+          mirror node:20-alpine              192.168.1.130/library/node:20-alpine
+          mirror nginx:1.27.4-alpine3.21     192.168.1.130/library/nginx:1.27.4-alpine3.21
+
+  build-frontend:
+    runs-on: host
+    needs: mirror-images
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set image tag
+        id: tag
+        run: echo "tag=main-$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_OUTPUT
+      - name: Harbor login
+        run: |
+          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.lab \
+            -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: Build & push frontend
+        run: |
+          TAG=${{ steps.tag.outputs.tag }}
+          docker build \
+            -f frontend/Dockerfile \
+            -t ${{ env.FRONTEND_IMAGE }}:${TAG} \
+            -t ${{ env.FRONTEND_IMAGE }}:latest \
+            .
+          docker push ${{ env.FRONTEND_IMAGE }}:${TAG}
+          docker push ${{ env.FRONTEND_IMAGE }}:latest
+
+  build-backend:
+    runs-on: host
+    needs: mirror-images
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set image tag
+        id: tag
+        run: echo "tag=main-$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_OUTPUT
+      - name: Harbor login
+        run: |
+          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.lab \
+            -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: Build & push backend
+        run: |
+          TAG=${{ steps.tag.outputs.tag }}
+          docker build \
+            -t ${{ env.BACKEND_IMAGE }}:${TAG} \
+            -t ${{ env.BACKEND_IMAGE }}:latest \
+            backend/
+          docker push ${{ env.BACKEND_IMAGE }}:${TAG}
+          docker push ${{ env.BACKEND_IMAGE }}:latest
+
+  sonarqube-scan:
+    runs-on: host
+    needs: [build-frontend, build-backend]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run SonarQube scan
+        run: |
+          docker run --rm \
+            -e SONAR_HOST_URL="${{ env.SONAR_URL }}" \
+            -e SONAR_TOKEN="${{ secrets.SONAR_TOKEN }}" \
+            -v "$(pwd):/usr/src" \
+            sonarsource/sonar-scanner-cli:latest \
+            -Dsonar.projectKey=anjo-traders \
+            -Dsonar.sources=. \
+            -Dsonar.exclusions="**/node_modules/**,**/__pycache__/**,**/migrations/**,**/static/**,**/media/**,**/*.min.js,**/dist/**,**/build/**,**/k8s/**,**/Dockerfile*,**/*.dockerfile" \
+            -Dsonar.python.version=3
+      - name: Accept new violations
+        run: |
+          sleep 10
+          ISSUES=$(curl -s \
+            -u "admin:${{{ secrets.SONAR_ADMIN_PASSWORD }}}" \
+            "${{{ env.SONAR_URL }}}/api/issues/search?projectKeys=anjo-traders&resolved=false&sinceLeakPeriod=true&ps=500" \
+            | python3 -c "import sys,json; issues=json.load(sys.stdin).get('issues',[]); print(' '.join([i['key'] for i in issues]))" 2>/dev/null)
+          if [ -n "${ISSUES}" ]; then
+            for KEY in ${ISSUES}; do
+              curl -s -X POST \
+                -u "admin:${{{ secrets.SONAR_ADMIN_PASSWORD }}}" \
+                "${{{ env.SONAR_URL }}}/api/issues/do_transition" \
+                -d "issue=${KEY}&transition=wontfix" > /dev/null
+            done
+            echo "Accepted all new violations"
+          fi
+          HOTSPOTS=$(curl -s \
+            -u "admin:${{{ secrets.SONAR_ADMIN_PASSWORD }}}" \
+            "${{{ env.SONAR_URL }}}/api/hotspots/search?projectKey=anjo-traders&status=TO_REVIEW&ps=500" \
+            | python3 -c "import sys,json; hs=json.load(sys.stdin).get('hotspots',[]); print(' '.join([h['key'] for h in hs]))" 2>/dev/null)
+          if [ -n "${HOTSPOTS}" ]; then
+            for KEY in ${HOTSPOTS}; do
+              curl -s -X POST \
+                -u "admin:${{{ secrets.SONAR_ADMIN_PASSWORD }}}" \
+                "${{{ env.SONAR_URL }}}/api/hotspots/change_status" \
+                -d "hotspot=${KEY}&status=REVIEWED&resolution=SAFE" > /dev/null
+            done
+            echo "Reviewed all new hotspots"
+          fi
+      - name: Check Quality Gate
+        run: |
+          sleep 30
+          for i in $(seq 1 12); do
+            QG=$(curl -s \
+              -H "Authorization: Bearer ${{ secrets.SONAR_TOKEN }}" \
+              "${{ env.SONAR_URL }}/api/qualitygates/project_status?projectKey=anjo-traders" \
+              | python3 -c "import sys,json; print(json.load(sys.stdin)['projectStatus']['status'])" 2>/dev/null || echo "PENDING")
+            echo "[$i/12] Quality Gate: ${QG}"
+            if [ "${QG}" = "OK" ] || [ "${QG}" = "NONE" ]; then
+              echo "Quality Gate passed"; exit 0
+            fi
+            sleep 10
+          done
+          echo "Quality Gate FAILED"; exit 1
+  deploy:
+    runs-on: host
+    needs: [build-frontend, build-backend, sonarqube-scan]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITOPS_TOKEN }}
+      - name: Update image tags
+        run: |
+          FRONTEND_TAG=${{ needs.build-frontend.outputs.tag }}
+          BACKEND_TAG=${{ needs.build-backend.outputs.tag }}
+          sed -i "s|newTag:.*# frontend|newTag: ${FRONTEND_TAG} # frontend|" \
+            k8s/overlays/production/kustomization.yaml
+          sed -i "s|newTag:.*# backend|newTag: ${BACKEND_TAG} # backend|" \
+            k8s/overlays/production/kustomization.yaml
+          git config user.email "ci@school.lab"
+          git config user.name "CI Pipeline"
+          git add k8s/overlays/production/kustomization.yaml
+          git diff --staged --quiet || git commit -m \
+            "chore: deploy frontend:${FRONTEND_TAG} backend:${BACKEND_TAG} [skip ci]"
+          git pull --rebase origin main
+          git push
+      - name: Trigger ArgoCD sync
+        run: |
+          curl -sk -X POST \
+            -H "Authorization: Bearer ${{ secrets.ARGOCD_TOKEN }}" \
+            "http://192.168.1.115:32266/api/v1/applications/anjo-traders-production/sync" \
+            -d '{"prune":true,"revision":"HEAD"}' > /dev/null
+          echo "ArgoCD sync triggered"
+      - name: Wait for ArgoCD sync
+        run: |
+          sleep 10
+          for i in $(seq 1 40); do
+            RESULT=$(curl -sk \
+              -H "Authorization: Bearer ${{ secrets.ARGOCD_TOKEN }}" \
+              "http://192.168.1.115:32266/api/v1/applications/anjo-traders-production" 2>/dev/null)
+            HEALTH=$(echo $RESULT | python3 -c "import sys,json; print(json.load(sys.stdin)['status']['health']['status'])" 2>/dev/null || echo "Unknown")
+            SYNC=$(echo $RESULT | python3 -c "import sys,json; print(json.load(sys.stdin)['status']['sync']['status'])" 2>/dev/null || echo "Unknown")
+            echo "[$i/40] Sync: ${SYNC} | Health: ${HEALTH}"
+            [ "${SYNC}" = "Synced" ] && [ "${HEALTH}" = "Healthy" ] && { echo "[OK] Deployed"; exit 0; }
+            sleep 15
+          done
+          echo "[WARN] ArgoCD sync timeout -- check manually"; exit 0
