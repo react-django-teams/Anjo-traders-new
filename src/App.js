@@ -17,6 +17,8 @@ import GreenLinkPage from './pages/GreenLinkPage';
 import ContainerCommercializationPage from './pages/ContainerCommercializationPage';
 import AnjoSaltPage from './pages/AnjoSaltPage';
 import BusinessSolutionPage from './pages/BusinessSolutionPage';
+import AutomobilesPage from './pages/AutomobilesPage';
+import AnimatedGalleryPage from './pages/AnimatedGalleryPage';
 
 // Global scroll-reveal watcher
 const ScrollRevealWatcher = () => {
@@ -52,7 +54,7 @@ const ScrollRevealWatcher = () => {
 
 function AppContent() {
   const location = useLocation();
-  const showFooter = ['/', '/contact', '/business-solution'].includes(location.pathname);
+  const showFooter = ['/', '/contact'].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -73,6 +75,8 @@ function AppContent() {
           <Route path="/container-commercialization" element={<ContainerCommercializationPage />} />
           <Route path="/anjo-salt" element={<AnjoSaltPage />} />
           <Route path="/business-solution" element={<BusinessSolutionPage />} />
+          <Route path="/automobiles" element={<AutomobilesPage />} />
+          <Route path="/animated-gallery" element={<AnimatedGalleryPage />} />
         </Routes>
       </main>
       {showFooter && <Footer />}

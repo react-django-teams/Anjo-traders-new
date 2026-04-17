@@ -1,6 +1,7 @@
 import React from 'react';
 
 import factoryVideo from '../../assets/images/fdactory_workers.mp4';
+import logoImage from '../../assets/images/videos/file_00000000845c71fa9a49b9abaaf9349c.png';
 
 const Hero = () => {
   // Logo-inspired particles (Red, Yellow, Green, Blue)
@@ -14,7 +15,7 @@ const Hero = () => {
   return (
     <section 
       className="relative flex items-center justify-center overflow-hidden bg-slate-900"
-      style={{ minHeight: '85vh' }}
+      style={{ minHeight: '100vh' }}
     >
       
       {/* 1. Video Background */}
@@ -41,6 +42,48 @@ const Hero = () => {
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-reveal { animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes logoCinematicReveal {
+          0% {
+            opacity: 0;
+            transform: scale(1.15) translateY(50px) perspective(1000px) rotateX(10deg);
+            filter: blur(20px) drop-shadow(0 0 0 rgba(255,255,255,0));
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0) perspective(1000px) rotateX(0deg);
+            filter: blur(0px) drop-shadow(0 0 30px rgba(255,255,255,0.25));
+          }
+        }
+        
+        @keyframes logoSubtleFloat {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-12px) rotate(0.5deg); }
+        }
+
+        @keyframes taglineReveal {
+          0% { opacity: 0; transform: translateY(20px); filter: blur(8px); }
+          100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+        }
+
+        @keyframes shimmerText {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        .animate-logo-premium {
+          animation: 
+            logoCinematicReveal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+            logoSubtleFloat 7s ease-in-out infinite 2s;
+        }
+
+        .animate-tagline-shimmer {
+          background-size: 200% auto;
+          opacity: 0;
+          animation: 
+            taglineReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s,
+            shimmerText 8s linear infinite 2.7s;
+        }
       `}</style>
 
       {/* 2. Logo-Inspired Ambient Overlays */}
@@ -64,31 +107,24 @@ const Hero = () => {
       </div>
 
       {/* 3. Central Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full py-10">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-10">
         
-        <div className="max-w-5xl flex flex-col items-center">
+        <div className="w-full flex flex-col items-center justify-center">
+          <img 
+            src={logoImage} 
+            alt="ANJO Traders Logo" 
+            className="w-[92vw] sm:w-[85vw] max-w-[850px] h-auto object-contain opacity-0 animate-logo-premium relative z-10"
+          />
           
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-6 mb-12 opacity-0 animate-reveal" style={{ animationDelay: '0.2s' }}>
-            <span className="w-16 h-[2px] bg-red-600"></span>
-            <span className="text-white/90 text-sm font-bold tracking-[0.8em] uppercase">
-              Global Export Excellence
-            </span>
-            <span className="w-16 h-[2px] bg-green-600"></span>
-          </div>
-
-          {/* Main Brand Headline */}
-          <h1 className="text-6xl sm:text-8xl md:text-9xl font-black leading-none mb-10 opacity-0 animate-reveal tracking-tighter" style={{ animationDelay: '0.4s' }}>
-            <span className="text-indigo-700">ANJO</span>
-            <span className="text-orange-500 ml-6">TRADERS</span>
-          </h1>
-
-          {/* Slogan / Subheading */}
-          <p className="text-2xl sm:text-3xl md:text-4xl text-white/90 font-light max-w-5xl leading-relaxed opacity-0 animate-reveal" style={{ animationDelay: '0.6s' }}>
-            Bulk agricultural exports to 6+ nations — finest vegetables, fruits, pulses, and cereals. 
-            Powered by world-class <span className="text-red-500 font-bold">Maritime & Logistics</span>.
-          </p>
-
+          <h2 
+            className="relative z-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.05em] max-w-4xl text-transparent bg-clip-text animate-tagline-shimmer -mt-6 sm:-mt-8 md:-mt-12"
+            style={{ 
+              backgroundImage: 'linear-gradient(90deg, #cbd5e1 0%, #ffffff 25%, #60a5fa 50%, #ffffff 75%, #cbd5e1 100%)',
+              filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.8))'
+            }}
+          >
+            Exports and imports across the ocean, powered by world-class logistics.
+          </h2>
         </div>
 
       </div>

@@ -1,22 +1,24 @@
 .pbs-page {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background: #fbfbfc;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding-top: 100px; /* Space for navbar */
+  display: block;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 /* ── TOP SECTION ── */
 .pbs-top {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+  height: 100vh;
+  padding: 12rem 2rem 4rem; /* Top padding increased to prevent touching header */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .pbs-header {
@@ -131,12 +133,13 @@
 .pbs-bottom {
   position: relative;
   width: 100%;
-  height: 600px;
-  margin-top: 4rem;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* The red/orange sweeping diagonal shape */
@@ -231,10 +234,21 @@
 }
 
 @media (max-width: 768px) {
-  .pbs-title { font-size: 2.5rem; }
+  .pbs-top { padding-top: 10rem; }
+  .pbs-title { font-size: clamp(2rem, 8vw, 2.5rem); }
   .pbs-wheel-container { width: 320px; height: 320px; }
   .pbs-bottom-title { font-size: 2rem; }
   .pbs-diagonal-overlay {
     transform: rotate(-25deg);
   }
+}
+
+@media (max-width: 480px) {
+  .pbs-wheel-container { width: 280px; height: 280px; }
+  .pbs-detail-title { font-size: 1.8rem; }
+  .pbs-detail-card { padding: 1.5rem; }
+}
+
+.pbs-footer-wrap {
+  scroll-snap-align: start;
 }

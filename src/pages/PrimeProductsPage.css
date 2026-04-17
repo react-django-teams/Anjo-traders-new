@@ -27,7 +27,7 @@
   background: var(--dark);
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -36,7 +36,7 @@
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .pp-hero {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
@@ -140,7 +140,7 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .gs {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: grid;
@@ -446,7 +446,7 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .pp-footer {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   background: var(--dark);
   position: relative;
@@ -534,7 +534,7 @@
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .gs, .gs--reverse {
     grid-template-columns: 1fr;
     height: auto;

@@ -15,8 +15,10 @@ const Navbar = () => {
   const isGreenLinkPage = location.pathname === '/green-link';
   const isContainerPage = location.pathname === '/container-commercialization';
   const isSaltPage = location.pathname === '/anjo-salt';
+  const isAutomobilesPage = location.pathname === '/automobiles';
   const isContactPage = location.pathname === '/contact';
-  const isTransparentPage = isHomePage || isPrimePage || isAboutPage || isServicesPage || isResearchPage || isGreenLinkPage || isContainerPage || isSaltPage || isContactPage;
+  const isAnimatedGalleryPage = location.pathname === '/animated-gallery';
+  const isTransparentPage = isHomePage || isPrimePage || isAboutPage || isServicesPage || isResearchPage || isGreenLinkPage || isContainerPage || isSaltPage || isAutomobilesPage || isContactPage || isAnimatedGalleryPage;
 
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -47,6 +49,7 @@ const Navbar = () => {
         { name: 'Anjo Salt',      path: '/anjo-salt' },
       ]
     },
+    { name: 'Automobiles',    path: '/animated-gallery' },
     { name: 'Contact Us',     path: '/contact' },
   ];
 

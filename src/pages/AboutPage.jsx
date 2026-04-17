@@ -21,33 +21,33 @@ const milestones = [
 
 const AboutPage = () => {
   return (
-    <div className="bg-white page-enter">
+    <div className="bg-white page-enter overflow-x-hidden">
 
       {/* HERO with brochure logo colors & tagline */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, #DC2626 0%, #b91c1c 40%, #7f1d1d 100%)' }}>
+      <section className="relative pt-[calc(var(--header-h)+2rem)] pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, #DC2626 0%, #b91c1c 40%, #7f1d1d 100%)' }}>
         <div className="absolute inset-0 animate-ambient" style={{ background: 'radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%)' }} />
         {/* Rainbow side strip matching brochure */}
         <div className="absolute left-0 top-0 bottom-0 w-2 rainbow-strip" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <p className="text-red-200 text-xs font-bold tracking-[0.2em] uppercase mb-4 reveal">Who We Are</p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-5 leading-tight reveal font-display" style={{ transitionDelay: '0.1s' }}>
+          <h1 className="text-res-h1 text-white mb-5 leading-tight reveal font-display" style={{ transitionDelay: '0.1s' }}>
             Right People.<br/>Right Skill.<br/>Right Environment.
           </h1>
           <p className="text-2xl font-bold text-red-200 mb-5 reveal" style={{ transitionDelay: '0.2s' }}>
             — Connected By Ethics —
           </p>
-          <p className="text-red-100 font-light text-base max-w-2xl mx-auto leading-relaxed reveal" style={{ transitionDelay: '0.3s' }}>
+          <p className="text-red-100 font-light text-res-p max-w-2xl mx-auto leading-relaxed reveal" style={{ transitionDelay: '0.3s' }}>
             For over 25 years, ANJO Traders has been Tuticorin's most trusted name in bulk agricultural export, maritime logistics, industrial salt manufacturing, and container commercialization — serving buyers across Sri Lanka, Singapore, Malaysia, China, Thailand, and Bangladesh.
           </p>
         </div>
       </section>
 
       {/* DIVISIONS */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="section-padding px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <p className="section-eyebrow justify-center reveal">Our Divisions</p>
-            <h2 className="text-3xl font-black text-gray-900 reveal font-display" style={{ transitionDelay: '0.1s' }}>Four Core Business Pillars</h2>
+            <h2 className="text-res-h2 text-gray-900 reveal font-display" style={{ transitionDelay: '0.1s' }}>Four Core Business Pillars</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 stagger-grid">
             {[
@@ -69,11 +69,11 @@ const AboutPage = () => {
       </section>
 
       {/* MILESTONES */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="section-padding px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
             <p className="section-eyebrow justify-center reveal">Our Journey</p>
-            <h2 className="text-3xl font-black text-gray-900 reveal font-display" style={{ transitionDelay: '0.1s' }}>Company Milestones</h2>
+            <h2 className="text-res-h2 text-gray-900 reveal font-display" style={{ transitionDelay: '0.1s' }}>Company Milestones</h2>
           </div>
           <div className="space-y-4 stagger-grid">
             {milestones.map((m, i) => (

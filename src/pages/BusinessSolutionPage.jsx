@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, ShoppingCart, Ship, Globe, Anchor, TrendingUp, BarChart, DollarSign } from 'lucide-react';
 import './BusinessSolutionPage.css';
 
+
 const SERVICES = [
   { id: 'investment', title: 'Investment', icon: Briefcase, color: '#c23b22', desc: 'Secure capital allocation and strategic asset planning to jumpstart our global trading and logistics operations with robust financial backing.' },
   { id: 'purchase', title: 'Purchase', icon: ShoppingCart, color: '#d97706', desc: 'Sourcing the finest quality raw materials and commodities directly from trusted global partnerships, ensuring premium baseline quality.' },
@@ -228,7 +229,7 @@ export default function BusinessSolutionPage() {
 
         </div>
       </div>
-
+      
     </div>
   );
 }

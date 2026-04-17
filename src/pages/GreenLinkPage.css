@@ -26,7 +26,7 @@
   background: var(--ocean);
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -35,7 +35,7 @@
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .gl-hero {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: flex;
@@ -145,7 +145,7 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .gl-gs {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: grid;
@@ -423,7 +423,7 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .gl-footer {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   background: var(--ocean);
   position: relative;
@@ -492,7 +492,7 @@
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .gl-gs, .gl-gs--reverse {
     grid-template-columns: 1fr;
     height: auto;

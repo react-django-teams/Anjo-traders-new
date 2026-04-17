@@ -440,7 +440,7 @@
    ============================================ */
 
 /* Mobile First - Base styles for mobile devices */
-@media (max-width: 639px) {
+@media (max-width: 768px) {
   /* Products page specific mobile styles */
   .products-hero {
     padding: 4rem 0 3rem !important;
@@ -520,7 +520,7 @@
   }
 
   .products-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
 

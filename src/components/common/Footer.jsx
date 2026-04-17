@@ -9,18 +9,18 @@ const Footer = () => {
       {/* Rainbow accent line matching brochure */}
       <div className="h-1 w-full rainbow-strip" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
           {/* Brand */}
           <div className="max-w-md">
-            <img src={logoImage} alt="ANJO Traders" className="h-16 w-auto mb-6" />
-            <p className="text-orange-100 text-xs font-semibold tracking-widest uppercase mb-4">Export · Import: Traders of All Goods</p>
-            <p className="text-white text-base leading-relaxed mb-8 font-medium">
+            <img src={logoImage} alt="ANJO Traders" className="h-10 w-auto mb-3" />
+            <p className="text-orange-100 text-xs font-semibold tracking-widest uppercase mb-2">Export · Import: Traders of All Goods</p>
+            <p className="text-white text-base leading-relaxed mb-4 font-medium">
               Right People · Right Skill · Right Environment.<br />
               <span className="text-white font-extrabold tracking-wide drop-shadow-sm">Connected By Ethics.</span>
             </p>
-            <div className="space-y-3">
+            <div className="space-y-1">
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></span>
                 <span className="text-orange-100 text-sm">Colombo, Sri Lanka Branch</span>
@@ -34,8 +34,8 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <p className="section-eyebrow mb-4 text-white font-bold opacity-90">Get in Touch</p>
-            <ul className="space-y-3">
+            <p className="section-eyebrow mb-2 text-white font-bold opacity-90">Get in Touch</p>
+            <ul className="space-y-1">
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="text-white/80 mt-1 flex-shrink-0" size={13} />
                 <span className="text-orange-100 text-xs leading-relaxed">
@@ -61,7 +61,7 @@ const Footer = () => {
               </li>
             </ul>
 
-            <div className="flex gap-3 mt-5">
+            <div className="flex gap-3 mt-4">
               {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram].map((Icon, i) => (
                 <a key={i} href="/#" className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-orange-100 hover:text-white hover:border-white transition-all hover:bg-white/20">
                   <Icon size={13} />
@@ -74,7 +74,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="border-t border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-orange-100/80 text-xs">© {new Date().getFullYear()} ANJO Traders. All rights reserved.</p>
           <div className="flex gap-5">
             {[['Privacy Policy', '/privacy-policy'], ['Terms & Conditions', '/terms-and-conditions']].map(([name, path]) => (

@@ -77,6 +77,11 @@ const ContactPage = () => {
           -webkit-text-fill-color: transparent;
           animation: gradOrange 4s ease infinite;
         }
+        @media (max-width: 768px) {
+          .cp-hero { padding: 100px 20px 60px !important; min-height: 70vh !important; }
+          .cp-orb { display: none !important; }
+          .cp-headline { font-size: 2.5rem !important; }
+        }
       `}</style>
 
       {/* Floating warm orbs */}
@@ -87,7 +92,7 @@ const ContactPage = () => {
       </div>
 
       {/* ── HERO ────────────────────────────────────────────────── */}
-      <section style={{
+      <section className="cp-hero" style={{
         position:'relative', minHeight:'90vh', display:'flex', flexDirection:'column',
         justifyContent:'center', alignItems:'center', padding:'120px 24px 80px',
         textAlign:'center', zIndex:1,
@@ -108,7 +113,7 @@ const ContactPage = () => {
         </div>
 
         {/* Headline */}
-        <h1 style={{ position:'relative', zIndex:2, fontSize:'clamp(2.8rem,8vw,5.5rem)', fontWeight:900, lineHeight:1.05, marginBottom:24, letterSpacing:'-0.03em', textShadow:'0 4px 20px rgba(0,0,0,0.6)' }}>
+        <h1 className="cp-headline" style={{ position:'relative', zIndex:2, fontSize:'clamp(2.8rem,8vw,5.5rem)', fontWeight:900, lineHeight:1.05, marginBottom:24, letterSpacing:'-0.03em', textShadow:'0 4px 20px rgba(0,0,0,0.6)' }}>
           <span style={{ color:'#ffffff' }}>Let's </span>
           <span className="text-grad-orange">Build</span>
           <br/>

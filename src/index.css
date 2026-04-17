@@ -10,6 +10,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
+:root {
+  /* Dynamic Spacing Tokens */
+  --site-px: 6%;
+  --section-py: 5rem;
+  --header-h: 80px;
+}
+
+/* Shared Mobile Standards */
+@media (max-width: 768px) {
+  :root {
+    --site-px: 5%;
+    --section-py: 3.5rem;
+    --header-h: 70px;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Poppins', sans-serif;
@@ -17,6 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #fff;
   color: #1a1a1a;
+  font-size: clamp(14px, 1.1vw, 16px); /* Global Fluid Base */
 }
 
 /* ============================================================
@@ -37,6 +54,26 @@ body {
   opacity: 1;
   transform: none;
 }
+
+/* ============================================================ 
+   RESPONSIVE UTILITIES 
+   ============================================================ */
+.container-responsive {
+  padding-left: var(--site-px);
+  padding-right: var(--site-px);
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-padding {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.text-res-h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; font-weight: 800; }
+.text-res-h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; font-weight: 700; }
+.text-res-p  { font-size: clamp(1rem, 1.2vw, 1.25rem); line-height: 1.6; }
 
 /* ============================================================
    PAGE TRANSITION

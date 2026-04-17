@@ -26,7 +26,7 @@
   background: var(--bark);
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -35,7 +35,7 @@
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .salt-hero {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
@@ -139,7 +139,7 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .salt-gs {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: grid;
@@ -425,7 +425,7 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .salt-footer {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   background: var(--bark);
   position: relative;
@@ -494,7 +494,7 @@
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .salt-gs, .salt-gs--reverse {
     grid-template-columns: 1fr;
     height: auto;

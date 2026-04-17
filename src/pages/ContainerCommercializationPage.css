@@ -26,7 +26,7 @@
   background: var(--slate);
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -35,7 +35,7 @@
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .cc-hero {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
@@ -139,7 +139,7 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .cc-gs {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: grid;
@@ -416,7 +416,7 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .cc-footer {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   background: var(--slate);
   position: relative;
@@ -485,7 +485,7 @@
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .cc-gs, .cc-gs--reverse {
     grid-template-columns: 1fr;
     height: auto;

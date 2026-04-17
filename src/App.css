@@ -19,138 +19,38 @@
    COMPREHENSIVE MEDIA QUERIES FOR APP
    ============================================ */
 
-/* Mobile First - Base styles for mobile devices */
-@media (max-width: 639px) {
-  .App {
-    font-size: 14px;
-  }
-
-  .App-logo {
-    height: 30vmin;
-    max-height: 120px;
-  }
-
-  .App-header {
-    min-height: 80vh;
-    padding: 1rem;
-    font-size: 14px;
-  }
-
-  .App-header h1 {
-    font-size: 1.5rem !important;
-  }
-
-  .App-header p {
-    font-size: 0.875rem !important;
-  }
+/* TABLET TRANSITION (768px) */
+@media (max-width: 768px) {
+  .App { font-size: 14px; }
+  .App-logo { height: 30vmin; max-height: 120px; }
+  .App-header { min-height: 80vh; padding: 1.5rem; }
+  .App-header h1 { font-size: clamp(1.8rem, 10vw, 2.5rem) !important; }
 }
 
-/* Small tablets and large phones */
-@media (min-width: 640px) and (max-width: 767px) {
-  .App {
-    font-size: 15px;
-  }
-
-  .App-logo {
-    height: 35vmin;
-    max-height: 150px;
-  }
-
-  .App-header {
-    min-height: 85vh;
-    font-size: 15px;
-  }
-}
-
-/* Tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .App {
-    font-size: 16px;
-  }
-
-  .App-logo {
-    height: 40vmin;
-    max-height: 180px;
-  }
-
-  .App-header {
-    min-height: 90vh;
-    font-size: 16px;
-  }
-}
-
-/* Desktop and larger screens */
+/* DESKTOP TRANSITION (1024px) */
 @media (min-width: 1024px) {
-  .App {
-    font-size: 16px;
-  }
-
-  .App-logo {
-    height: 40vmin;
-    max-height: 200px;
-  }
-
-  .App-header {
-    min-height: 95vh;
-    font-size: 16px;
-  }
+  .App { font-size: 16px; }
+  .App-logo { height: 40vmin; max-height: 200px; }
+  .App-header { min-height: 90vh; }
 }
 
-/* Large desktop screens */
-@media (min-width: 1280px) {
-  .App {
-    font-size: 17px;
-  }
-
-  .App-header {
-    font-size: 17px;
-  }
-}
-
-/* Ultra-wide screens */
+/* LARGE SCREENS */
 @media (min-width: 1536px) {
-  .App {
-    font-size: 18px;
-  }
-
-  .App-header {
-    font-size: 18px;
-  }
+  .App { font-size: 18px; }
 }
 
 /* ============================================
-   APP-LEVEL RESPONSIVE UTILITIES
+   APP-LEVEL RESPONSIVE UTILITIES (Unified)
    ============================================ */
+.app-text-xs { font-size: 0.75rem !important; }
+.app-text-sm { font-size: 0.875rem !important; }
+.app-text-base { font-size: 1rem !important; }
+.app-text-lg { font-size: clamp(1rem, 1.5vw, 1.125rem) !important; }
+.app-text-xl { font-size: clamp(1.125rem, 2vw, 1.25rem) !important; }
+.app-text-2xl { font-size: clamp(1.25rem, 3vw, 1.5rem) !important; }
 
-/* Responsive font sizes for app content */
-@media (max-width: 639px) {
-  .app-text-xs { font-size: 0.75rem !important; }
-  .app-text-sm { font-size: 0.875rem !important; }
-  .app-text-base { font-size: 1rem !important; }
-  .app-text-lg { font-size: 1.125rem !important; }
-  .app-text-xl { font-size: 1.25rem !important; }
-  .app-text-2xl { font-size: 1.5rem !important; }
-}
-
-@media (min-width: 640px) {
-  .app-text-xs { font-size: 0.75rem !important; }
-  .app-text-sm { font-size: 0.875rem !important; }
-  .app-text-base { font-size: 1rem !important; }
-  .app-text-lg { font-size: 1.125rem !important; }
-  .app-text-xl { font-size: 1.25rem !important; }
-  .app-text-2xl { font-size: 1.5rem !important; }
-}
-
-@media (min-width: 768px) {
-  .app-text-lg { font-size: 1.125rem !important; }
-  .app-text-xl { font-size: 1.25rem !important; }
-  .app-text-2xl { font-size: 1.5rem !important; }
-}
-
-@media (min-width: 1024px) {
-  .app-text-xl { font-size: 1.25rem !important; }
-  .app-text-2xl { font-size: 1.5rem !important; }
-}
+.app-p-container { padding: 0 var(--site-px) !important; }
+.app-py-section { padding: var(--section-py) 0 !important; }
 
 /* Responsive spacing for app */
 @media (max-width: 639px) {
