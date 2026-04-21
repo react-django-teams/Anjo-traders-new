@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../common/Card';
 import SectionHeader from '../ui/SectionHeader';
-import exportImportImage from '../../assets/images/WhatsApp Image 2025-09-27 at 5.04.36 AM.jpeg';
-import maritimeLogisticsImage from '../../assets/images/WhatsApp Image 2025-09-27 at 5.04.13 AM.jpeg';
-import containerCommercializationImage from '../../assets/images/WhatsApp Image 2025-09-27 at 5.04.09 AM.jpeg';
-import saltManufacturingImage from '../../assets/images/WhatsApp Image 2025-09-27 at 5.20.06 AM.jpeg';
+import exportImportImage from '../../assets/images/whatsapp-image-2025-09-27-at-5.04.36-am.jpeg';
+import maritimeLogisticsImage from '../../assets/images/whatsapp-image-2025-09-27-at-5.04.13-am.jpeg';
+import containerCommercializationImage from '../../assets/images/whatsapp-image-2025-09-27-at-5.04.09-am.jpeg';
+import saltManufacturingImage from '../../assets/images/whatsapp-image-2025-09-27-at-5.20.06-am.jpeg';
 
 const ServicesHighlight = () => {
   const services = [

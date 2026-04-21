@@ -1,0 +1,89 @@
+================================================================================
+                        PROJECT REQUIREMENT & ANALYSIS DOCUMENT
+================================================================================
+Project Name:  ANJO Traders
+Project Type:  Professional Global Trading & Logistics Website
+Client Focus:  High-end Industrial & Artisanal Exports
+Status:        Deployment-Ready (Production Finialized)
+
+--------------------------------------------------------------------------------
+1. MISSION & BUSINESS VISION
+--------------------------------------------------------------------------------
+ANJO Traders is a premium global trade and logistics gateway focusing on multi-
+sector excellence. The website serves as a digital storefront for high-value
+commodities (Salt, Automobiles) and logistical services (Container 
+Commercialization). The vision is to project "Crystalline Purity" and 
+"Elite Reliability" across all sectors.
+
+--------------------------------------------------------------------------------
+2. TECHNICAL ARCHITECTURE
+--------------------------------------------------------------------------------
+Frontend:
+- Framework: React (v19.1.1)
+- Build Tool: Create React App (react-scripts v5.0.1)
+- State Management: React Hooks & Location State
+- Animations: GSAP (v3.15+) & Framer Motion (v12.38+)
+- Styling: Tailwind CSS (v3.4+) with PostCSS Autoprefixer
+- Icons: Lucide React, React Icons
+
+Backend Interface:
+- Technology: FastAPI (Python 3.11-slim)
+- Current Scope: Health monitoring and API placeholder
+- Port: 8000
+
+Infrastructure:
+- Containerization: Docker (Multi-stage builds for Frontend and Backend)
+- Orchestration: Kubernetes (k8s)
+- Ingress: Traefik IngressRoute
+- Reverse Proxy: Nginx (serving the React build)
+
+--------------------------------------------------------------------------------
+3. FEATURE AUDIT & SITEMAP
+--------------------------------------------------------------------------------
+The application consists of 20+ specialized pages:
+
+Main Navigation:
+- [Home]: Dynamic Hero section with global trade focus.
+- [About]: Corporate history, vision, and team.
+- [Products]: Comprehensive product catalog listing.
+- [Services]: Service offerings breakdown.
+- [Contact]: Interactive contact portal with premium aesthetics.
+
+Specialized Business Sectors:
+- [Anjo Salt]: "Crystalline Purity" themed page for Industrial and Table salt.
+- [Container Commercialization]: Professional logistics and shipping portal.
+- [Automobiles]: Industrial and commercial vehicle export focus.
+- [Green Link]: Sustainability and environmental initiative portal.
+- [Business Solutions]: Strategic consulting and corporate services.
+- [Prime Products]: Curated selection of high-tier offerings.
+
+Utility & Policy:
+- [Privacy Policy]: GDPR/Standard legal documentation.
+- [Terms & Conditions]: Legal operational framework.
+- [Animated Gallery]: High-end visual display of assets.
+- [Global Research]: Data-driven trade analysis portal.
+
+--------------------------------------------------------------------------------
+4. UI/UX STANDARDS (THE ELITE DIRECTIVE)
+--------------------------------------------------------------------------------
+The project adheres to a "Premium Animated" design language:
+- Palette: "Mineral Charcoal" backgrounds with crystalline accents.
+- Typography: Modern, clean sans-serif (Inter/Outfit style).
+- Animations: Scroll-reveal (ScrollRevealWatcher), GSAP parallax, and 
+  Framer Motion micro-interactions.
+- Components: Fully responsive, glassmorphism UI elements, and cinematic 
+  gallery transitions.
+
+--------------------------------------------------------------------------------
+5. DEPLOYMENT REQUIREMENTS
+--------------------------------------------------------------------------------
+Production Settings:
+- Domains: anjo-traders.lab, anjo-traders.vienstereoptic.com
+- Environment: anjo-traders-production (Namespace)
+- TLS: Traefik managed websecure entryPoints
+- Security: NetworkPolicy enforced for backend isolation
+
+--------------------------------------------------------------------------------
+ANALYSIS COMPLETED BY: Antigravity AI
+DATE: April 21, 2026
+================================================================================

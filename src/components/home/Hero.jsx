@@ -107,7 +107,7 @@ const Hero = () => {
       </div>
 
       {/* 3. Central Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-10">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-20">
         
         <div className="w-full flex flex-col items-center justify-center">
           <img 
@@ -117,7 +117,7 @@ const Hero = () => {
           />
           
           <h2 
-            className="relative z-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.05em] max-w-4xl text-transparent bg-clip-text animate-tagline-shimmer -mt-6 sm:-mt-8 md:-mt-12"
+            className="relative z-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.05em] max-w-4xl text-transparent bg-clip-text animate-tagline-shimmer mt-6 sm:mt-8 md:mt-12"
             style={{ 
               backgroundImage: 'linear-gradient(90deg, #cbd5e1 0%, #ffffff 25%, #60a5fa 50%, #ffffff 75%, #cbd5e1 100%)',
               filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.8))'

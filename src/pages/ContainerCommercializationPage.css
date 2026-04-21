@@ -25,13 +25,14 @@
   font-family: var(--font);
   background: var(--slate);
   height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .cc-page::-webkit-scrollbar { display: none; }
 
@@ -144,7 +145,7 @@
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .cc-gs {
   height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   scroll-snap-align: center;
   scroll-snap-stop: always;
   position: relative;
@@ -542,9 +543,10 @@
     grid-template-columns: 1fr;
     height: auto;
     min-height: 100vh;
+    min-height: 100svh;
     direction: ltr;
   }
-  .cc-gs-img-col { height: 60vw; }
-  .cc-gs-content-col { padding: 4rem 8%; }
-  .cc-footer { height: auto; padding: 10rem 4%; }
+  .cc-gs-img-col { height: 70vw; min-height: 300px; }
+  .cc-gs-content-col { padding: 3rem 6%; }
+  .cc-footer { height: auto; padding: 6rem 4%; min-height: 100svh; }
 }

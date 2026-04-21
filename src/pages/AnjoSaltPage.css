@@ -20,10 +20,12 @@
   background: var(--bg-void);
   color: var(--salt-white);
   height: 100vh;
+  height: 100svh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .salt-page::-webkit-scrollbar { display: none; }
 
@@ -32,6 +34,7 @@
 ═══════════════════════════════════════════════════════════════ */
 .salt-hero {
   height: 100vh;
+  height: 100svh;
   scroll-snap-align: start;
   position: relative;
   display: flex;
@@ -729,6 +732,7 @@
   .salt-section--rev {
     grid-template-columns: 1fr;
     height: auto;
+    min-height: 100vh;
     min-height: 100svh;
     direction: ltr;
   }

@@ -7,30 +7,30 @@ import Breadcrumb from '../components/common/Breadcrumb';
 import './ProductsPage.css';
 
 // Import the same product data from ProductsPage
-import potatoImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.26.36 PM.jpeg';
-import bigOnionImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.27.41 PM.jpeg';
-import shallotsImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.28.34 PM.jpeg';
-import coconutImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.31.49 PM.jpeg';
-import moongDalImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.17.50 PM.jpeg';
-import channaImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.16.48 PM.jpeg';
-import guavaImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.12.22 PM.jpeg';
-import bananaImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.09.56 PM.jpeg';
-import appleImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.08.02 PM.jpeg';
-import pomegranateImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.06.15 PM.jpeg';
-import orangeImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.04.10 PM.jpeg';
-import grapesImage from '../assets/images/WhatsApp Image 2025-09-26 at 11.01.37 PM.jpeg';
-import garlicImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.59.34 PM.jpeg';
-import chilliesImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.59.15 PM.jpeg';
-import gingerImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.50.35 PM.jpeg';
-import mangoImage from '../assets/images/WhatsApp Image 2025-09-26 at 10.59.04 PM.jpeg';
-import greenGramImage from '../assets/images/WhatsApp Image 2025-09-27 at 1.20.19 AM.jpeg';
-import uradDalImage from '../assets/images/WhatsApp Image 2025-09-27 at 1.20.20 AM (1).jpeg';
-import groceryImage from '../assets/images/WhatsApp Image 2025-09-27 at 3.21.14 AM (4).jpeg';
-import masoorDalImage from '../assets/images/WhatsApp Image 2025-09-27 at 1.20.20 AM.jpeg';
-import horseGramImage from '../assets/images/WhatsApp Image 2025-09-27 at 1.20.21 AM.jpeg';
-import maizeCornImage from '../assets/images/WhatsApp Image 2025-09-27 at 1.20.22 AM.jpeg';
-import wheatImage from '../assets/images/WhatsApp Image 2025-09-27 at 3.21.13 AM.jpeg';
-import vegetableOilImage from '../assets/images/WhatsApp Image 2025-09-27 at 3.21.14 AM.jpeg';
+import potatoImage from '../assets/images/whatsapp-image-2025-09-26-at-10.26.36-pm.jpeg';
+import bigOnionImage from '../assets/images/whatsapp-image-2025-09-26-at-10.27.41-pm.jpeg';
+import shallotsImage from '../assets/images/whatsapp-image-2025-09-26-at-10.28.34-pm.jpeg';
+import coconutImage from '../assets/images/whatsapp-image-2025-09-26-at-10.31.49-pm.jpeg';
+import moongDalImage from '../assets/images/whatsapp-image-2025-09-26-at-11.17.50-pm.jpeg';
+import channaImage from '../assets/images/whatsapp-image-2025-09-26-at-11.16.48-pm.jpeg';
+import guavaImage from '../assets/images/whatsapp-image-2025-09-26-at-11.12.22-pm.jpeg';
+import bananaImage from '../assets/images/whatsapp-image-2025-09-26-at-11.09.56-pm.jpeg';
+import appleImage from '../assets/images/whatsapp-image-2025-09-26-at-11.08.02-pm.jpeg';
+import pomegranateImage from '../assets/images/whatsapp-image-2025-09-26-at-11.06.15-pm.jpeg';
+import orangeImage from '../assets/images/whatsapp-image-2025-09-26-at-11.04.10-pm.jpeg';
+import grapesImage from '../assets/images/whatsapp-image-2025-09-26-at-11.01.37-pm.jpeg';
+import garlicImage from '../assets/images/whatsapp-image-2025-09-26-at-10.59.34-pm.jpeg';
+import chilliesImage from '../assets/images/whatsapp-image-2025-09-26-at-10.59.15-pm.jpeg';
+import gingerImage from '../assets/images/whatsapp-image-2025-09-26-at-10.50.35-pm.jpeg';
+import mangoImage from '../assets/images/whatsapp-image-2025-09-26-at-10.59.04-pm.jpeg';
+import greenGramImage from '../assets/images/whatsapp-image-2025-09-27-at-1.20.19-am.jpeg';
+import uradDalImage from '../assets/images/whatsapp-image-2025-09-27-at-1.20.20-am-1.jpeg';
+import groceryImage from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am-4.jpeg';
+import masoorDalImage from '../assets/images/whatsapp-image-2025-09-27-at-1.20.20-am.jpeg';
+import horseGramImage from '../assets/images/whatsapp-image-2025-09-27-at-1.20.21-am.jpeg';
+import maizeCornImage from '../assets/images/whatsapp-image-2025-09-27-at-1.20.22-am.jpeg';
+import wheatImage from '../assets/images/whatsapp-image-2025-09-27-at-3.21.13-am.jpeg';
+import vegetableOilImage from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am.jpeg';
 
 // Product data structure (same as in ProductsPage)
 const productsData = {
