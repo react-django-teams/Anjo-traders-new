@@ -1,4 +1,4 @@
-apiVersion: traefik.io/v1alpha1
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: anjo-traders-frontend
@@ -15,7 +15,7 @@ spec:
   tls:
     secretName: anjo-traders-frontend-tls
 ---
-apiVersion: traefik.io/v1alpha1
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: anjo-traders-backend
@@ -32,7 +32,7 @@ spec:
   tls:
     secretName: anjo-traders-api-tls
 ---
-apiVersion: traefik.io/v1alpha1
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: anjo-traders-frontend-http
@@ -44,7 +44,6 @@ spec:
     - match: Host(`anjo-traders.lab`) || Host(`anjo-traders.vienstereoptic.com`)
       kind: Rule
       middlewares:
-        - name: redirect-to-https
       services:
         - name: frontend
           port: 80
