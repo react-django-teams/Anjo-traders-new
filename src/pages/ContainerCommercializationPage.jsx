@@ -19,10 +19,10 @@ const SECTIONS = [
     label: 'Container Commercialization',
     defaultImg: globalImg,
     images: [
-      'https://images.unsplash.com/photo-1586528116311-ad8ed7c83a45?q=80&w=1200', // Inventory
-      'https://images.unsplash.com/photo-1494412519320-ce3dcfa593f6?q=80&w=1200', // Leasing
-      'https://images.unsplash.com/photo-1628102422220-2fb5a3bb4132?q=80&w=1200', // Quality
-      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200'  // Logistics
+      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200',
+      'https://images.unsplash.com/photo-1524522173746-f628baad3644?q=80&w=1200',
+      'https://b3353673.smushcdn.com/3353673/wp-content/uploads/2025/11/IICL-Container.webp?lossy=2&strip=1&webp=1',
+      'https://images.unsplash.com/photo-1494412519320-ce3dcfa593f6?q=80&w=1200'
     ],
     accentR: 6, accentG: 182, accentB: 212, // Cyan-400
     items: [
@@ -38,6 +38,12 @@ const SECTIONS = [
     title: 'Storage & Yard',
     label: 'Industrial Solutions',
     defaultImg: storageImg,
+    images: [
+      'https://images.unsplash.com/photo-1590674033314-140026363821?q=80&w=1200',
+      'https://images.unsplash.com/photo-1586864387917-f58a4b8ec52b?q=80&w=1200',
+      'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200',
+      'https://www.youtube.com/watch?v=dxV8wfn5MXA'
+    ],
     accentR: 249, accentG: 115, accentB: 22, // Orange-500
     items: [
       'Secure Weatherproof Units',
@@ -53,9 +59,13 @@ const SECTIONS = [
     title: 'Modification',
     label: 'Creative Architecture',
     defaultImg: modifyImg,
+    images: [
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200',
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
+      'https://images.unsplash.com/photo-1504917596153-9bbef50fdd33?q=80&w=1200'
+    ],
     accentR: 139, accentG: 92, accentB: 246, // Purple-500
     items: [
-      'Pop-up Retail & Cafes',
       'Mobile Offices & Labs',
       'Modular Living Spaces',
       'Bespoke Steel Engineering'
@@ -67,10 +77,14 @@ const SECTIONS = [
     title: 'Fleet Logistics',
     label: 'Maritime Excellence',
     defaultImg: heroImg,
+    images: [
+      'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200',
+      'https://www.visiwise.co/blog/wp-content/uploads/2025/04/How-Long-Does-It-Take-to-Unload-a-Container-Ship.jpg',
+      'https://images.unsplash.com/photo-1566367576505128cdef8f4?q=80&w=1200'
+    ],
     accentR: 6, accentG: 182, accentB: 212,
     items: [
       '24/7 Yard Operations',
-      'Intermodal Transport',
       'Vessel Load Management',
       'Depot Handling Services'
     ],
@@ -83,23 +97,23 @@ const ALL_IDS = [...SECTIONS.map(s => s.id), 'cta'];
 // ── COMPONENTS ─────────────────────────────────────────────────
 
 const SparkBatch = () => {
-  const sparks = Array.from({ length: 18 }, (_, i) => ({
+  const sparks = Array.from({ length: 28 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: 2 + Math.random() * 4,
-    delay: Math.random() * 5,
-    duration: 10 + Math.random() * 8,
-    opacity: 0.15 + Math.random() * 0.35,
-    color: ['#06b6d4', '#8b5cf6', '#f97316'][i % 3]
+    size: 1 + Math.random() * 3,
+    delay: Math.random() * 10,
+    duration: 15 + Math.random() * 15,
+    opacity: 0.1 + Math.random() * 0.3,
+    color: ['#06b6d4', '#8b5cf6', '#f97316', '#ffffff'][i % 4]
   }));
 
   return (
-    <div className="absolute inset-0 z-[100] pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
       {sparks.map(s => (
         <motion.div
           key={s.id}
-          className="absolute rounded-full blur-[1px]"
+          className="absolute rounded-full"
           style={{
             left: `${s.x}%`,
             top: `${s.y}%`,
@@ -107,12 +121,14 @@ const SparkBatch = () => {
             height: s.size,
             opacity: s.opacity,
             background: s.color,
-            boxShadow: `0 0 12px ${s.color}`
+            boxShadow: `0 0 ${s.size * 3}px ${s.color}`,
+            filter: 'blur(0.5px)'
           }}
           animate={{
-            y: [0, -100, 0],
-            x: [0, 40, 0],
-            opacity: [s.opacity, s.opacity * 2, s.opacity]
+            y: [0, -150, 0],
+            x: [0, (Math.random() - 0.5) * 100, 0],
+            opacity: [s.opacity, s.opacity * 2, s.opacity],
+            scale: [1, 1.5, 1]
           }}
           transition={{
             duration: s.duration,
@@ -183,18 +199,71 @@ function GallerySection({ id, num, title, label, defaultImg, images, accentR, ac
       {/* Image Column */}
       <div className="cc-gs-img-col">
         <div className="cc-gs-img-wrap">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeIdx >= 0 && images ? (images[activeIdx] || defaultImg) : defaultImg}
-              src={activeIdx >= 0 && images ? (images[activeIdx] || defaultImg) : defaultImg}
-              alt={title}
-              className="cc-gs-img"
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            />
-          </AnimatePresence>
+            <AnimatePresence mode="wait">
+              {(() => {
+                const src = activeIdx >= 0 && images ? (images[activeIdx] || defaultImg) : defaultImg;
+                const isYoutube = typeof src === 'string' && (src.includes('youtube.com') || src.includes('youtu.be'));
+                const isDirectVideo = typeof src === 'string' && (src.endsWith('.mp4') || src.endsWith('.webm'));
+
+                if (isYoutube) {
+                  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                  const match = src.match(regExp);
+                  const videoId = (match && match[2].length === 11) ? match[2] : null;
+                  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0` : src;
+
+                  return (
+                    <motion.div
+                      key={src}
+                      className="cc-gs-video-container"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <iframe
+                        src={embedUrl}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="cc-gs-iframe"
+                      />
+                    </motion.div>
+                  );
+                }
+
+                if (isDirectVideo) {
+                  return (
+                    <motion.video
+                      key={src}
+                      src={src}
+                      className="cc-gs-img"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  );
+                }
+
+                return (
+                  <motion.img
+                    key={src}
+                    src={src}
+                    alt={title}
+                    className="cc-gs-img"
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  />
+                );
+              })()}
+            </AnimatePresence>
           <div className="cc-gs-img-overlay" />
         </div>
         <div className="cc-gs-accent-bar" />
@@ -256,7 +325,7 @@ export default function ContainerCommercializationPage() {
     const nextIdx = (ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length;
     const nextId = ALL_IDS[nextIdx];
     const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [isPresenting]);
 
   useEffect(() => {

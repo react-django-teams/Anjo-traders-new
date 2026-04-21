@@ -25,19 +25,23 @@
 .pp-page {
   font-family: var(--font);
   background: var(--dark);
-  overflow-y: scroll;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
   overflow-x: hidden;
-  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  scroll-behavior: smooth;
 }
 .pp-page::-webkit-scrollbar { display: none; }
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .pp-hero {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100svh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -140,8 +144,10 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .gs {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   position: relative;
   display: grid;
   grid-template-columns: 52% 48%;
@@ -446,8 +452,10 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .pp-footer {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100svh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   background: var(--dark);
   position: relative;
   overflow: hidden;

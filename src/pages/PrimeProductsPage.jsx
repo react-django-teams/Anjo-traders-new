@@ -272,7 +272,7 @@ export default function PrimeProductsPage() {
     if (!isPresenting) return;
     const nextId = ALL_IDS[(ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length];
     const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [isPresenting]);
 
   // Hero & footer auto-advance

@@ -13,7 +13,6 @@ import customsClearanceImg from '../assets/images/customs-clearance.png';
 import doorToDoorImg from '../assets/images/export-import-solutions-pexels.jpg';
 import supplyChainImg from '../assets/images/supply-chain.jpg';
 import heavyLiftImg from '../assets/images/cargo-transfer-hero.png';
-import oversizedCargoImg from '../assets/images/oversized-cargo.jpg';
 import riskManagementImg from '../assets/images/risk-management.jpg';
 import routePlanningImg from '../assets/images/route-planning.jpg';
 import realTimeTrackingImg from '../assets/images/real-time-tracking.jpg';
@@ -60,7 +59,12 @@ const SECTIONS = [
     title: 'Fabricated Containers',
     label: 'CUSTOM SOLUTIONS',
     defaultImg: cargoImg,
-    images: [heavyLiftImg, oversizedCargoImg, riskManagementImg, routePlanningImg],
+    images: [
+      heavyLiftImg, 
+      'https://www.samanportable.com/_next/image?url=https%3A%2F%2Fblog.samanportable.com%2Fwp-content%2Fuploads%2F2024%2F11%2Fcontainer-offces-porta-cabins-by-saman-1-13-1024x574.jpg&w=1920&q=75', 
+      riskManagementImg, 
+      routePlanningImg
+    ],
     accentR: 56, accentG: 189, accentB: 248,
     items: [
       'Fabricated Used Containers',
@@ -262,7 +266,7 @@ export default function GreenLinkPage() {
     if (!isPresenting) return;
     const nextId = ALL_IDS[(ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length];
     const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [isPresenting]);
 
   useEffect(() => {

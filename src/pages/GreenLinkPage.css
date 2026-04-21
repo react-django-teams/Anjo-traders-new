@@ -24,19 +24,24 @@
 .gl-page {
   font-family: var(--font);
   background: var(--ocean);
-  overflow-y: scroll;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
   overflow-x: hidden;
-  min-height: 100vh;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  scroll-behavior: smooth;
 }
 .gl-page::-webkit-scrollbar { display: none; }
 
 /* ── HERO ────────────────────────────────────────────────────── */
 .gl-hero {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100svh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
@@ -145,8 +150,10 @@
 
 /* ── GALLERY SECTION ─────────────────────────────────────────── */
 .gl-gs {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   position: relative;
   display: grid;
   grid-template-columns: 55% 45%;
@@ -423,8 +430,10 @@
 
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .gl-footer {
-  min-height: 100vh;
-  scroll-snap-align: start;
+  height: 100vh;
+  height: 100svh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   background: var(--ocean);
   position: relative;
   overflow: hidden;

@@ -5,6 +5,8 @@ COPY package*.json ./
 RUN npm install --legacy-peer-deps
 COPY public/ ./public/
 COPY src/ ./src/
+COPY tailwind.config.js ./
+COPY postcss.config.js ./
 RUN npm run build
 
 # Production stage
