@@ -1,12 +1,12 @@
 /*
-  AnjoSaltPage.css — Premium Product Showcase Slider
+  AnjoPage.css — Premium Product Showcase Slider
   Inspired by headphone animation pattern
   Font: Outfit + Montserrat
 */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Montserrat:wght@400;700;900&display=swap');
 
 /* ── RESET & PAGE ─────────────────────────────────── */
-.salt-slider-page {
+.anjo-page {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -18,19 +18,19 @@
 }
 
 /* ── BACKGROUNDS ─────────────────────────────────── */
-.salt-slider-backgrounds {
+.anjo-backgrounds {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
-.salt-slider-bg {
+.anjo-bg {
   position: absolute;
   inset: 0;
   transition: opacity 1.8s ease-in-out;
 }
 
 /* ── CONTAINER ───────────────────────────────────── */
-.salt-slider-container {
+.anjo-container {
   position: relative;
   z-index: 2;
   display: flex;
@@ -43,7 +43,7 @@
 }
 
 /* ── LEFT CONTENT ────────────────────────────────── */
-.salt-slider-content {
+.anjo-content {
   flex: 0 0 auto;
   max-width: 500px;
   display: flex;
@@ -69,13 +69,13 @@
 }
 
 /* Logo */
-.salt-slider-logo {
+.anjo-logo {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 2rem;
 }
-.salt-slider-logo img {
+.anjo-logo img {
   width: 48px;
   height: 48px;
   object-fit: contain;
@@ -84,7 +84,7 @@
   padding: 4px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
-.salt-slider-logo span {
+.anjo-logo span {
   font-size: 0.85rem;
   font-weight: 900;
   letter-spacing: 4px;
@@ -94,7 +94,7 @@
 }
 
 /* Category */
-.salt-slider-category {
+.anjo-category {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -104,7 +104,7 @@
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
-.salt-slider-category-dot {
+.anjo-category-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -118,7 +118,7 @@
 }
 
 /* Heading */
-.salt-slider-heading {
+.anjo-heading {
   font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   font-weight: 900;
   line-height: 1.0;
@@ -129,7 +129,7 @@
 }
 
 /* Sub */
-.salt-slider-sub {
+.anjo-sub {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75;
@@ -139,7 +139,7 @@
 }
 
 /* Price / tagline */
-.salt-slider-price {
+.anjo-price {
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 1px;
@@ -147,13 +147,60 @@
   text-transform: uppercase;
 }
 
+/* CTA buttons */
+.anjo-cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.anjo-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+.anjo-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+.anjo-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.5);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+}
+.anjo-btn-secondary:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-3px);
+}
+
 /* Dot nav */
-.salt-slider-dots {
+.anjo-dots {
   display: flex;
   gap: 0.65rem;
   align-items: center;
 }
-.salt-slider-dot {
+.anjo-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -162,19 +209,19 @@
   cursor: pointer;
   transition: all 0.4s;
 }
-.salt-slider-dot--active {
+.anjo-dot--active {
   transform: scale(1.4);
 }
 
 /* ── RIGHT IMAGES ─────────────────────────────────── */
-.salt-slider-images-container {
+.anjo-slider-images {
   position: relative;
   flex: 1;
   height: 100%;
 }
 
 /* Base state */
-.salt-slider-slide-img {
+.anjo-slide-img {
   position: absolute;
   top: 0;
   left: 100%;
@@ -193,7 +240,7 @@
 }
 
 /* Active: center, full size */
-.salt-slider-slide-img--active {
+.anjo-slide-img--active {
   opacity: 1;
   filter: blur(0px);
   left: 50%;
@@ -205,7 +252,7 @@
 }
 
 /* Next: right side, small blurred */
-.salt-slider-slide-img--next {
+.anjo-slide-img--next {
   opacity: 0.65;
   filter: blur(12px);
   left: 95%;
@@ -215,7 +262,7 @@
 }
 
 /* Previous: bottom right, small blurred */
-.salt-slider-slide-img--previous {
+.anjo-slide-img--previous {
   opacity: 0.5;
   filter: blur(16px);
   left: 90%;
@@ -225,7 +272,7 @@
 }
 
 /* Inactive: hidden off-screen */
-.salt-slider-slide-img--inactive {
+.anjo-slide-img--inactive {
   opacity: 0;
   filter: blur(35px);
   left: 110%;
@@ -234,8 +281,36 @@
   z-index: 0;
 }
 
+/* ── SLIDE COUNTER ────────────────────────────────── */
+.anjo-counter {
+  position: absolute;
+  bottom: 3rem;
+  right: 6%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+}
+.anjo-counter-cur {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.anjo-counter-sep {
+  display: block;
+  width: 40px;
+  height: 1.5px;
+  background: rgba(255,255,255,0.5);
+}
+.anjo-counter-total {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+}
+
 /* ── PROGRESS BAR ─────────────────────────────────── */
-.salt-slider-progress-track {
+.anjo-progress-track {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -245,7 +320,7 @@
   z-index: 4;
   overflow: hidden;
 }
-.salt-slider-progress-bar {
+.anjo-progress-bar {
   height: 100%;
   width: 0;
   animation: progressFill 3.5s linear forwards;
@@ -257,136 +332,47 @@
 
 /* ── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 900px) {
-  .salt-slider-container {
+  .anjo-container {
     flex-direction: column;
     padding: 0 5%;
     justify-content: center;
   }
-  .salt-slider-content {
+  .anjo-content {
     max-width: 100%;
     height: auto;
     padding-block: 100px 20px; /* Increased top padding from 60px to 100px */
     align-items: flex-start;
   }
-  .salt-slider-images-container {
+  .anjo-slider-images {
     width: 100%;
     height: 300px;
     flex: none;
   }
-  .salt-slider-slide-img--active {
+  .anjo-slide-img--active {
     left: 50%;
     top: 50%;
     height: 100%;
   }
+  .anjo-counter { bottom: 1.5rem; }
 }
 
 @media (max-width: 540px) {
-  .salt-slider-logo { margin-bottom: 1.5rem; }
-  .salt-slider-heading { font-size: clamp(1.5rem, 7vw, 2rem); letter-spacing: -0.5px; }
-  .salt-slider-sub { font-size: 0.85rem; line-height: 1.5; }
-  .salt-slider-logo img { width: 36px; height: 36px; }
-  .salt-slider-logo span { font-size: 0.7rem; letter-spacing: 1.5px; }
+  .anjo-logo { margin-bottom: 1.5rem; }
+  .anjo-heading { font-size: clamp(1.5rem, 7vw, 2rem); letter-spacing: -0.5px; }
+  .anjo-sub { font-size: 0.85rem; line-height: 1.5; }
+  .anjo-cta-row { gap: 0.7rem; }
+  .anjo-btn-primary, .anjo-btn-secondary { padding: 0.7rem 1.4rem; font-size: 0.78rem; }
+  .anjo-logo img { width: 36px; height: 36px; }
+  .anjo-logo span { font-size: 0.7rem; letter-spacing: 1.5px; }
 }
 
 @media (max-width: 400px) {
-  .salt-slider-container { gap: 0.5rem; }
-  .salt-slider-images-container { height: 220px; }
-  .salt-slider-heading { font-size: 1.4rem; }
-  .salt-slider-content { padding-top: 90px; }
-  .salt-slider-price { font-size: 0.85rem; margin-bottom: 1rem; }
+  .anjo-container { gap: 0.5rem; }
+  .anjo-slider-images { height: 220px; }
+  .anjo-heading { font-size: 1.4rem; }
+  .anjo-content { padding-top: 90px; }
+  .anjo-price { font-size: 0.85rem; margin-bottom: 1rem; }
+  .anjo-counter { bottom: 1rem; right: 5%; scale: 0.8; }
 }
 
-
-
-/* Premium Play/Pause Toggle */
-.salt-slider-controls-wrap {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.salt-slider-premium-toggle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 24px 8px 8px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.salt-slider-premium-toggle:hover {
-  background: rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-.toggle-inner {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.is-playing .toggle-inner {
-  background: rgba(16, 185, 129, 0.2);
-  color: #10b981;
-}
-
-.is-paused .toggle-inner {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-}
-
-.toggle-text {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-}
-
-.salt-slider-premium-toggle:hover .toggle-text {
-  opacity: 1;
-  letter-spacing: 3px;
-}
-
-.toggle-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, var(--accent-color, #10b981) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  mix-blend-mode: soft-light;
-}
-
-.is-playing .toggle-glow { --accent-color: #10b981; }
-.is-paused .toggle-glow { --accent-color: #ef4444; }
-
-.salt-slider-premium-toggle:hover .toggle-glow {
-  opacity: 0.3;
-}
-
-@media (max-width: 900px) {
-  .salt-slider-controls-wrap {
-    bottom: 25px;
-  }
-}
 

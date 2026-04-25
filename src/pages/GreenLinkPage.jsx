@@ -1,352 +1,197 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaPlay, FaPause, FaExternalLinkAlt } from 'react-icons/fa';
+
 import './GreenLinkPage.css';
 
-// ── IMAGES & ASSETS ─────────────────────────────────────────────
-import maritimeImg from '../assets/images/maritime-logistics-unsplash.jpg';
-import cargoImg from '../assets/images/cargo-transfer-hero.png';
-import exportImg from '../assets/images/export-import-solutions-pexels.jpg';
-
-import seaAirFreightImg from '../assets/images/sea-air-freight.png';
-import customsClearanceImg from '../assets/images/customs-clearance.png';
-import doorToDoorImg from '../assets/images/export-import-solutions-pexels.jpg';
-import supplyChainImg from '../assets/images/supply-chain.jpg';
-import heavyLiftImg from '../assets/images/cargo-transfer-hero.png';
-import riskManagementImg from '../assets/images/risk-management.jpg';
-import routePlanningImg from '../assets/images/route-planning.jpg';
-import realTimeTrackingImg from '../assets/images/real-time-tracking.jpg';
-import portAuthorityImg from '../assets/images/port-authority.jpg';
-import partnerNetworkImg from '../assets/images/partner-network.jpg';
-import complianceAutomationImg from '../assets/images/compliance-automation.jpg';
-
-// ── DATA ───────────────────────────────────────────────────────
-const SECTIONS = [
+// ── SLIDE DATA ───────────────────────────────────────────────────
+const SLIDES = [
   {
-    id: 'containers',
-    num: '01',
-    title: 'Containers',
-    label: 'CORE PRODUCT',
-    defaultImg: maritimeImg,
-    images: ['https://www.marineinsight.com/wp-content/uploads/2012/01/trinity.jpg', 'https://3.imimg.com/data3/US/TG/MY-9745477/container-sales-lease-500x500.jpg', 'https://www.containerspace.com.au/wp-content/uploads/2017/09/Inspection-1.jpg', 'https://5.imimg.com/data5/SELLER/Default/2023/2/TC/VP/YH/4665522/export-container-lashing-500x500.jpg'],
-    accentR: 16, accentG: 185, accentB: 129,
-    items: [
-      'Alternative Home Used Container',
-      'Container Sales & Leasing',
-      'Container Inspection & Certification',
-      'On-Site Delivery Arrangement'
-    ],
+    id: 0,
+    category: 'Alternative Living',
+    heading: 'Alternative Home Used Container',
+    sub: 'High-quality pre-owned containers ideal for alternative housing and modular home projects.',
+    price: 'Get Best Quote',
+    link: '/contact',
+    img: '/anjo photos/container_home.png',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #064e3b 0%, #022c22 100%)',
+    accent: '#10b981',
   },
   {
-    id: 'used-containers',
-    num: '02',
-    title: 'Used Containers',
-    label: 'SPECIALIZED STOCK',
-    defaultImg: exportImg,
-    images: [seaAirFreightImg, customsClearanceImg, doorToDoorImg, supplyChainImg],
-    accentR: 6, accentG: 182, accentB: 212,
-    items: [
-      'Storage Used Containers',
-      'Used Shipping Containers Modified',
-      'Grade A & B Condition Units',
-      'Bulk & Single Unit Supply'
-    ],
-    reverse: true,
+    id: 1,
+    category: 'Container Solutions',
+    heading: 'Fabricated Used Containers',
+    sub: 'Custom-fabricated containers modified for offices, clinics, and specialized workspaces.',
+    price: 'Get Best Quote',
+    link: '/contact',
+    img: '/anjo photos/fabricated_container.png',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)',
+    accent: '#06b6d4',
   },
   {
-    id: 'fabrication',
-    num: '03',
-    title: 'Fabricated Containers',
-    label: 'CUSTOM SOLUTIONS',
-    defaultImg: cargoImg,
-    images: [
-      heavyLiftImg, 
-      'https://www.samanportable.com/_next/image?url=https%3A%2F%2Fblog.samanportable.com%2Fwp-content%2Fuploads%2F2024%2F11%2Fcontainer-offces-porta-cabins-by-saman-1-13-1024x574.jpg&w=1920&q=75', 
-      riskManagementImg, 
-      routePlanningImg
-    ],
-    accentR: 56, accentG: 189, accentB: 248,
-    items: [
-      'Fabricated Used Containers',
-      'Custom Interior Fit-Outs',
-      'Structural Modifications',
-      'Office & Site Cabin Conversion'
-    ],
+    id: 2,
+    category: 'Storage Solutions',
+    heading: 'Storage Used Containers',
+    sub: 'Secure, weatherproof storage units for industrial, commercial, and personal use.',
+    price: 'Get Best Quote',
+    link: '/contact',
+    img: '/anjo photos/storage_container.png',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #1e3a8a 0%, #0f172a 100%)',
+    accent: '#3b82f6',
   },
   {
-    id: 'maritime',
-    num: '04',
-    title: 'Maritime Agency',
-    label: 'SHIPPING SERVICES',
-    defaultImg: maritimeImg,
-    images: [realTimeTrackingImg, portAuthorityImg, partnerNetworkImg, complianceAutomationImg],
-    accentR: 16, accentG: 185, accentB: 129,
-    items: [
-      'Steamer Agency Services',
-      'NVOCC Operations',
-      'Port Agency & Liaison',
-      'Freight Forwarding'
-    ],
-    reverse: true,
+    id: 3,
+    category: 'Global Trade',
+    heading: 'Used Containers',
+    sub: 'Standard used shipping containers available for immediate purchase and global shipping.',
+    price: 'Get Best Quote',
+    link: '/contact',
+    img: '/anjo photos/used_containers.png',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #4c1d95 0%, #2e1065 100%)',
+    accent: '#8b5cf6',
+  },
+  {
+    id: 4,
+    category: 'Modified Units',
+    heading: 'Used Shipping Containers Modified',
+    sub: 'Professionally modified shipping containers with custom doors, windows, and insulation.',
+    price: 'Get Best Quote',
+    link: '/contact',
+    img: '/anjo photos/modified_shipping_container.png',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #7c2d12 0%, #431407 100%)',
+    accent: '#f97316',
   },
 ];
 
-const ALL_IDS = ['hero', ...SECTIONS.map(s => s.id), 'cta'];
 
-// ── COMPONENTS ─────────────────────────────────────────────────
-
-const BubbleBatch = () => {
-  const bubbles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: 100 + Math.random() * 20,
-    size: 4 + Math.random() * 8,
-    delay: Math.random() * 10,
-    duration: 12 + Math.random() * 10,
-    opacity: 0.1 + Math.random() * 0.2
-  }));
-
-  return (
-    <div className="absolute inset-0 z-[100] pointer-events-none overflow-hidden">
-      {bubbles.map(b => (
-        <motion.div
-          key={b.id}
-          className="absolute rounded-full border border-white/20 bg-white/5 backdrop-blur-[1px]"
-          style={{
-            left: `${b.x}%`,
-            top: `${b.y}%`,
-            width: b.size,
-            height: b.size,
-            opacity: b.opacity,
-          }}
-          animate={{
-            y: ['0vh', '-120vh'],
-            x: [`${b.x}%`, `${b.x + (Math.random() * 10 - 5)}%`],
-            scale: [1, 1.5, 1],
-            opacity: [b.opacity, b.opacity * 3, 0]
-          }}
-          transition={{
-            duration: b.duration,
-            delay: b.delay,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
-function GallerySection({ id, num, title, label, defaultImg, images, accentR, accentG, accentB, items, reverse, isActive, isPresenting, onNext }) {
-  const [activeIdx, setActiveIdx] = useState(-1);
-  const sectionRef = useRef(null);
-  const timerRef = useRef(null);
-  const doneRef = useRef(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) el.classList.add('is-visible');
-    }, { threshold: 0.3 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!isActive) {
-      setActiveIdx(-1);
-      doneRef.current = false;
-      return;
-    }
-  }, [isActive]);
-
-  useEffect(() => {
-    if (!isActive || !isPresenting || doneRef.current) return;
-    if (timerRef.current) clearTimeout(timerRef.current);
-
-    if (activeIdx === -1) {
-      setActiveIdx(0);
-      return;
-    }
-
-    timerRef.current = setTimeout(() => {
-      const next = activeIdx + 1;
-      if (next >= items.length) {
-        doneRef.current = true;
-        onNext(id);
-      } else {
-        setActiveIdx(next);
-      }
-    }, 3000);
-
-    return () => clearTimeout(timerRef.current);
-  }, [isActive, isPresenting, activeIdx, items.length, id, onNext]);
-
-  const cssVars = {
-    '--accent-r': accentR,
-    '--accent-g': accentG,
-    '--accent-b': accentB,
-  };
-
-  return (
-    <section id={id} ref={sectionRef} className={`gl-gs${reverse ? ' gl-gs--reverse' : ''}`} style={cssVars}>
-      {/* Image Column */}
-      <div className="gl-gs-img-col">
-        <div className="gl-gs-img-wrap">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeIdx >= 0 && images ? (images[activeIdx] || defaultImg) : defaultImg}
-              src={activeIdx >= 0 && images ? (images[activeIdx] || defaultImg) : defaultImg}
-              alt={title}
-              className="gl-gs-img"
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            />
-          </AnimatePresence>
-          <div className="gl-gs-img-overlay" />
-        </div>
-        <div className="gl-gs-accent-bar" />
-        <div className="gl-gs-img-badge">
-          <span className="gl-gs-img-badge-num">Agencies {num}</span>
-          <span className="gl-gs-img-badge-name">{title}</span>
-        </div>
-      </div>
-
-      {/* Content Column */}
-      <div className="gl-gs-content-col">
-        <div className="gl-gs-bg-number">{num}</div>
-        <div className="gl-gs-eyebrow">{label}</div>
-        <h2 className="gl-gs-title">{title}</h2>
-        <ul className="gl-gs-list">
-          {items.map((item, idx) => (
-            <li
-              key={item}
-              className={`gl-gs-item${activeIdx === idx ? ' is-active' : ''}`}
-              onMouseEnter={() => setActiveIdx(idx)}
-            >
-              <span className="gl-gs-item-num">{String(idx + 1).padStart(2, '0')}</span>
-              <span className="gl-gs-item-name">{item}</span>
-              <span className="gl-gs-item-dot" />
-              {activeIdx === idx && isPresenting && (
-                <div className="gl-gs-item-progress" />
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
+function getClass(index, active, total) {
+  const prev = (active - 1 + total) % total;
+  const next = (active + 1) % total;
+  if (index === active) return 'active';
+  if (index === prev)   return 'previous';
+  if (index === next)   return 'next';
+  return 'inactive';
 }
 
-// ── MAIN PAGE ──────────────────────────────────────────────────
-
 export default function GreenLinkPage() {
-  const containerRef = useRef(null);
-  const [isPresenting, setIsPresenting] = useState(true);
-  const [activeSectionId, setActiveSectionId] = useState('hero');
+  const [current, setCurrent] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [animating, setAnimating] = useState(false);
+  const intervalRef = useRef(null);
+  const total = SLIDES.length;
+
+  const advance = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrent(c => (c + 1) % total);
+      setAnimating(false);
+    }, 100);
+  };
+
+  const goTo = (idx) => {
+    if (idx === current) return;
+    setCurrent(idx);
+  };
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
-          setActiveSectionId(e.target.id);
-        }
-      });
-    }, { threshold: 0.5, root: container });
-    container.querySelectorAll('section, header').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
-  const goNext = useCallback((currentId) => {
-    if (!isPresenting) return;
-    const nextId = ALL_IDS[(ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length];
-    const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [isPresenting]);
-
-  useEffect(() => {
-    if (!isPresenting) return;
-    if (activeSectionId === 'hero' || activeSectionId === 'cta') {
-      const t = setTimeout(() => goNext(activeSectionId), 5000);
-      return () => clearTimeout(t);
+    if (isPlaying) {
+      intervalRef.current = setInterval(advance, 3500);
     }
-  }, [activeSectionId, isPresenting, goNext]);
+    return () => clearInterval(intervalRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying]);
+
+  // Safe fallback to prevent crashes during hot-reloading when slides are removed
+  const safeCurrent = current >= SLIDES.length ? 0 : current;
+  const slide = SLIDES[safeCurrent];
 
   return (
-    <div className="gl-page" ref={containerRef}>
-      <BubbleBatch />
+    <div className="green-slider-page">
+      {/* ── BACKGROUNDS ── */}
+      <div className="green-slider-backgrounds" aria-hidden="true">
+        {SLIDES.map((s, i) => (
+          <div
+            key={s.id}
+            className="green-slider-bg"
+            style={{ background: s.bg, opacity: i === current ? 1 : 0 }}
+          />
+        ))}
+      </div>
 
-      {/* Presentation Toggle */}
-      <button className="gl-toggle" onClick={() => setIsPresenting(p => !p)}>
-        <div className={`gl-dot ${isPresenting ? 'playing' : ''}`} />
-        {isPresenting ? 'Cinematic Flow' : 'Manual View'}
-      </button>
+      {/* ── MAIN LAYOUT ── */}
+      <div className="green-slider-container">
 
-      {/* ── HERO ── */}
-      <header id="hero" className="gl-hero">
-        <img 
-          src="https://media.istockphoto.com/id/1432314418/photo/container-house-and-office-with-lawn-grass-3d-rendering.jpg?s=612x612&w=0&k=20&c=aM1uSZmyGdoX7MwBalkrlj7sggjriontyz-8NSXTTw8="
-          alt="Green Link Maritime"
-          className="gl-video-bg"
-          style={{ objectPosition: 'center center' }}
-        />
-        <div className="gl-hero-text">
-          <div className="gl-hero-eyebrow">Green Link Maritime Agencies — Thoothukudi, Tamil Nadu</div>
-          <h1 className="gl-hero-h1">Containers.<br />Delivered Right.</h1>
-          <p className="gl-hero-sub">
-            Trusted supplier of used, fabricated &amp; alternative home containers. From steamer agency 
-            to specialized container solutions — connecting Thoothukudi to global ports for over 16 years.
-          </p>
-          <div className="mt-10">
-            <a 
-              href="https://www.indiamart.com/green-link-maritime-agencies/?srsltid=AfmBOopgrRxYk77ZHklUoTvFh43h1ZlXzTA7hK1AHuYRPgst7Wkuh7XP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gl-footer-btn"
-              style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}
-            >
-              Visit Our IndiaMART Profile <ArrowRight size={18} />
-            </a>
+        {/* ── LEFT CONTENT ── */}
+        <div className={`green-slider-content ${animating ? 'content-exit' : 'content-enter'}`}>
+          <div className="green-slider-category" style={{ color: slide.accent }}>
+            <span className="green-slider-category-dot" style={{ background: slide.accent }} />
+            {slide.category}
           </div>
-        </div>
-        <div className="gl-hero-scroll">
-          <span>Scroll</span>
-          <div className="gl-hero-scroll-line" />
-        </div>
-      </header>
+          <h1 className="green-slider-heading">{slide.heading}</h1>
+          <p className="green-slider-sub">{slide.sub}</p>
 
-      {/* ── SECTIONS ── */}
-      {SECTIONS.map(s => (
-        <GallerySection
-          key={s.id}
-          isActive={activeSectionId === s.id}
-          isPresenting={isPresenting}
-          onNext={goNext}
-          {...s}
-        />
-      ))}
-
-      {/* ── CTA / FOOTER ── */}
-      <section id="cta" className="gl-footer">
-        <div className="gl-footer-bg" style={{ backgroundImage: `url(${maritimeImg})` }} />
-        <div className="gl-footer-inner">
-          <div className="gl-footer-eyebrow">Thoothukudi · Tamil Nadu · India</div>
-          <h2 className="gl-footer-title">Get Your<br />Container Today</h2>
+          {/* CTA Button */}
           <a 
-            href="https://www.indiamart.com/green-link-maritime-agencies/?srsltid=AfmBOopgrRxYk77ZHklUoTvFh43h1ZlXzTA7hK1AHuYRPgst7Wkuh7XP"
+            href="https://www.indiamart.com/green-link-maritime-agencies/?srsltid=AfmBOorMaCZAhtYHcWUqMSCPfzv-mdmhfHB5qlfAMAgstk-cxCMAA9Or"
             target="_blank"
             rel="noopener noreferrer"
-            className="gl-footer-btn"
+            className="green-slider-cta-premium"
+            style={{ '--accent': slide.accent }}
           >
-            Enquire on IndiaMART <ArrowRight size={18} />
+            <div className="cta-content">
+              <span className="cta-main-text">GET BEST QUOTE</span>
+              <span className="cta-sub-text">ON INDIAMART</span>
+            </div>
+            <div className="cta-icon-box">
+              <FaExternalLinkAlt size={10} />
+            </div>
           </a>
+
+
+          {/* Dot navigation */}
+          <div className="green-slider-dots">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                className={`green-slider-dot ${i === current ? 'green-slider-dot--active' : ''}`}
+                style={i === current ? { '--accent': slide.accent } : {}}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
-      </section>
+
+        {/* ── RIGHT IMAGES ── */}
+        <div className="green-slider-images-container">
+          {SLIDES.map((s, i) => (
+            <img
+              key={s.id}
+              src={s.img}
+              alt={s.heading}
+              className={`green-slider-slide-img green-slider-slide-img--${getClass(i, current, total)}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+      </div>
+
+
+      {/* ── MODERN PLAY/PAUSE CONTROL ── */}
+      <div className="green-slider-controls-wrap">
+        <button 
+          className={`green-slider-premium-toggle ${isPlaying ? 'is-playing' : 'is-paused'}`}
+          onClick={() => setIsPlaying(!isPlaying)}
+          aria-label={isPlaying ? "Pause Slider" : "Play Slider"}
+        >
+          <div className="toggle-inner">
+            {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} style={{ marginLeft: '2px' }} />}
+          </div>
+          <span className="toggle-text">{isPlaying ? 'PAUSE' : 'RESUME'}</span>
+          <div className="toggle-glow" />
+        </button>
+      </div>
+
     </div>
   );
 }

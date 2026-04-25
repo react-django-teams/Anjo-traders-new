@@ -1,53 +1,63 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlay, FaPause } from 'react-icons/fa';
-import './ContainerCommercializationPage.css';
+import './AnjoPage.css';
 
 // ── SLIDE DATA ───────────────────────────────────────────────────
 const SLIDES = [
   {
     id: 0,
-    category: 'Global Commerce',
-    heading: 'Inventory Buying & Selling',
-    sub: 'Smart inventory decisions. Stronger business results. Global container commerce.',
-    price: 'Container Solutions',
-    link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (2).jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)',
-    accent: '#06b6d4',
+    category: 'Industrial Salt',
+    heading: 'High Purity Grade Salt',
+    sub: '99.9% mineral purity — engineered for industrial precision and global supply chains.',
+    price: 'Premium Export Quality',
+    link: '/anjo-salt',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.34 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #dbeafe 0%, #3b82f6 100%)',
+    accent: '#3b82f6',
   },
   {
     id: 1,
-    category: 'Leasing & Finance',
-    heading: 'Flexible Leasing Solutions',
-    sub: 'Smart leasing options built around your operational needs and budget.',
-    price: 'Lease Smart. Grow Strong.',
-    link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM.jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #4c1d95 0%, #2e1065 100%)',
-    accent: '#8b5cf6',
+    category: 'Container Division',
+    heading: 'Inventory Buying & Selling',
+    sub: 'Smart inventory decisions. Stronger business results. Global container commerce.',
+    price: 'Container Solutions',
+    link: '/container-commercialization',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (2).jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #cffafe 0%, #06b6d4 100%)',
+    accent: '#06b6d4',
   },
   {
     id: 2,
-    category: 'Quality Assurance',
-    heading: 'Quality Certified Units',
-    sub: 'Rigorous inspections ensure every container meets global cargo safety standards.',
-    price: 'Certified & Secure',
-    link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (1).jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #064e3b 0%, #022c22 100%)',
-    accent: '#10b981',
+    category: 'Container Division',
+    heading: 'Flexible Leasing Solutions',
+    sub: 'Smart leasing. Stronger business. Built around your needs.',
+    price: 'Lease Smart. Grow Strong.',
+    link: '/container-commercialization',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #ede9fe 0%, #8b5cf6 100%)',
+    accent: '#8b5cf6',
   },
   {
     id: 3,
-    category: 'Storage & Yard',
-    heading: 'Secure Weatherproof Units',
-    sub: 'Heavy-duty steel containers providing maximum protection for sensitive cargo.',
-    price: 'Industrial Storage',
-    link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.37 PM.jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #7c2d12 0%, #431407 100%)',
-    accent: '#f97316',
+    category: 'Prime Products',
+    heading: 'Fresh Export Vegetables',
+    sub: 'Farm-fresh produce sourced globally — big onions, potatoes, garlic and more.',
+    price: 'Global Agri Export',
+    link: '/prime-products',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.35 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #d1fae5 0%, #059669 100%)',
+    accent: '#059669',
+  },
+  {
+    id: 4,
+    category: 'Industrial Salt',
+    heading: 'Chemical Processing Essential',
+    sub: 'Industry-grade sodium chloride for chemical manufacturing and water treatment.',
+    price: 'B2B Industrial Supply',
+    link: '/anjo-salt',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 4.54.06 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #fef3c7 0%, #f59e0b 100%)',
+    accent: '#f59e0b',
   },
 ];
 
@@ -55,14 +65,13 @@ function getClass(index, active, total) {
   const prev = (active - 1 + total) % total;
   const next = (active + 1) % total;
   if (index === active) return 'active';
-  if (index === prev) return 'previous';
-  if (index === next) return 'next';
+  if (index === prev)   return 'previous';
+  if (index === next)   return 'next';
   return 'inactive';
 }
 
-export default function ContainerCommercializationPage() {
+export default function AnjoPage() {
   const [current, setCurrent] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [animating, setAnimating] = useState(false);
   const intervalRef = useRef(null);
   const total = SLIDES.length;
@@ -81,16 +90,12 @@ export default function ContainerCommercializationPage() {
   };
 
   useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(advance, 3500);
-    }
+    intervalRef.current = setInterval(advance, 3500);
     return () => clearInterval(intervalRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlaying]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Safe fallback to prevent crashes during hot-reloading when slides are removed
-  const safeCurrent = current >= SLIDES.length ? 0 : current;
-  const slide = SLIDES[safeCurrent];
+  const slide = SLIDES[current];
 
   return (
     <div className="anjo-page">
@@ -121,6 +126,15 @@ export default function ContainerCommercializationPage() {
           <h1 className="anjo-heading">{slide.heading}</h1>
           <p className="anjo-sub">{slide.sub}</p>
           <div className="anjo-price" style={{ color: slide.accent }}>{slide.price}</div>
+          <div className="anjo-cta-row">
+            <Link to={slide.link} className="anjo-btn-primary" style={{ background: slide.accent }}>
+              Explore More →
+            </Link>
+            <Link to="/contact" className="anjo-btn-secondary">
+              Get a Quote
+            </Link>
+          </div>
+
           {/* Dot navigation */}
           <div className="anjo-dots">
             {SLIDES.map((_, i) => (
@@ -149,20 +163,16 @@ export default function ContainerCommercializationPage() {
         </div>
       </div>
 
-      {/* ── MODERN PLAY/PAUSE CONTROL ── */}
-      <div className="anjo-controls-wrap">
-        <button 
-          className={`anjo-premium-toggle ${isPlaying ? 'is-playing' : 'is-paused'}`}
-          onClick={() => setIsPlaying(!isPlaying)}
-          aria-label={isPlaying ? "Pause Slider" : "Play Slider"}
-        >
-          <div className="toggle-inner">
-            {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} style={{ marginLeft: '2px' }} />}
-          </div>
-          <span className="toggle-text">{isPlaying ? 'PAUSE' : 'RESUME'}</span>
-          <div className="toggle-glow" />
-        </button>
+      {/* ── SLIDE COUNTER ── */}
+      <div className="anjo-counter">
+        <span className="anjo-counter-cur" style={{ color: slide.accent }}>
+          {String(current + 1).padStart(2, '0')}
+        </span>
+        <span className="anjo-counter-sep" />
+        <span className="anjo-counter-total">{String(total).padStart(2, '0')}</span>
       </div>
+
+
     </div>
   );
 }

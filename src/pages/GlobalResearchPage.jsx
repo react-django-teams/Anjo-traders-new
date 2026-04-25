@@ -86,7 +86,7 @@ const GlobalResearchPage = () => {
       {/* Nation Cards Overview */}
       <section className="py-14 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-grid">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 stagger-grid">
             {regions.map((r, i) => (
               <a key={i} href={`#${r.name.toLowerCase().replace(/\s/g,'-')}`} className="card-white p-5 flex items-center gap-4 card-premium reveal no-underline group">
                 <span className="text-4xl flex-shrink-0">{r.flag}</span>

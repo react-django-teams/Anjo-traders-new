@@ -35,7 +35,7 @@ import vegOilImg      from '../assets/images/whatsapp-image-2025-09-27-at-3.21.1
 import dryFishImg     from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am-1.jpeg';
 import saltImg        from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am-3.jpeg';
 import groceryImg     from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am-4.jpeg';
-import machImg        from '../assets/images/whatsapp-image-2025-09-27-at-3.21.14-am-2.jpeg';
+import machImg        from '../assets/images/industrial_machinery.png';
 
 // ── IMAGE MAP ──────────────────────────────────────────────────
 const IMG = {
@@ -287,11 +287,27 @@ export default function PrimeProductsPage() {
   return (
     <div className="pp-page" ref={containerRef}>
 
-      {/* Toggle */}
+      {/* Toggle Presentation */}
       <button className="pp-toggle" onClick={() => setIsPresenting(p => !p)}>
         <span className={`pp-dot ${isPresenting ? 'playing' : 'paused'}`} />
         {isPresenting ? 'PRESENTING' : 'PAUSED'}
       </button>
+
+      {/* Category Navigation */}
+      <div className="pp-category-nav">
+        {SECTIONS.map(s => (
+          <button
+            key={s.id}
+            className={`pp-cat-btn ${activeSectionId === s.id ? 'active' : ''}`}
+            onClick={() => {
+              setIsPresenting(false);
+              document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }}
+          >
+            {s.title}
+          </button>
+        ))}
+      </div>
 
       {/* Product Sections */}
       {SECTIONS.map(s => (

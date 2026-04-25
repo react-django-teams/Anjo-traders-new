@@ -191,7 +191,7 @@ export default function AutomobilesPage() {
     if (!isPresenting) return;
     const nextId = ALL_IDS[(ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length];
     const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [isPresenting]);
 
   useEffect(() => {
@@ -210,6 +210,22 @@ export default function AutomobilesPage() {
         <span className={`pp-dot ${isPresenting ? 'playing' : 'paused'}`} />
         {isPresenting ? 'PRESENTING' : 'PAUSED'}
       </button>
+
+      {/* Category Navigation */}
+      <div className="pp-category-nav">
+        {SECTIONS.map(s => (
+          <button
+            key={s.id}
+            className={`pp-cat-btn ${activeSectionId === s.id ? 'active' : ''}`}
+            onClick={() => {
+              setIsPresenting(false);
+              document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }}
+          >
+            {s.title}
+          </button>
+        ))}
+      </div>
 
       {/* Sections */}
       {SECTIONS.map(s => (

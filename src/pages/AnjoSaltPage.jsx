@@ -1,350 +1,180 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import './AnjoSaltPage.css';
-import saltHeroBg from '../assets/images/salt-manufacturing-unsplash.jpg';
 
-// ── PREMIUM SALT IMAGERY ─────────────────────────────────────────
-const IMAGES = {
-  // Industrial Salt - Large scale, machinery, bulk crystals
-  ind_hero:    'https://images.unsplash.com/photo-1545465005-950f83696238?q=85&w=1800&fit=crop', // Salt mine conveyor
-  ind_purity:  'https://tiimg.tistatic.com/fp/1/008/591/a-grade-99-9-percent-purity-salty-taste-chemical-free-common-salt-341.jpg', // User provided purity image
-  ind_bulk:    'https://skcsalt.com/wp-content/uploads/2020/02/blogpost.jpg', // User provided bulk supply image
-  ind_chem:    'https://skcsalt.com/wp-content/uploads/2026/01/large-pile-ammonium-sulfate-inside-spacious-dimly-lit-chemical-plant-warehouse-scaled.jpg', // User provided chemical processing image
-
-  // Table Salt - Culinary, fine, refined shakers
-  tbl_hero:    'https://images.unsplash.com/photo-1615485906913-c39955740445?q=85&w=1800&fit=crop', // Elegant salt shaker
-  tbl_refined: 'https://cpimg.tistatic.com/09294195/b/4/Triple-Refined-Oversize-Salt.jpg', // User provided refined salt image
-  tbl_iodized: 'https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-71034184/71034184.jpg', // User provided iodized salt image
-  tbl_pack:    'https://5.imimg.com/data5/QL/HR/TX/ANDROID-100991569/img-20200209-wa0007-jpg-500x500.jpg', // User provided moisture-free salt image
-
-  // Artisanal Salt - Traditional salinas, hand harvesting, natural ponds
-  art_hero:    'https://images.unsplash.com/photo-1516104880566-f83193e43076?q=85&w=1800&fit=crop', // Traditional salt ponds (Salinas)
-  art_harvest: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGv77c72y720-872WOfDUxzq5sp2o94pMQYg&s', // User provided hand harvesting image
-  art_sun:     'https://image.made-in-china.com/365f3j00ZawcjLGIZWuB/High-Quality-Rich-in-Minerals-Refined-Seasoning-Natural-Pure-Dried-Vacuum-Salt-99-.webp', // User provided sun-dried salt image
-  art_sea:     'https://i.etsystatic.com/10072517/r/il/e5e15c/1365343855/il_fullxfull.1365343855_poch.jpg', // User provided sea crystals image
-
-  // Logistics - Ports, containers, global export
-  log_hero:    'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=85&w=1800&fit=crop', // Shipping containers
-  log_port:    'https://www.discountsaltpool.com/assets/images/Adding%20Salt%20to%20your%20Swimming%20Pool.png', // User provided distribution image
-  log_pack:    'https://tiimg.tistatic.com/fp/1/006/288/industrial-salt-packaging-type-bag-50g-366.jpg', // User provided packaging image
-  log_global:  'https://skcsalt.com/wp-content/uploads/2023/05/hand-holding-snow-1.jpg', // User provided global export image
-};
-
-// ── SECTIONS DATA ─────────────────────────────────────────────────
-const SECTIONS = [
+// ── SLIDE DATA ───────────────────────────────────────────────────
+const SLIDES = [
   {
-    id: 'industrial',
-    num: '01',
-    title: 'Industrial Salt',
-    subtitle: 'Mineral Excellence',
-    desc: 'Engineered for precision industries demanding 99.9% purity with rigorous grain specification and zero-contamination processing.',
-    accent: '#7dd3fc',
-    accentRgb: '125, 211, 252',
-    defaultImg: IMAGES.ind_hero,
-    items: [
-      { label: 'High Purity Grade (99.9%)',    img: IMAGES.ind_purity, icon: '◈' },
-      { label: 'Industrial Bulk Supply',        img: IMAGES.ind_bulk,   icon: '⬡' },
-      { label: 'Chemical Processing Essential', img: IMAGES.ind_chem,   icon: '✦' },
-    ],
+    id: 0,
+    category: 'Industrial Salt',
+    heading: 'High Purity Grade (99.9%)',
+    sub: 'Engineered for precision industries demanding 99.9% purity with zero contamination.',
+    price: 'Mineral Excellence',
+    link: '/contact',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.34 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #1e3a8a 0%, #0f172a 100%)', // Deep Ocean Blue
+    accent: '#60a5fa', // Light Blue
   },
   {
-    id: 'table',
-    num: '02',
-    title: 'Table Salt',
-    subtitle: 'Culinary Precision',
-    desc: 'Triple-refined perfection for premium culinary applications, delivering consistent flavour and superior mineral enrichment.',
-    accent: '#e2e8f0',
-    accentRgb: '226, 232, 240',
-    defaultImg: IMAGES.tbl_hero,
-    reverse: true,
-    items: [
-      { label: 'Triple Refined Perfection',  img: IMAGES.tbl_refined, icon: '◈' },
-      { label: 'Iodized & Mineral Enriched', img: IMAGES.tbl_iodized, icon: '⬡' },
-      { label: 'Moisture-Free Flow',         img: IMAGES.tbl_pack,    icon: '✦' },
-    ],
+    id: 1,
+    category: 'Industrial Salt',
+    heading: 'Industrial Bulk Supply',
+    sub: 'Rigorous grain specification and reliable global bulk processing.',
+    price: 'Global Supply',
+    link: '/contact',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.34 PM (2).jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)', // Marine Cyan
+    accent: '#22d3ee', // Cyan
   },
   {
-    id: 'artisanal',
-    num: '03',
-    title: 'Artisanal Salt',
-    subtitle: 'Organic Heritage',
-    desc: 'Hand-harvested by coastal artisans using centuries-old traditions — preserving the full mineral richness of sea origins.',
-    accent: '#fbbf24',
-    accentRgb: '251, 191, 36',
-    defaultImg: IMAGES.art_hero,
-    items: [
-      { label: 'Hand-Harvested Tradition',  img: IMAGES.art_harvest, icon: '◈' },
-      { label: 'Natural Sun-Dried Purity',  img: IMAGES.art_sun,     icon: '⬡' },
-      { label: 'Mineral-Rich Sea Crystals', img: IMAGES.art_sea,     icon: '✦' },
-    ],
+    id: 2,
+    category: 'Industrial Salt',
+    heading: 'Chemical Processing',
+    sub: 'Premium grade sodium chloride essential for chemical manufacturing and water treatment.',
+    price: 'Industrial Essential',
+    link: '/contact',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 4.54.06 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #334155 0%, #0f172a 100%)', // Industrial Slate
+    accent: '#94a3b8', // Silver/Slate
   },
   {
-    id: 'logistics',
-    num: '04',
-    title: 'Supply Chain',
-    subtitle: 'Global Logistics',
-    desc: 'ISO-certified export operations serving 40+ countries with customised packaging and 24/7 distribution excellence.',
-    accent: '#94a3b8',
-    accentRgb: '148, 163, 184',
-    defaultImg: IMAGES.log_hero,
-    reverse: true,
-    items: [
-      { label: '24/7 Distribution Network',   img: IMAGES.log_port,   icon: '◈' },
-      { label: 'Customised Packaging Units',  img: IMAGES.log_pack,   icon: '⬡' },
-      { label: 'Global Export Standards',     img: IMAGES.log_global, icon: '✦' },
-    ],
+    id: 3,
+    category: 'Table Salt',
+    heading: 'Triple Refined Perfection',
+    sub: 'Triple-refined perfection for premium culinary applications and consistent flavour.',
+    price: 'Culinary Precision',
+    link: '/contact',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.35 PM.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #0f766e 0%, #064e3b 100%)', // Crystal Teal
+    accent: '#2dd4bf', // Light Teal
+  },
+  {
+    id: 4,
+    category: 'Table Salt',
+    heading: 'Iodized & Mineral Enriched',
+    sub: 'Delivering superior mineral enrichment and moisture-free flow.',
+    price: 'Premium Quality',
+    link: '/contact',
+    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.35 PM (1).jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #701a75 0%, #4a044e 100%)', // Himalayan Purple/Pink
+    accent: '#f0abfc', // Light Pink/Purple
   },
 ];
 
-const ALL_IDS = SECTIONS.map(s => s.id);
-
-// ── GALLERY SECTION ───────────────────────────────────────────────
-function GallerySection({ section, isActive, isPresenting, onNext }) {
-  const { id, num, title, subtitle, desc, accent, accentRgb, defaultImg, items, reverse } = section;
-  const [activeIdx, setActiveIdx]   = useState(-1);
-  const [displayImg, setDisplayImg] = useState(defaultImg);
-  const [imgFading, setImgFading]   = useState(false);
-  const timerRef  = useRef(null);
-  const doneRef   = useRef(false);
-  const sectionRef = useRef(null);
-
-  // Scroll reveal
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('reveal-active'); },
-      { threshold: 0.2 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Reset when section becomes inactive
-  useEffect(() => {
-    if (!isActive) { setActiveIdx(-1); doneRef.current = false; }
-  }, [isActive]);
-
-  // Auto-advance timer
-  useEffect(() => {
-    if (!isActive || !isPresenting || doneRef.current) return;
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (activeIdx === -1) { setActiveIdx(0); return; }
-    timerRef.current = setTimeout(() => {
-      const next = activeIdx + 1;
-      if (next >= items.length) { doneRef.current = true; onNext(id); }
-      else setActiveIdx(next);
-    }, 4500);
-    return () => clearTimeout(timerRef.current);
-  }, [isActive, isPresenting, activeIdx, items.length, id, onNext]);
-
-  // Crossfade image transition
-  useEffect(() => {
-    const target = activeIdx === -1 ? defaultImg : items[activeIdx]?.img || defaultImg;
-    if (target === displayImg) return;
-    setImgFading(true);
-    const t = setTimeout(() => { setDisplayImg(target); setImgFading(false); }, 380);
-    return () => clearTimeout(t);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIdx]);
-
-  return (
-    <section
-      id={id}
-      ref={sectionRef}
-      className={`salt-section ${reverse ? 'salt-section--rev' : ''}`}
-      style={{ '--accent': accent, '--accent-rgb': accentRgb }}
-    >
-      {/* ── IMAGE PANEL ── */}
-      <div className="salt-img-panel">
-        <div className="img-wrap">
-          <img
-            src={displayImg}
-            alt={title}
-            className={`salt-main-img ${imgFading ? 'is-fading' : 'is-visible'}`}
-          />
-          <div className="img-color-overlay" />
-          <div className="img-aura-glow" />
-          <div className="crystal-corner tl" />
-          <div className="crystal-corner br" />
-        </div>
-        <div className="img-spine" />
-        <div className="img-badge">
-          <span className="badge-tag">COLLECTION</span>
-          <span className="badge-num">{num}</span>
-          <span className="badge-title">{title}</span>
-        </div>
-      </div>
-
-      {/* ── CONTENT PANEL ── */}
-      <div className="salt-content-panel">
-        <div className="content-wm">{num}</div>
-        <div className="content-body">
-          <header className="content-hd">
-            <span className="content-eyebrow">
-              <span className="eyebrow-bar" />
-              {subtitle}
-            </span>
-            <h2 className="content-title">{title}</h2>
-            <p className="content-desc">{desc}</p>
-          </header>
-
-          <ul className="items-list">
-            {items.map((item, idx) => (
-              <li
-                key={item.label}
-                className={`salt-item ${activeIdx === idx ? 'item--active' : ''}`}
-                onMouseEnter={() => setActiveIdx(idx)}
-              >
-                <span className="si-icon">{item.icon}</span>
-                <span className="si-num">{String(idx + 1).padStart(2, '0')}</span>
-                <span className="si-label">{item.label}</span>
-                {activeIdx === idx && isPresenting && (
-                  <div className="si-progress" key={`p-${id}-${idx}`} />
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
+function getClass(index, active, total) {
+  const prev = (active - 1 + total) % total;
+  const next = (active + 1) % total;
+  if (index === active) return 'active';
+  if (index === prev)   return 'previous';
+  if (index === next)   return 'next';
+  return 'inactive';
 }
 
-// ── MAIN PAGE ─────────────────────────────────────────────────────
 export default function AnjoSaltPage() {
-  const containerRef     = useRef(null);
-  const [presenting, setPresenting]   = useState(true);
-  const [activeId, setActiveId]       = useState(SECTIONS[0].id);
-  const [heroReady, setHeroReady]     = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [animating, setAnimating] = useState(false);
+  const intervalRef = useRef(null);
+  const total = SLIDES.length;
 
-  // Stable random particle data
-  const particles = useMemo(() =>
-    Array.from({ length: 24 }, (_, i) => ({
-      id: i,
-      style: {
-        left:              `${(i * 4.167 + (i % 3) * 11) % 100}%`,
-        top:               `${(i * 7.3 + (i % 5) * 9) % 100}%`,
-        width:             `${2 + (i % 4)}px`,
-        height:            `${2 + (i % 4)}px`,
-        animationDelay:    `${(i * 0.37) % 8}s`,
-        animationDuration: `${7 + (i % 6)}s`,
-        opacity:           0.08 + (i % 5) * 0.07,
-      },
-    })),
-  []);
-
-  useEffect(() => { const t = setTimeout(() => setHeroReady(true), 120); return () => clearTimeout(t); }, []);
-
-  // Scroll-snap active section tracker
-  useEffect(() => {
-    const c = containerRef.current;
-    if (!c) return;
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting && e.intersectionRatio >= 0.5) setActiveId(e.target.id);
-      }),
-      { threshold: 0.5, root: c }
-    );
-    c.querySelectorAll('.salt-section').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
-  const goNext = useCallback((currentId) => {
-    if (!presenting) return;
-    const nextId = ALL_IDS[(ALL_IDS.indexOf(currentId) + 1) % ALL_IDS.length];
-    const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [presenting]);
-
-  const scrollTo = (id) => {
-    const el = containerRef.current?.querySelector(`#${id}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const advance = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrent(c => (c + 1) % total);
+      setAnimating(false);
+    }, 100);
   };
 
+  const goTo = (idx) => {
+    if (idx === current) return;
+    setCurrent(idx);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      intervalRef.current = setInterval(advance, 3500);
+    }
+    return () => clearInterval(intervalRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying]);
+
+  // Safe fallback to prevent crashes during hot-reloading when slides are removed
+  const safeCurrent = current >= SLIDES.length ? 0 : current;
+  const slide = SLIDES[safeCurrent];
+
   return (
-    <div className="salt-page" ref={containerRef}>
+    <div className="salt-slider-page">
+      {/* ── BACKGROUNDS ── */}
+      <div className="salt-slider-backgrounds" aria-hidden="true">
+        {SLIDES.map((s, i) => (
+          <div
+            key={s.id}
+            className="salt-slider-bg"
+            style={{ background: s.bg, opacity: i === current ? 1 : 0 }}
+          />
+        ))}
+      </div>
 
-      {/* ── HERO ── */}
-      <div className={`salt-hero ${heroReady ? 'hero--ready' : ''}`} id="home">
-        <div className="hero-bg">
-          <img src={saltHeroBg} alt="Salt Landscape" className="hero-bg-img" />
-          <div className="hero-bg-veil" />
-        </div>
+      {/* ── MAIN LAYOUT ── */}
+      <div className="salt-slider-container">
 
-        {/* Crystal Particles */}
-        <div className="particles-wrap" aria-hidden="true">
-          {particles.map(p => (
-            <div key={p.id} className="crystal-dot" style={p.style} />
-          ))}
-        </div>
+        {/* ── LEFT CONTENT ── */}
+        <div className={`salt-slider-content ${animating ? 'content-exit' : 'content-enter'}`}>
+          <div className="salt-slider-logo">
+            <img src="/favicon.png" alt="ANJO Traders" />
+            <span>ANJO TRADERS</span>
+          </div>
+          <div className="salt-slider-category" style={{ color: slide.accent }}>
+            <span className="salt-slider-category-dot" style={{ background: slide.accent }} />
+            {slide.category}
+          </div>
+          <h1 className="salt-slider-heading">{slide.heading}</h1>
+          <p className="salt-slider-sub">{slide.sub}</p>
+          <div className="salt-slider-price" style={{ color: slide.accent }}>{slide.price}</div>
 
-        <div className="hero-center">
-          {/* Eyebrow removed */}
-
-          <h1 className="hero-h1">
-            <span className="h1-line">Crystalline</span>
-            <span className="h1-line h1-accent">Purity</span>
-          </h1>
-
-          <p className="hero-sub">
-            Premium grade salt solutions engineered for industrial precision,<br />
-            culinary excellence and global supply chains.
-          </p>
-
-          {/* Stats removed */}
-
-          <div className="hero-cta-row">
-            {SECTIONS.map(s => (
-              <button key={s.id} className="hero-pill" onClick={() => scrollTo(s.id)}
-                style={{ '--accent': s.accent }}>
-                <span>{s.num}</span>
-                {s.title}
-              </button>
+          {/* Dot navigation */}
+          <div className="salt-slider-dots">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                className={`salt-slider-dot ${i === current ? 'salt-slider-dot--active' : ''}`}
+                style={i === current ? { background: slide.accent, boxShadow: `0 0 12px ${slide.accent}` } : {}}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
             ))}
           </div>
         </div>
 
-        {/* Explore hint removed */}
+        {/* ── RIGHT IMAGES ── */}
+        <div className="salt-slider-images-container">
+          {SLIDES.map((s, i) => (
+            <img
+              key={s.id}
+              src={s.img}
+              alt={s.heading}
+              className={`salt-slider-slide-img salt-slider-slide-img--${getClass(i, current, total)}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* ── HUD ── */}
-      <div className="salt-hud">
-        <button id="presenting-toggle" className="hud-btn" onClick={() => setPresenting(p => !p)}>
-          <span className={`hud-dot ${presenting ? 'hud-dot--on' : ''}`} />
-          {presenting ? 'PRESENTING' : 'MANUAL VIEW'}
+      {/* ── MODERN PLAY/PAUSE CONTROL ── */}
+      <div className="salt-slider-controls-wrap">
+        <button 
+          className={`salt-slider-premium-toggle ${isPlaying ? 'is-playing' : 'is-paused'}`}
+          onClick={() => setIsPlaying(!isPlaying)}
+          aria-label={isPlaying ? "Pause Slider" : "Play Slider"}
+        >
+          <div className="toggle-inner">
+            {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} style={{ marginLeft: '2px' }} />}
+          </div>
+          <span className="toggle-text">{isPlaying ? 'PAUSE' : 'RESUME'}</span>
+          <div className="toggle-glow" />
         </button>
       </div>
-
-      {/* ── SECTION DOTS ── */}
-      <nav className="dots-nav" aria-label="Section navigation">
-        {SECTIONS.map(s => (
-          <button
-            key={s.id}
-            className={`dot-btn ${activeId === s.id ? 'dot-btn--on' : ''}`}
-            style={{ '--accent': s.accent }}
-            onClick={() => scrollTo(s.id)}
-            title={s.title}
-            aria-label={`Jump to ${s.title}`}
-          />
-        ))}
-      </nav>
-
-      {/* ── SECTIONS ── */}
-      {SECTIONS.map(s => (
-        <GallerySection
-          key={s.id}
-          section={s}
-          isActive={activeId === s.id}
-          isPresenting={presenting}
-          onNext={goNext}
-        />
-      ))}
-
-      <footer className="salt-footer">
-        <p className="footer-text">
-          <span className="footer-brand">ANJO</span> · Mineral Excellence · Est. 2020
-        </p>
-      </footer>
     </div>
   );
 }

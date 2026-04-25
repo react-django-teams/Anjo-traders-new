@@ -1,23 +1,24 @@
 /*
   ANJO Traders — Contact Page
-  Premium "Dark Luxury" redesign
+  Premium "Orange & White" Vibrant Redesign
   Font: Outfit (Google Fonts)
 */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
 
 /* ── TOKENS ─────────────────────────────────────────────────── */
 :root {
-  --cp-bg:       #060d1a;
-  --cp-surface:  #0d1b2e;
-  --cp-border:   rgba(255,255,255,0.07);
-  --cp-gold:     #f59e0b;
-  --cp-cyan:     #06b6d4;
+  --cp-bg:       #fff8f3;
+  --cp-surface:  #ffffff;
+  --cp-border:   rgba(249,115,22,0.15);
   --cp-orange:   #f97316;
+  --cp-amber:    #f59e0b;
+  --cp-red:      #ef4444;
   --cp-purple:   #8b5cf6;
   --cp-green:    #10b981;
+  --cp-dark:     #1a0a00;
+  --cp-text:     #1a0a00;
+  --cp-muted:    rgba(26,10,0,0.55);
   --cp-white:    #ffffff;
-  --cp-text:     rgba(255,255,255,0.85);
-  --cp-muted:    rgba(255,255,255,0.4);
   --cp-font:     'Outfit', sans-serif;
   --cp-ease:     cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -26,17 +27,11 @@
 .cp-page {
   font-family: var(--cp-font);
   background: var(--cp-bg);
-  height: 100vh;
-  height: 100dvh;
-  overflow-y: scroll;
+  min-height: 100vh;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   scroll-behavior: smooth;
   position: relative;
 }
-.cp-page::-webkit-scrollbar { display: none; }
 
 /* ── BACKGROUND ORBS ─────────────────────────────────────────── */
 .cp-bg-particles {
@@ -55,26 +50,26 @@
 .cp-orb-1 {
   top: -10%;
   left: -5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%);
   animation-duration: 12s;
 }
 .cp-orb-2 {
   top: 35%;
   right: -8%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 70%);
   animation-duration: 18s;
   animation-direction: reverse;
 }
 .cp-orb-3 {
   bottom: -5%;
   left: 20%;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 70%);
   animation-duration: 15s;
 }
 @keyframes cpOrbFloat {
@@ -82,53 +77,9 @@
   50%       { transform: translateY(-30px) scale(1.05); }
 }
 
-/* ── TOGGLE ─────────────────────────────────────────────────── */
-.cp-toggle {
-  position: fixed;
-  top: 5.5rem;
-  right: 2rem;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.65rem 1.4rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 99px;
-  backdrop-filter: blur(16px);
-  cursor: pointer;
-  color: rgba(255,255,255,0.7);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-family: var(--cp-font);
-  transition: all 0.3s var(--cp-ease);
-}
-.cp-toggle:hover {
-  background: rgba(255,255,255,0.1);
-  color: var(--cp-white);
-  border-color: var(--cp-gold);
-}
-.cp-toggle-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--cp-muted);
-  transition: background 0.3s;
-}
-.cp-toggle-dot.active {
-  background: var(--cp-green);
-  animation: cpDotPulse 1.5s infinite;
-}
-@keyframes cpDotPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
-  100% { box-shadow: 0 0 0 12px rgba(16,185,129,0); }
-}
-
 /* ── SHARED UTILITIES ────────────────────────────────────────── */
 .cp-gradient-text {
-  background: linear-gradient(90deg, var(--cp-gold), var(--cp-orange), var(--cp-gold));
+  background: linear-gradient(90deg, var(--cp-orange), var(--cp-amber), var(--cp-orange));
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -149,16 +100,20 @@
   font-weight: 700;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--cp-gold);
+  color: var(--cp-orange);
   margin-bottom: 1.25rem;
 }
 .cp-eyebrow-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--cp-gold);
-  box-shadow: 0 0 10px var(--cp-gold);
+  background: var(--cp-orange);
+  box-shadow: 0 0 10px var(--cp-orange);
   animation: cpDotPulse 2s infinite;
+}
+@keyframes cpDotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,0.7); }
+  100% { box-shadow: 0 0 0 12px rgba(249,115,22,0); }
 }
 
 .cp-section-inner {
@@ -170,7 +125,7 @@
 .cp-section-h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 900;
-  color: var(--cp-white);
+  color: var(--cp-dark);
   line-height: 1.1;
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
@@ -192,14 +147,12 @@
 
 /* ── HERO ─────────────────────────────────────────────────────── */
 .cp-hero {
-  height: 100vh;
-  height: 100dvh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 8%;
+  padding: 6rem 8%;
   overflow: hidden;
 }
 .cp-hero-bg {
@@ -217,13 +170,13 @@
 .cp-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(6,13,26,0.92) 45%, rgba(6,13,26,0.4) 100%);
+  background: linear-gradient(to right, rgba(26,10,0,0.88) 40%, rgba(26,10,0,0.55) 100%);
 }
 .cp-hero-grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -243,7 +196,7 @@
 }
 .cp-hero-sub {
   font-size: 1.1rem;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.75);
   line-height: 1.75;
   max-width: 480px;
   margin-bottom: 2rem;
@@ -267,47 +220,27 @@
   font-family: var(--cp-font);
 }
 .cp-pill-primary {
-  background: var(--cp-gold);
-  color: #060d1a;
-  border: 1.5px solid var(--cp-gold);
-  box-shadow: 0 8px 24px rgba(245,158,11,0.35);
+  background: var(--cp-orange);
+  color: #fff;
+  border: 1.5px solid var(--cp-orange);
+  box-shadow: 0 8px 24px rgba(249,115,22,0.45);
 }
 .cp-pill-primary:hover {
   background: transparent;
-  color: var(--cp-gold);
+  color: var(--cp-orange);
   transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(249,115,22,0.3);
 }
 .cp-pill-ghost {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.1);
   color: var(--cp-white);
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.25);
   backdrop-filter: blur(10px);
 }
 .cp-pill-ghost:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.5);
   transform: translateY(-3px);
-}
-.cp-hero-stats {
-  display: flex;
-  gap: 2.5rem;
-}
-.cp-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.cp-stat-val {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--cp-gold);
-  line-height: 1;
-}
-.cp-stat-label {
-  font-size: 0.75rem;
-  color: var(--cp-muted);
-  letter-spacing: 2px;
-  text-transform: uppercase;
 }
 .cp-scroll-cue {
   position: absolute;
@@ -317,7 +250,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: var(--cp-muted);
+  color: rgba(255,255,255,0.5);
   font-size: 0.65rem;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -326,7 +259,7 @@
 .cp-scroll-line {
   width: 1px;
   height: 56px;
-  background: linear-gradient(to bottom, var(--cp-gold), transparent);
+  background: linear-gradient(to bottom, var(--cp-orange), transparent);
   animation: cpScrollPulse 2s infinite;
 }
 @keyframes cpScrollPulse {
@@ -336,16 +269,13 @@
 
 /* ── OFFICES ─────────────────────────────────────────────────── */
 .cp-offices {
-  height: 100vh;
-  height: 100dvh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  padding: 6rem 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
-  padding: 4rem 0;
+  background: var(--cp-white);
 }
 .cp-cards-grid {
   display: grid;
@@ -354,16 +284,17 @@
 }
 .cp-card {
   position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--cp-border);
-  border-radius: 20px;
-  padding: 1.75rem;
+  background: #fff;
+  border: 1.5px solid rgba(249,115,22,0.12);
+  border-radius: 24px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
   overflow: hidden;
   transition: all 0.4s var(--cp-ease);
   cursor: default;
+  box-shadow: 0 4px 20px rgba(249,115,22,0.06);
 }
 .cp-card::before {
   content: '';
@@ -371,26 +302,26 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent, var(--cp-orange)), transparent);
   opacity: 0;
   transition: opacity 0.4s;
 }
 .cp-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.12);
-  transform: translateY(-6px);
-  box-shadow: 0 24px 50px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+  background: #fff8f3;
+  border-color: var(--accent, var(--cp-orange));
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(249,115,22,0.15);
 }
 .cp-card:hover::before {
   opacity: 1;
 }
 .cp-card-icon-wrap {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(249,115,22,0.08);
+  border: 1.5px solid rgba(249,115,22,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -403,13 +334,13 @@
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent, var(--cp-orange));
   margin-bottom: 0.4rem;
 }
 .cp-card-title {
   font-size: 1.05rem;
   font-weight: 800;
-  color: var(--cp-white);
+  color: var(--cp-dark);
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -426,22 +357,19 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.5;
+  background: linear-gradient(90deg, transparent, var(--accent, var(--cp-orange)), transparent);
+  opacity: 0.4;
 }
 
 /* ── ENQUIRY ─────────────────────────────────────────────────── */
 .cp-enquiry {
-  height: 100vh;
-  height: 100dvh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  padding: 6rem 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
-  padding: 3rem 0;
+  background: linear-gradient(135deg, #fff8f3 0%, #fff3e6 100%);
 }
 .cp-enquiry-grid {
   display: grid;
@@ -478,21 +406,22 @@
 }
 .cp-input {
   width: 100%;
-  padding: 0.85rem 1rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  font-size: 0.9rem;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(249,115,22,0.2);
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-family: var(--cp-font);
-  color: var(--cp-white);
+  color: var(--cp-dark);
   outline: none;
   transition: all 0.3s var(--cp-ease);
+  box-shadow: 0 2px 8px rgba(249,115,22,0.04);
 }
-.cp-input::placeholder { color: rgba(255,255,255,0.2); }
+.cp-input::placeholder { color: rgba(26,10,0,0.3); }
 .cp-input--focus {
-  border-color: var(--cp-gold);
-  background: rgba(245,158,11,0.05);
-  box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+  border-color: var(--cp-orange);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(249,115,22,0.12);
 }
 .cp-input--error {
   border-color: #ef4444;
@@ -502,8 +431,8 @@
   appearance: none;
 }
 .cp-select option {
-  background: #0d1b2e;
-  color: white;
+  background: #ffffff;
+  color: #1a0a00;
 }
 .cp-textarea {
   resize: none;
@@ -515,13 +444,13 @@
 }
 .cp-submit-btn {
   width: 100%;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--cp-gold), var(--cp-orange));
-  color: #060d1a;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(135deg, var(--cp-orange), var(--cp-amber));
+  color: #ffffff;
   border: none;
   border-radius: 12px;
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 900;
   font-family: var(--cp-font);
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -531,12 +460,13 @@
   gap: 0.75rem;
   cursor: pointer;
   transition: all 0.3s var(--cp-ease);
-  box-shadow: 0 8px 28px rgba(245,158,11,0.3);
+  box-shadow: 0 8px 28px rgba(249,115,22,0.4);
   margin-top: 0.5rem;
 }
 .cp-submit-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 36px rgba(245,158,11,0.45);
+  box-shadow: 0 16px 40px rgba(249,115,22,0.55);
+  filter: brightness(1.05);
 }
 .cp-success {
   display: flex;
@@ -546,15 +476,15 @@
   text-align: center;
   gap: 1rem;
   min-height: 360px;
-  background: rgba(16,185,129,0.05);
-  border: 1px solid rgba(16,185,129,0.2);
+  background: rgba(249,115,22,0.05);
+  border: 1.5px solid rgba(249,115,22,0.2);
   border-radius: 20px;
   padding: 3rem;
 }
 .cp-success h3 {
   font-size: 1.5rem;
   font-weight: 900;
-  color: var(--cp-white);
+  color: var(--cp-dark);
   text-transform: uppercase;
 }
 .cp-success p {
@@ -564,11 +494,11 @@
 
 /* Map */
 .cp-map-frame {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   height: 300px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1.5px solid rgba(249,115,22,0.2);
+  box-shadow: 0 20px 50px rgba(249,115,22,0.1);
   margin-bottom: 1.25rem;
 }
 .cp-branch-pills {
@@ -579,23 +509,26 @@
 .cp-branch-pill {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.85rem 1.2rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
+  gap: 1.2rem;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(249,115,22,0.12);
+  border-radius: 14px;
   transition: all 0.3s var(--cp-ease);
-  border-left: 3px solid var(--ba);
+  border-left: 4px solid var(--ba, var(--cp-orange));
+  box-shadow: 0 2px 12px rgba(249,115,22,0.06);
 }
 .cp-branch-pill:hover {
-  background: rgba(255,255,255,0.06);
+  background: #fff8f3;
+  border-color: var(--ba, var(--cp-orange));
   transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(249,115,22,0.12);
 }
 .cp-branch-flag { font-size: 1.5rem; }
 .cp-branch-city {
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--cp-white);
+  color: var(--cp-dark);
 }
 .cp-branch-role {
   font-size: 0.72rem;
@@ -606,29 +539,27 @@
 
 /* ── FOOTER CTA ──────────────────────────────────────────────── */
 .cp-footer-cta {
-  height: 100vh;
-  height: 100dvh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  min-height: 80vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
   overflow: hidden;
+  padding: 6rem 0;
 }
 .cp-footer-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.2) saturate(0.6);
+  filter: brightness(0.2) saturate(0.8);
   animation: cpKenBurns 25s linear infinite alternate;
 }
 .cp-footer-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(6,13,26,0.5) 0%, rgba(6,13,26,0.92) 100%);
+  background: radial-gradient(ellipse at center, rgba(26,10,0,0.6) 0%, rgba(26,10,0,0.92) 100%);
 }
 .cp-footer-inner {
   position: relative;
@@ -648,23 +579,23 @@
 }
 .cp-footer-tagline {
   font-size: 1rem;
-  color: var(--cp-muted);
+  color: rgba(255,255,255,0.65);
   line-height: 1.8;
   letter-spacing: 0.5px;
 }
 .cp-footer-tagline strong {
-  color: var(--cp-gold);
+  color: var(--cp-orange);
   font-weight: 700;
 }
 .cp-footer-divider {
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cp-gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--cp-orange), transparent);
   margin: 2rem auto;
 }
 .cp-footer-copy {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.3);
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -688,7 +619,6 @@
     grid-template-columns: 1fr 1fr;
   }
   .cp-hero-h1 { font-size: 2.8rem; }
-  .cp-hero-stats { gap: 1.5rem; }
   .cp-form-row { grid-template-columns: 1fr; }
   .cp-offices { height: auto; min-height: 100dvh; padding: 5rem 0; }
 }

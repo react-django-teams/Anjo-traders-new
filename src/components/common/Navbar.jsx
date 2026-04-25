@@ -40,16 +40,16 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home',           path: '/' },
     { name: 'Prime Products', path: '/prime-products' },
+    { name: 'Automobiles',    path: '/automobiles' },
     { name: 'Solutions',      path: '/business-solution' },
     { 
       name: 'Our Divisions', 
       dropdown: [
-        { name: 'Green Link',     path: '/green-link' },
-        { name: 'Containers',     path: '/container-commercialization' },
-        { name: 'Anjo Salt',      path: '/anjo-salt' },
+        { name: 'Green Link Maritime Agency', path: '/green-link' },
+        { name: 'Container Division',         path: '/container-commercialization' },
+        { name: 'Anjo Salt Manufacturer',     path: '/anjo-salt' },
       ]
     },
-    { name: 'Automobiles',    path: '/animated-gallery' },
     { name: 'Contact Us',     path: '/contact' },
   ];
 
@@ -66,7 +66,7 @@ const Navbar = () => {
               <img
                 src={logoImage}
                 alt="ANJO Traders Logo"
-                className="h-12 sm:h-14 md:h-16 w-auto transition-all duration-300"
+                className="h-8 sm:h-10 md:h-12 w-auto transition-all duration-300"
               />
             </Link>
           </div>

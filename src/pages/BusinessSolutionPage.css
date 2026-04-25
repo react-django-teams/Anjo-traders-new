@@ -1,24 +1,20 @@
 .pbs-page {
   width: 100%;
-  height: 100vh;
-  background: #fbfbfc;
+  min-height: 100vh;
+  background: #f8fafc; /* Lighter, professional tone */
   display: block;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 /* ── TOP SECTION ── */
 .pbs-top {
   width: 100%;
-  height: 100vh;
-  padding: 12rem 2rem 4rem; /* Top padding increased to prevent touching header */
+  padding: 8rem 5% 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  justify-content: flex-start;
 }
 
 .pbs-header {
@@ -29,7 +25,7 @@
 .pbs-title {
   font-size: 3.5rem;
   font-weight: 800;
-  color: #831c22; /* Deep maroon/red */
+  color: #0f172a; /* Clean dark slate */
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
@@ -44,14 +40,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6rem;
+  gap: 5rem;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* PUZZLE WHEEL */
 .pbs-wheel-container {
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   position: relative;
   cursor: pointer;
   perspective: 1000px;
@@ -80,20 +78,24 @@
 /* DETAILS PANEL */
 .pbs-details-panel {
   flex: 1;
+  width: 100%;
   max-width: 500px;
-  height: 350px;
+  min-height: 400px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .pbs-detail-card {
+  width: 100%;
   background: #ffffff;
-  padding: 3rem;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-  border-left: 6px solid;
+  padding: 3.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+  border-top: 6px solid;
   position: relative;
   overflow: hidden;
+  text-align: left;
 }
 
 .pbs-detail-icon-wrap {
@@ -108,8 +110,9 @@
 }
 
 .pbs-detail-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
+  color: #0f172a;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
@@ -117,8 +120,8 @@
 .pbs-detail-desc {
   font-size: 1.1rem;
   color: #475569;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  margin-bottom: 0;
 }
 
 .pbs-detail-step {
@@ -133,27 +136,12 @@
 .pbs-bottom {
   position: relative;
   width: 100%;
-  height: 100vh;
+  padding: 6rem 5%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-/* The red/orange sweeping diagonal shape */
-.pbs-diagonal-overlay {
-  position: absolute;
-  top: -100px; /* Pull it up to overlap the top section slightly */
-  left: 0;
-  width: 200%;
-  height: 250px;
-  background: linear-gradient(135deg, #e63946 0%, #d97706 100%);
-  transform: rotate(-15deg);
-  transform-origin: top left;
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  min-height: 40vh;
 }
 
 .pbs-ship-bg {
@@ -172,7 +160,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+  background: rgba(15, 23, 42, 0.75); /* Consistent dark slate overlay */
 }
 
 .pbs-bottom-content {
@@ -182,7 +170,6 @@
   color: white;
   max-width: 800px;
   padding: 0 2rem;
-  margin-top: 100px; /* Push down below the diagonal */
 }
 
 .pbs-bottom-title {
@@ -234,21 +221,14 @@
 }
 
 @media (max-width: 768px) {
-  .pbs-top { padding-top: 10rem; }
+  .pbs-top { padding-top: 8rem; }
   .pbs-title { font-size: clamp(2rem, 8vw, 2.5rem); }
   .pbs-wheel-container { width: 320px; height: 320px; }
   .pbs-bottom-title { font-size: 2rem; }
-  .pbs-diagonal-overlay {
-    transform: rotate(-25deg);
-  }
 }
 
 @media (max-width: 480px) {
   .pbs-wheel-container { width: 280px; height: 280px; }
   .pbs-detail-title { font-size: 1.8rem; }
   .pbs-detail-card { padding: 1.5rem; }
-}
-
-.pbs-footer-wrap {
-  scroll-snap-align: start;
 }

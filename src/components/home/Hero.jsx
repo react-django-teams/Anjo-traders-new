@@ -13,11 +13,11 @@ const Hero = () => {
   ];
 
   return (
-    <section 
+    <section
       className="relative flex items-center justify-center overflow-hidden bg-slate-900"
       style={{ minHeight: '100vh' }}
     >
-      
+
       {/* 1. Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -89,12 +89,12 @@ const Hero = () => {
       {/* 2. Logo-Inspired Ambient Overlays */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {particles.map((p, i) => (
-          <div 
+          <div
             key={i}
             className="absolute rounded-full opacity-[0.08] blur-[80px]"
-            style={{ 
-              top: p.top, left: p.left, 
-              width: p.size, height: p.size, 
+            style={{
+              top: p.top, left: p.left,
+              width: p.size, height: p.size,
               backgroundColor: p.color,
               animation: `floatAmbient ${15 + i * 2}s infinite ease-in-out alternate`,
               animationDelay: p.delay
@@ -108,17 +108,17 @@ const Hero = () => {
 
       {/* 3. Central Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-20">
-        
+
         <div className="w-full flex flex-col items-center justify-center">
-          <img 
-            src={logoImage} 
-            alt="ANJO Traders Logo" 
-            className="w-[92vw] sm:w-[85vw] max-w-[850px] h-auto object-contain opacity-0 animate-logo-premium relative z-10"
+          <img
+            src={logoImage}
+            alt="ANJO Traders Logo"
+            className="w-[60vw] sm:w-[40vw] md:w-[30vw] max-w-[350px] h-auto object-contain opacity-0 animate-logo-premium relative z-10"
           />
-          
-          <h2 
-            className="relative z-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.05em] max-w-4xl text-transparent bg-clip-text animate-tagline-shimmer mt-6 sm:mt-8 md:mt-12"
-            style={{ 
+
+          <h2
+            className="relative z-20 text-base sm:text-lg md:text-2xl lg:text-3xl font-medium tracking-[0.05em] max-w-4xl text-center text-transparent bg-clip-text animate-tagline-shimmer mt-4 sm:mt-5 md:mt-6 px-4"
+            style={{
               backgroundImage: 'linear-gradient(90deg, #cbd5e1 0%, #ffffff 25%, #60a5fa 50%, #ffffff 75%, #cbd5e1 100%)',
               filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.8))'
             }}
@@ -128,7 +128,7 @@ const Hero = () => {
         </div>
 
       </div>
-      
+
     </section>
   );
 };

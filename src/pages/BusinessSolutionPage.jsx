@@ -197,7 +197,7 @@ export default function BusinessSolutionPage() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
                 className="pbs-detail-card"
-                style={{ borderLeftColor: SERVICES[activeIdx].color }}
+                style={{ borderTopColor: SERVICES[activeIdx].color }}
               >
                 <div className="pbs-detail-icon-wrap" style={{ backgroundColor: SERVICES[activeIdx].color }}>
                   {React.createElement(SERVICES[activeIdx].icon, { size: 28, color: '#fff' })}
@@ -208,18 +208,14 @@ export default function BusinessSolutionPage() {
                 <p className="pbs-detail-desc">
                   {SERVICES[activeIdx].desc}
                 </p>
-                <div className="pbs-detail-step">
-                  Step 0{activeIdx + 1} of 07
-                </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
 
-      {/* BOTTOM SECTION - CINEMATIC SHIP WITH DIAGONAL */}
+      {/* BOTTOM SECTION - CINEMATIC SHIP */}
       <div className="pbs-bottom">
-        <div className="pbs-diagonal-overlay" />
         <div className="pbs-ship-bg" />
         <div className="pbs-bottom-content">
           <h2 className="pbs-bottom-title">Comprehensive Logistics Ecosystem</h2>

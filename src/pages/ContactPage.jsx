@@ -10,42 +10,6 @@ const ContactPage = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState({});
-  const containerRef = useRef(null);
-  const [isPresenting, setIsPresenting] = useState(true);
-  const [activeSectionId, setActiveSectionId] = useState('hero');
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting && e.intersectionRatio >= 0.5) {
-            setActiveSectionId(e.target.id);
-          }
-        });
-      },
-      { threshold: 0.5, root: container }
-    );
-    container.querySelectorAll('section').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
-  const goNext = useCallback((currentId) => {
-    if (!isPresenting) return;
-    const idx = SECTION_IDS.indexOf(currentId);
-    const nextIdx = (idx + 1) % SECTION_IDS.length;
-    const nextId = SECTION_IDS[nextIdx];
-    const el = containerRef.current?.querySelector(`#${nextId}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [isPresenting]);
-
-  useEffect(() => {
-    if (!isPresenting) return;
-    const interval = activeSectionId === 'hero' ? 6000 : 9000;
-    const t = setTimeout(() => goNext(activeSectionId), interval);
-    return () => clearTimeout(t);
-  }, [activeSectionId, isPresenting, goNext]);
 
   const onSubmit = async (data) => {
     try {
@@ -117,7 +81,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <div ref={containerRef} className="cp-page">
+    <div className="cp-page">
 
       {/* ── BACKGROUND PARTICLE LAYER ── */}
       <div className="cp-bg-particles">
@@ -125,12 +89,6 @@ const ContactPage = () => {
         <div className="cp-orb cp-orb-2" />
         <div className="cp-orb cp-orb-3" />
       </div>
-
-      {/* ── CINEMATIC TOGGLE ── */}
-      <button className="cp-toggle" onClick={() => setIsPresenting(p => !p)}>
-        <span className={`cp-toggle-dot ${isPresenting ? 'active' : ''}`} />
-        {isPresenting ? 'Cinematic Flow' : 'Manual View'}
-      </button>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 1 — HERO
@@ -347,7 +305,7 @@ const ContactPage = () => {
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126149.12753474226!2d78.07754995!3d8.8053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03ef8c6e99ee2b%3A0x2b78ee01f2e88e87!2sTuticorin%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%" height="100%"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                style={{ border: 0 }}
                 allowFullScreen="" loading="lazy"
                 title="ANJO Traders - Thoothukudi"
               />

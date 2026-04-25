@@ -13,58 +13,53 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
           {/* Brand */}
-          <div className="max-w-md">
-            <img src={logoImage} alt="ANJO Traders" className="h-10 w-auto mb-3" />
-            <p className="text-orange-100 text-xs font-semibold tracking-widest uppercase mb-2">Export · Import: Traders of All Goods</p>
-            <p className="text-white text-base leading-relaxed mb-4 font-medium">
-              Right People · Right Skill · Right Environment.<br />
-              <span className="text-white font-extrabold tracking-wide drop-shadow-sm">Connected By Ethics.</span>
+          <div className="max-w-md flex flex-col justify-center">
+            <img src={logoImage} alt="ANJO Traders" className="h-10 w-auto mb-4 object-contain self-start" />
+            <p className="text-orange-100 text-sm font-semibold tracking-widest uppercase leading-relaxed">
+              Export · Import <br /> Traders of All Goods
             </p>
-            <div className="space-y-1">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></span>
-                <span className="text-orange-100 text-sm">Colombo, Sri Lanka Branch</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></span>
-                <span className="text-orange-100 text-sm">Laem Chabang, Thailand Branch</span>
-              </div>
-            </div>
           </div>
 
           {/* Contact */}
           <div>
-            <p className="section-eyebrow mb-2 text-white font-bold opacity-90">Get in Touch</p>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-3">
-                <FaMapMarkerAlt className="text-white/80 mt-1 flex-shrink-0" size={13} />
-                <span className="text-orange-100 text-xs leading-relaxed">
+            <p className="text-white font-bold opacity-90 text-lg mb-4">Contact & Locations</p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <FaMapMarkerAlt className="text-white/80 mt-1 flex-shrink-0" size={16} />
+                <div className="text-orange-100 text-sm leading-relaxed">
+                  <span className="text-white font-semibold block mb-1">Head Office (India)</span>
                   11/625, Sahayamatha Pattanam, 5th Street,<br />
-                  Mariya Mahal Road, Tuticorin – 628002,<br />
-                  Tamilnadu, India
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaPhone className="text-white/80 flex-shrink-0" size={13} />
-                <div className="text-orange-100 text-xs">
-                  <div>98943 22104</div>
-                  <div>88704 00456</div>
+                  Mariya Mahal Road, Tuticorin – 628002, Tamilnadu
+                  <div className="mt-3 space-y-1 text-orange-100/90">
+                    <span className="block"><span className="text-white/60 mr-2">•</span>Colombo, Sri Lanka Branch</span>
+                    <span className="block"><span className="text-white/60 mr-2">•</span>Laem Chabang, Thailand Branch</span>
+                  </div>
                 </div>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-white/80 flex-shrink-0" size={13} />
-                <a href="mailto:info@anjotraders.com" className="text-orange-100 hover:text-white text-xs transition-colors">info@anjotraders.com</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaGlobe className="text-white/80 flex-shrink-0" size={13} />
-                <a href="http://anjotraders.com" className="text-orange-100 hover:text-white text-xs transition-colors">anjotraders.com</a>
-              </li>
-            </ul>
+              </div>
 
-            <div className="flex gap-3 mt-4">
+              <div className="pt-4 border-t border-white/10 space-y-3">
+                <div className="flex items-center gap-3">
+                  <FaPhone className="text-white/80 flex-shrink-0" size={14} />
+                  <div className="text-orange-100 text-sm flex flex-wrap gap-x-4 gap-y-1">
+                    <span>+91 98943 22104</span>
+                    <span>+91 88704 00456</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaEnvelope className="text-white/80 flex-shrink-0" size={14} />
+                  <a href="mailto:info@anjotraders.com" className="text-orange-100 hover:text-white text-sm transition-colors break-all">info@anjotraders.com</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaGlobe className="text-white/80 flex-shrink-0" size={14} />
+                  <a href="http://anjotraders.com" className="text-orange-100 hover:text-white text-sm transition-colors">www.anjotraders.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-6">
               {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram].map((Icon, i) => (
                 <a key={i} href="/#" className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-orange-100 hover:text-white hover:border-white transition-all hover:bg-white/20">
-                  <Icon size={13} />
+                  <Icon size={14} />
                 </a>
               ))}
             </div>
