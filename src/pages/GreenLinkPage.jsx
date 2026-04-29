@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { FaPlay, FaPause, FaExternalLinkAlt } from 'react-icons/fa';
 
 import './GreenLinkPage.css';
@@ -8,58 +8,47 @@ import './GreenLinkPage.css';
 const SLIDES = [
   {
     id: 0,
-    category: 'Alternative Living',
-    heading: 'Alternative Home Used Container',
-    sub: 'High-quality pre-owned containers ideal for alternative housing and modular home projects.',
+    category: 'NVOCC Services',
+    heading: 'Steamer Agent (NVOCC)',
+    sub: 'Comprehensive NVOCC services ensuring reliable, efficient, and secure ocean freight management worldwide.',
     price: 'Get Best Quote',
     link: '/contact',
-    img: '/anjo photos/container_home.png',
+    img: '/images/steamer-agent.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #064e3b 0%, #022c22 100%)',
     accent: '#10b981',
   },
   {
     id: 1,
-    category: 'Container Solutions',
-    heading: 'Fabricated Used Containers',
-    sub: 'Custom-fabricated containers modified for offices, clinics, and specialized workspaces.',
+    category: 'Global Freight',
+    heading: 'International Freight Forwarding',
+    sub: 'Seamless end-to-end global cargo movement through expert air, sea, and land freight forwarding.',
     price: 'Get Best Quote',
     link: '/contact',
-    img: '/anjo photos/fabricated_container.png',
+    img: '/images/international-freight-forwarding.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)',
     accent: '#06b6d4',
   },
   {
     id: 2,
-    category: 'Storage Solutions',
-    heading: 'Storage Used Containers',
-    sub: 'Secure, weatherproof storage units for industrial, commercial, and personal use.',
+    category: 'Shipping Solutions',
+    heading: 'Coastal & International Logistics',
+    sub: 'Tailored logistics solutions spanning domestic coastal routes and extensive international shipping networks.',
     price: 'Get Best Quote',
     link: '/contact',
-    img: '/anjo photos/storage_container.png',
+    img: '/images/coastal-international-logistics.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #1e3a8a 0%, #0f172a 100%)',
     accent: '#3b82f6',
   },
   {
     id: 3,
-    category: 'Global Trade',
-    heading: 'Used Containers',
-    sub: 'Standard used shipping containers available for immediate purchase and global shipping.',
+    category: 'Specialized Transport',
+    heading: 'Project Cargo Logistics (Special Equipments)',
+    sub: 'Expert planning and specialized handling for the safe transportation of oversized, heavy, and complex project cargo.',
     price: 'Get Best Quote',
     link: '/contact',
-    img: '/anjo photos/used_containers.png',
+    img: '/images/project-cargo-logistics.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #4c1d95 0%, #2e1065 100%)',
     accent: '#8b5cf6',
-  },
-  {
-    id: 4,
-    category: 'Modified Units',
-    heading: 'Used Shipping Containers Modified',
-    sub: 'Professionally modified shipping containers with custom doors, windows, and insulation.',
-    price: 'Get Best Quote',
-    link: '/contact',
-    img: '/anjo photos/modified_shipping_container.png',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #7c2d12 0%, #431407 100%)',
-    accent: '#f97316',
   },
 ];
 
@@ -167,7 +156,7 @@ export default function GreenLinkPage() {
           {SLIDES.map((s, i) => (
             <img
               key={s.id}
-              src={s.img}
+              src={`${process.env.PUBLIC_URL}${s.img}`}
               alt={s.heading}
               className={`green-slider-slide-img green-slider-slide-img--${getClass(i, current, total)}`}
               onClick={() => goTo(i)}

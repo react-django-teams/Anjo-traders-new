@@ -21,7 +21,7 @@ const services = [
     name: 'Green Link Maritime Agencies',
     tagline: 'Ocean Freight & Forwarding',
     description: 'ANJO\'s maritime arm — Green Link Maritime Agencies — operates as a Steamer Agent (NVOCC), offering clearing & freight forwarding and project cargo logistics across major Asian ports.',
-    image: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=900',
+    image: `${process.env.PUBLIC_URL}/images/steamer-agent.jpeg`,
     features: ['Steamer Agent (NVOCC)', 'Clearing & Freight Forwarding', 'Project Cargo Logistics', 'Port Operations Management', 'LCL / FCL Shipments'],
   },
   {
@@ -31,7 +31,7 @@ const services = [
     name: 'ANJO Salt Manufacturer',
     tagline: 'Industrial & Food Grade Salt',
     description: 'ANJO operates its own salt manufacturing division, producing and exporting Industrial Salt, Table Salt, and Local Salt from Tamilnadu. Verified quality, consistent supply, and large-scale distribution.',
-    image: 'https://images.unsplash.com/photo-1621501103258-3e524cecac13?q=80&w=900',
+    image: `${process.env.PUBLIC_URL}/images/industrial-salt.jpeg`,
     features: ['Industrial Salt', 'Table Salt', 'Local / Traditional Salt', 'Bulk Export Packaging', 'Quality Certified Supply'],
   },
   {
@@ -41,7 +41,7 @@ const services = [
     name: 'Container Commercialization',
     tagline: 'Container Asset Solutions',
     description: 'ANJO offers comprehensive container services: buying, selling, leasing, storage, rental, and full fabrication & modification. Enabling businesses to optimize containerization without capital investment.',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=900',
+    image: `${process.env.PUBLIC_URL}/images/container-leasing.jpeg`,
     features: ['Container Buying / Selling / Leasing', 'Storage & Rental', 'Container Fabrication', 'Modification & Conversion', 'Global Equipment Positioning'],
   },
 ];

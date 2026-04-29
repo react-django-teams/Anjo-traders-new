@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGlobe, FaPaperPlane, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import './ContactPage.css';
 
-const SECTION_IDS = ['hero', 'offices', 'enquiry', 'footer'];
+
 
 /* ── Main Page ────────────────────────────────────────────────── */
 const ContactPage = () => {

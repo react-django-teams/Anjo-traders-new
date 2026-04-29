@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -53,7 +53,8 @@ const ScrollRevealWatcher = () => {
 
 function AppContent() {
   const location = useLocation();
-  const showFooter = ['/', '/contact'].includes(location.pathname);
+  // Don't show global footer on home page as it has its own compact footer in the same frame
+  const showFooter = ['/contact'].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col">

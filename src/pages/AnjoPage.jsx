@@ -11,7 +11,7 @@ const SLIDES = [
     sub: '99.9% mineral purity — engineered for industrial precision and global supply chains.',
     price: 'Premium Export Quality',
     link: '/anjo-salt',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.34 PM.jpeg',
+    img: '/images/high-purity-salt.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #dbeafe 0%, #3b82f6 100%)',
     accent: '#3b82f6',
   },
@@ -22,7 +22,7 @@ const SLIDES = [
     sub: 'Smart inventory decisions. Stronger business results. Global container commerce.',
     price: 'Container Solutions',
     link: '/container-commercialization',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (2).jpeg',
+    img: '/images/buying-selling-poster.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #cffafe 0%, #06b6d4 100%)',
     accent: '#06b6d4',
   },
@@ -33,7 +33,7 @@ const SLIDES = [
     sub: 'Smart leasing. Stronger business. Built around your needs.',
     price: 'Lease Smart. Grow Strong.',
     link: '/container-commercialization',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM.jpeg',
+    img: '/anjo-photos/WhatsApp_Image_2026-04-24_at_3.10.36_PM.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #ede9fe 0%, #8b5cf6 100%)',
     accent: '#8b5cf6',
   },
@@ -44,7 +44,7 @@ const SLIDES = [
     sub: 'Farm-fresh produce sourced globally — big onions, potatoes, garlic and more.',
     price: 'Global Agri Export',
     link: '/prime-products',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.35 PM.jpeg',
+    img: '/anjo-photos/WhatsApp_Image_2026-04-24_at_3.10.35_PM.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #d1fae5 0%, #059669 100%)',
     accent: '#059669',
   },
@@ -55,7 +55,7 @@ const SLIDES = [
     sub: 'Industry-grade sodium chloride for chemical manufacturing and water treatment.',
     price: 'B2B Industrial Supply',
     link: '/anjo-salt',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 4.54.06 PM.jpeg',
+    img: '/images/industrial-salt.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #fef3c7 0%, #f59e0b 100%)',
     accent: '#f59e0b',
   },
@@ -116,7 +116,7 @@ export default function AnjoPage() {
         {/* ── LEFT CONTENT ── */}
         <div className={`anjo-content ${animating ? 'content-exit' : 'content-enter'}`}>
           <div className="anjo-logo">
-            <img src="/favicon.png" alt="ANJO Traders" />
+            <img src={`${process.env.PUBLIC_URL}/favicon.png`} alt="ANJO Traders" />
             <span>ANJO TRADERS</span>
           </div>
           <div className="anjo-category" style={{ color: slide.accent }}>
@@ -154,7 +154,7 @@ export default function AnjoPage() {
           {SLIDES.map((s, i) => (
             <img
               key={s.id}
-              src={s.img}
+              src={`${process.env.PUBLIC_URL}${s.img}`}
               alt={s.heading}
               className={`anjo-slide-img anjo-slide-img--${getClass(i, current, total)}`}
               onClick={() => goTo(i)}

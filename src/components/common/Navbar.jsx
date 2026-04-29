@@ -66,7 +66,7 @@ const Navbar = () => {
               <img
                 src={logoImage}
                 alt="ANJO Traders Logo"
-                className="h-8 sm:h-10 md:h-12 w-auto transition-all duration-300"
+                className="h-10 sm:h-12 md:h-14 w-auto transition-all duration-300"
               />
             </Link>
           </div>

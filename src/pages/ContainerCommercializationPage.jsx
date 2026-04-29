@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { FaPlay, FaPause } from 'react-icons/fa';
 import './ContainerCommercializationPage.css';
 
@@ -7,47 +7,47 @@ import './ContainerCommercializationPage.css';
 const SLIDES = [
   {
     id: 0,
-    category: 'Global Commerce',
-    heading: 'Inventory Buying & Selling',
-    sub: 'Smart inventory decisions. Stronger business results. Global container commerce.',
-    price: 'Container Solutions',
-    link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (2).jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)',
-    accent: '#06b6d4',
-  },
-  {
-    id: 1,
     category: 'Leasing & Finance',
-    heading: 'Flexible Leasing Solutions',
-    sub: 'Smart leasing options built around your operational needs and budget.',
+    heading: 'Container Leasing',
+    sub: 'Flexible leasing options built around your operational needs and budget.',
     price: 'Lease Smart. Grow Strong.',
     link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM.jpeg',
+    img: '/images/container-leasing.jpeg',
     bg: 'radial-gradient(50% 50% at 50% 50%, #4c1d95 0%, #2e1065 100%)',
     accent: '#8b5cf6',
   },
   {
-    id: 2,
-    category: 'Quality Assurance',
-    heading: 'Quality Certified Units',
-    sub: 'Rigorous inspections ensure every container meets global cargo safety standards.',
-    price: 'Certified & Secure',
+    id: 1,
+    category: 'Global Commerce',
+    heading: 'Buying & Selling',
+    sub: 'Smart inventory decisions. Stronger business results. Global container commerce.',
+    price: 'Container Solutions',
     link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.36 PM (1).jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #064e3b 0%, #022c22 100%)',
-    accent: '#10b981',
+    img: '/images/buying-selling-poster.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #164e63 0%, #083344 100%)',
+    accent: '#06b6d4',
+  },
+  {
+    id: 2,
+    category: 'Storage Solutions',
+    heading: 'Storage & Rental',
+    sub: 'Secure, weatherproof heavy-duty steel containers providing maximum protection for your goods.',
+    price: 'Industrial Storage',
+    link: '/contact',
+    img: '/images/storage-rental.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #7c2d12 0%, #431407 100%)',
+    accent: '#f97316',
   },
   {
     id: 3,
-    category: 'Storage & Yard',
-    heading: 'Secure Weatherproof Units',
-    sub: 'Heavy-duty steel containers providing maximum protection for sensitive cargo.',
-    price: 'Industrial Storage',
+    category: 'Customization',
+    heading: 'Container Fabrication & Modification',
+    sub: 'Tailor-made container modifications and engineering to meet specialized industrial requirements.',
+    price: 'Engineered Solutions',
     link: '/contact',
-    img: '/anjo photos/WhatsApp Image 2026-04-24 at 3.10.37 PM.jpeg',
-    bg: 'radial-gradient(50% 50% at 50% 50%, #7c2d12 0%, #431407 100%)',
-    accent: '#f97316',
+    img: '/images/container-fabrication.jpeg',
+    bg: 'radial-gradient(50% 50% at 50% 50%, #064e3b 0%, #022c22 100%)',
+    accent: '#10b981',
   },
 ];
 
@@ -111,7 +111,7 @@ export default function ContainerCommercializationPage() {
         {/* ── LEFT CONTENT ── */}
         <div className={`anjo-content ${animating ? 'content-exit' : 'content-enter'}`}>
           <div className="anjo-logo">
-            <img src="/favicon.png" alt="ANJO Traders" />
+            <img src={`${process.env.PUBLIC_URL}/favicon.png`} alt="ANJO Traders" />
             <span>ANJO TRADERS</span>
           </div>
           <div className="anjo-category" style={{ color: slide.accent }}>
@@ -140,7 +140,7 @@ export default function ContainerCommercializationPage() {
           {SLIDES.map((s, i) => (
             <img
               key={s.id}
-              src={s.img}
+              src={`${process.env.PUBLIC_URL}${s.img}`}
               alt={s.heading}
               className={`anjo-slide-img anjo-slide-img--${getClass(i, current, total)}`}
               onClick={() => goTo(i)}

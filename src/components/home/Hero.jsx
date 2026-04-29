@@ -14,10 +14,9 @@ const Hero = () => {
 
   return (
     <section
-      className="relative flex items-center justify-center overflow-hidden bg-slate-900"
-      style={{ minHeight: '100vh' }}
+      className="relative flex flex-col items-center justify-center overflow-hidden bg-slate-900 flex-grow"
+      style={{ minHeight: 'auto' }}
     >
-
       {/* 1. Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -107,17 +106,17 @@ const Hero = () => {
       </div>
 
       {/* 3. Central Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center h-full pt-[var(--header-h)] pb-8">
 
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center mt-4 sm:mt-8">
           <img
             src={logoImage}
             alt="ANJO Traders Logo"
-            className="w-[60vw] sm:w-[40vw] md:w-[30vw] max-w-[350px] h-auto object-contain opacity-0 animate-logo-premium relative z-10"
+            className="w-[60vw] sm:w-[45vw] md:w-[35vw] max-w-[420px] h-auto object-contain opacity-0 animate-logo-premium relative z-10"
           />
 
           <h2
-            className="relative z-20 text-base sm:text-lg md:text-2xl lg:text-3xl font-medium tracking-[0.05em] max-w-4xl text-center text-transparent bg-clip-text animate-tagline-shimmer mt-4 sm:mt-5 md:mt-6 px-4"
+            className="relative z-20 text-sm sm:text-base md:text-xl lg:text-2xl font-medium tracking-[0.05em] max-w-3xl text-center text-transparent bg-clip-text animate-tagline-shimmer mt-3 sm:mt-4 px-4"
             style={{
               backgroundImage: 'linear-gradient(90deg, #cbd5e1 0%, #ffffff 25%, #60a5fa 50%, #ffffff 75%, #cbd5e1 100%)',
               filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.8))'

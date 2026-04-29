@@ -82,20 +82,22 @@ export default function BusinessSolutionPage() {
 
   const centerX = 250;
   const centerY = 250;
-  const outerRadius = 180;
-  const innerRadius = 60;
+  const outerRadius = 190; // Optimized "Sweet Spot" for maximum impact with footer
+  const innerRadius = 65;  
   const anglePerSlice = 360 / SERVICES.length;
 
   return (
-    <div className="pbs-page">
+    <div className="pbs-page h-screen overflow-hidden flex flex-col pt-16 bg-white">
       
-      {/* TOP SECTION */}
-      <div className="pbs-top">
-        <div className="pbs-header">
+      {/* THE "ONE FRAME" DASHBOARD - Perfectly Balanced */}
+      <div className="flex-grow flex flex-col overflow-hidden relative">
+        
+        {/* TOP: HEADER (Clear & Prominent) */}
+        <div className="pbs-header text-center py-4 px-6 border-b border-slate-100 bg-white relative z-20 shadow-sm">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="pbs-title"
+            className="pbs-title text-4xl sm:text-5xl md:text-6xl font-black tracking-tight"
           >
             Progressive Business Solution
           </motion.h1>
@@ -103,129 +105,173 @@ export default function BusinessSolutionPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="pbs-subtitle"
+            className="pbs-subtitle text-xs sm:text-sm md:text-base font-bold text-slate-500 uppercase tracking-[0.4em] mt-1"
           >
             Integrated end-to-end maritime value chain.
           </motion.p>
         </div>
 
-        <div className="pbs-content-wrapper">
-          {/* PUZZLE WHEEL */}
+        {/* CENTER: INTERACTIVE DASHBOARD (Maximum Visual Focus) */}
+        <div className="flex-grow flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-24 px-12 relative overflow-hidden">
+          
+          {/* Immersive background aura */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-50 rounded-full blur-[120px] opacity-40" />
+            <div className="absolute top-0 left-0 w-full h-full opacity-[0.02]" 
+                 style={{ backgroundImage: 'radial-gradient(circle at 30% 20%, #0f172a 0%, transparent 50%), radial-gradient(circle at 70% 80%, #0f172a 0%, transparent 50%)' }} />
+          </div>
+
+          {/* PUZZLE WHEEL - Balanced & Precise */}
           <div 
-            className="pbs-wheel-container"
+            className="pbs-wheel-container w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] lg:w-[500px] lg:h-[500px] flex-shrink-0 relative z-10"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
-            <svg viewBox="0 0 500 500" className="pbs-svg">
+            <svg viewBox="0 0 500 500" className="pbs-svg w-full h-full overflow-visible">
               <defs>
-                <filter id="shadow">
-                  <feDropShadow dx="0" dy="8" stdDeviation="12" floodOpacity="0.3"/>
+                <filter id="shadow-extreme">
+                  <feDropShadow dx="0" dy="12" stdDeviation="18" floodOpacity="0.18"/>
                 </filter>
+                <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#f1f5f9" stopOpacity="0" />
+                </radialGradient>
               </defs>
               
-              {SERVICES.map((srv, i) => {
-                // start from top (-90 deg), add slight gaps mapping over 7
+              <circle cx={centerX} cy={centerY} r={outerRadius + 40} fill="url(#wheelGlow)" opacity="0.4" />
+
+              {SERVICES.map((_, index) => index)
+                .sort((a, b) => (a === activeIdx ? 1 : b === activeIdx ? -1 : a - b))
+                .map((i) => {
+                const srv = SERVICES[i];
                 const startAngle = -90 + (i * anglePerSlice);
                 const endAngle = startAngle + anglePerSlice;
                 const pathData = getPuzzleSlicePath(centerX, centerY, innerRadius, outerRadius, startAngle, endAngle);
                 const isActive = activeIdx === i;
-
-                // Center point for icon placement
                 const midAngle = startAngle + anglePerSlice / 2;
-                const iconRadius = innerRadius + (outerRadius - innerRadius) / 2;
+                
+                // Distribute icon and text perfectly along the slice's center radius
+                const iconRadius = innerRadius + (outerRadius - innerRadius) * 0.43;
+                const textRadius = innerRadius + (outerRadius - innerRadius) * 0.74;
+                
                 const iconX = centerX + iconRadius * Math.cos(midAngle * Math.PI / 180);
                 const iconY = centerY + iconRadius * Math.sin(midAngle * Math.PI / 180);
 
+                const textX = centerX + textRadius * Math.cos(midAngle * Math.PI / 180);
+                const textY = centerY + textRadius * Math.sin(midAngle * Math.PI / 180);
+                
                 const Icon = srv.icon;
 
                 return (
                   <g 
                     key={srv.id} 
-                    className={`pbs-slice-group ${isActive ? 'is-active' : ''}`}
+                    className={`pbs-slice-group cursor-pointer transition-all duration-300 ${isActive ? 'is-active' : ''}`}
                     onClick={() => { setActiveIdx(i); setIsAutoPlaying(false); }}
                     onMouseEnter={() => { setActiveIdx(i); setIsAutoPlaying(false); }}
-                    onMouseLeave={() => setIsAutoPlaying(true)}
-                    style={{ cursor: 'pointer' }}
                   >
                     <motion.path
                       d={pathData}
                       fill={srv.color}
-                      className="pbs-slice-path"
                       animate={{
-                        opacity: isActive ? 1 : 0.55,
-                        stroke: isActive ? '#ffffff' : 'rgba(255,255,255,0.2)',
-                        strokeWidth: isActive ? 3 : 1.5
+                        opacity: isActive ? 1 : 0.7,
+                        stroke: isActive ? '#fff' : 'rgba(255,255,255,0.25)',
+                        strokeWidth: isActive ? 5 : 1.5,
+                        scale: isActive ? 1.05 : 1,
+                        transformOrigin: `${centerX}px ${centerY}px`
                       }}
-                      transition={{ duration: 0.3 }}
-                      filter={isActive ? 'url(#shadow)' : ''}
+                      filter={isActive ? 'url(#shadow-extreme)' : ''}
                     />
                     
-                    {/* Icon Background Circle - NO scale, only glow */}
                     <circle 
-                      cx={iconX} cy={iconY} r={18} 
-                      fill={isActive ? '#ffffff' : 'rgba(255,255,255,0.85)'}
-                      style={{ 
-                        filter: isActive ? 'drop-shadow(0 0 6px rgba(255,255,255,0.9))' : 'none',
-                        transition: 'filter 0.3s ease, fill 0.3s ease'
-                      }}
+                      cx={iconX} cy={iconY} r={isActive ? 22 : 18} 
+                      fill={isActive ? '#fff' : 'rgba(255,255,255,0.92)'}
+                      className="shadow-lg"
                     />
                     
-                    {/* SVG Icon Mapping - NO scale */}
-                    <g transform={`translate(${iconX - 12}, ${iconY - 12})`}>
-                      <Icon size={24} color={srv.color} />
+                    <g transform={`translate(${iconX - (isActive ? 11 : 9)}, ${iconY - (isActive ? 11 : 9)})`}>
+                      <Icon size={isActive ? 22 : 18} color={srv.color} />
                     </g>
+
+                    {isActive && (
+                      <motion.text
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        x={textX}
+                        y={textY}
+                        textAnchor="middle"
+                        alignmentBaseline="middle"
+                        dominantBaseline="central"
+                        fill="#ffffff"
+                        className="text-[11px] font-black uppercase tracking-[0.1em] pointer-events-none"
+                        style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}
+                      >
+                        {srv.title}
+                      </motion.text>
+                    )}
                   </g>
                 );
               })}
 
-              {/* CENTER DOLLAR SIGN */}
-              <circle cx={centerX} cy={centerY} r={innerRadius - 8} fill="#ffffff" filter="url(#shadow)" />
-              <g transform={`translate(${centerX - 16}, ${centerY - 16})`}>
-                <DollarSign size={32} color="#0f172a" />
+              <circle cx={centerX} cy={centerY} r={innerRadius - 8} fill="#fff" filter="url(#shadow-extreme)" />
+              <g transform={`translate(${centerX - 20}, ${centerY - 20})`}>
+                <DollarSign size={40} color="#0f172a" strokeWidth={3} />
               </g>
-
             </svg>
           </div>
 
-          {/* DYNAMIC CONTENT PANEL */}
-          <div className="pbs-details-panel">
+          {/* DYNAMIC CONTENT PANEL (Perfected Visuals) */}
+          <div className="pbs-details-panel flex-grow max-w-xl relative z-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIdx}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
-                className="pbs-detail-card"
-                style={{ borderTopColor: SERVICES[activeIdx].color }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="pbs-detail-card bg-slate-50 p-8 sm:p-12 rounded-[40px] border-l-[16px] shadow-2xl relative overflow-hidden"
+                style={{ borderLeftColor: SERVICES[activeIdx].color }}
               >
-                <div className="pbs-detail-icon-wrap" style={{ backgroundColor: SERVICES[activeIdx].color }}>
-                  {React.createElement(SERVICES[activeIdx].icon, { size: 28, color: '#fff' })}
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg transform rotate-3" 
+                  style={{ backgroundColor: SERVICES[activeIdx].color }}
+                >
+                  {React.createElement(SERVICES[activeIdx].icon, { size: 32, color: '#fff' })}
                 </div>
-                <h2 className="pbs-detail-title" style={{ color: SERVICES[activeIdx].color }}>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight" style={{ color: SERVICES[activeIdx].color }}>
                   {SERVICES[activeIdx].title}
                 </h2>
-                <p className="pbs-detail-desc">
+                <p className="text-base sm:text-xl text-slate-600 leading-relaxed font-semibold">
                   {SERVICES[activeIdx].desc}
                 </p>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50" />
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
-      </div>
 
-      {/* BOTTOM SECTION - CINEMATIC SHIP */}
-      <div className="pbs-bottom">
-        <div className="pbs-ship-bg" />
-        <div className="pbs-bottom-content">
-          <h2 className="pbs-bottom-title">Comprehensive Logistics Ecosystem</h2>
-          <p className="pbs-bottom-desc">
-            Whether unified as a complete progressive solution or selected individually, our services are meticulously engineered to elevate your global trade operations.
-          </p>
-
+        {/* BOTTOM: FOOTER (Bold & Anchor) */}
+        <div className="w-full py-8 px-10 bg-slate-900 relative overflow-hidden text-center border-t border-slate-800 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+          <div className="absolute inset-0 opacity-[0.2]" style={{ backgroundImage: 'radial-gradient(circle at 10% 50%, #DC2626 0%, transparent 40%), radial-gradient(circle at 90% 50%, #16A34A 0%, transparent 40%)' }} />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-6xl mx-auto relative z-10"
+          >
+            <h2 className="text-white text-lg sm:text-2xl md:text-3xl font-black tracking-[0.1em] mb-3 uppercase">
+              Comprehensive Logistics Ecosystem
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-lg font-medium leading-relaxed max-w-5xl mx-auto opacity-90">
+              Unified as a complete progressive solution or selected individually, 
+              our services are meticulously engineered to elevate your global trade operations.
+            </p>
+          </motion.div>
+          
+          {/* Decorative line */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-600 to-transparent" />
         </div>
       </div>
-      
+
     </div>
   );
 }

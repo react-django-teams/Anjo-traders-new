@@ -1,86 +1,72 @@
-.pbs-page {
-  width: 100%;
-  min-height: 100vh;
-  background: #f8fafc; /* Lighter, professional tone */
-  display: block;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
+/* ============================================
+   PROGRESSIVE BUSINESS SOLUTION — FULL-BLEED DESIGN
+   ============================================ */
 
-/* ── TOP SECTION ── */
-.pbs-top {
-  width: 100%;
-  padding: 8rem 5% 4rem;
+.pbs-page {
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  font-family: 'Inter', sans-serif;
 }
 
+.pbs-main-frame {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* Header Section */
 .pbs-header {
   text-align: center;
-  margin-bottom: 4rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 2rem 1rem 1.5rem;
+  flex-shrink: 0;
+  background: #ffffff;
 }
 
 .pbs-title {
-  font-size: 3.5rem;
   font-weight: 800;
-  color: #0f172a; /* Clean dark slate */
   margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .pbs-subtitle {
-  font-size: 1.2rem;
-  color: #64748b;
-  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #94a3b8;
+  font-weight: 700;
 }
 
-.pbs-content-wrapper {
+/* Main Interactive Area */
+.pbs-wheel-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* PUZZLE WHEEL */
-.pbs-wheel-container {
-  width: 450px;
-  height: 450px;
   position: relative;
-  cursor: pointer;
-  perspective: 1000px;
+  z-index: 10;
 }
 
 .pbs-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.1));
 }
 
-.pbs-slice-path {
-  stroke: #ffffff;
-  stroke-width: 2px;
-  transition: all 0.3s ease;
+.pbs-slice-group {
+  filter: grayscale(15%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.pbs-slice-group:hover .pbs-slice-path {
-  filter: brightness(1.1);
+.pbs-slice-group.is-active {
+  filter: grayscale(0%);
 }
 
-.pbs-icon-bg {
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* DETAILS PANEL */
 .pbs-details-panel {
-  flex: 1;
-  width: 100%;
-  max-width: 500px;
-  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,147 +74,30 @@
 
 .pbs-detail-card {
   width: 100%;
-  background: #ffffff;
-  padding: 3.5rem 3rem;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-  border-top: 6px solid;
-  position: relative;
-  overflow: hidden;
-  text-align: left;
+  background: #f8fafc;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.pbs-detail-icon-wrap {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.pbs-detail-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.pbs-detail-desc {
-  font-size: 1.1rem;
-  color: #475569;
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-.pbs-detail-step {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ── BOTTOM SECTION ── */
-.pbs-bottom {
-  position: relative;
-  width: 100%;
-  padding: 6rem 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  min-height: 40vh;
-}
-
-.pbs-ship-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2000&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center 70%;
-  z-index: 1;
-}
-
-.pbs-ship-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.75); /* Consistent dark slate overlay */
-}
-
-.pbs-bottom-content {
-  position: relative;
-  z-index: 20;
-  text-align: center;
-  color: white;
-  max-width: 800px;
-  padding: 0 2rem;
-}
-
-.pbs-bottom-title {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-}
-
-.pbs-bottom-desc {
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.6;
-  margin-bottom: 3rem;
-}
-
-.pbs-cta {
-  background: #ffffff;
-  color: #0f172a;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.pbs-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(255,255,255,0.2);
-}
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .pbs-content-wrapper {
-    flex-direction: column;
-    gap: 4rem;
-  }
-  .pbs-wheel-container {
-    width: 400px;
-    height: 400px;
-  }
-  .pbs-detail-card {
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+  .pbs-page {
     height: auto;
+    overflow: visible;
   }
 }
 
-@media (max-width: 768px) {
-  .pbs-top { padding-top: 8rem; }
-  .pbs-title { font-size: clamp(2rem, 8vw, 2.5rem); }
-  .pbs-wheel-container { width: 320px; height: 320px; }
-  .pbs-bottom-title { font-size: 2rem; }
-}
+/* Viewport Height Scaling */
+@media (min-width: 1024px) {
+  @media (max-height: 850px) {
+    .pbs-title { font-size: 3rem !important; }
+    .pbs-header { padding: 1.5rem 1rem 1rem !important; }
+    .pbs-wheel-container { transform: scale(0.9); }
+  }
 
-@media (max-width: 480px) {
-  .pbs-wheel-container { width: 280px; height: 280px; }
-  .pbs-detail-title { font-size: 1.8rem; }
-  .pbs-detail-card { padding: 1.5rem; }
+  @media (max-height: 750px) {
+    .pbs-title { font-size: 2.5rem !important; }
+    .pbs-header { padding: 1rem 1rem 0.75rem !important; }
+    .pbs-wheel-container { transform: scale(0.8); }
+    .pbs-detail-card { padding: 2rem !important; }
+  }
 }

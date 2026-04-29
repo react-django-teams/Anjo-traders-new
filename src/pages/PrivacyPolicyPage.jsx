@@ -6,7 +6,7 @@ import Card, { CardBody } from '../components/common/Card';
 const PrivacyPolicyPage = () => {
 
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <section className="py-4 bg-gray-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumb
@@ -19,7 +19,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Privacy Policy

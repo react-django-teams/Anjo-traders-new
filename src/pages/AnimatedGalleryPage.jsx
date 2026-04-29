@@ -68,12 +68,11 @@ const data = [
 const AnimatedGalleryPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(true);
   const containerRef = useRef(null);
   
   const coverRef = useRef(null);
-  const coverTextRef = useRef(null);
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
   const placeRef = useRef(null);
@@ -83,18 +82,9 @@ const AnimatedGalleryPage = () => {
   // Initial Reveal Animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => setIsAnimating(false)
-      });
-      
-      tl.to(coverTextRef.current, { opacity: 1, y: -20, duration: 1, ease: 'power3.out' })
-        .to(coverTextRef.current, { opacity: 0, y: -40, duration: 0.5, delay: 0.5, ease: 'power3.in' })
-        .to(coverRef.current, { yPercent: -100, duration: 1.2, ease: 'power4.inOut' })
-        .fromTo('.gallery-card.active', { scale: 1.1 }, { scale: 1, duration: 1.5, ease: 'power3.out' }, '-=1')
-        .fromTo([placeRef.current, text1Ref.current, text2Ref.current, descRef.current, ctaRef.current], 
-          { y: 40, opacity: 0 }, 
-          { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out' }, '-=0.5');
-
+      gsap.fromTo([placeRef.current, text1Ref.current, text2Ref.current, descRef.current, ctaRef.current], 
+        { y: 40, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out' });
     }, containerRef);
     return () => ctx.revert();
   }, []);
@@ -261,11 +251,6 @@ const AnimatedGalleryPage = () => {
   return (
     <div className="animated-gallery-wrapper" ref={containerRef}>
       
-      {/* Intro Cover */}
-      <div className="gallery-cover" ref={coverRef}>
-        <h1 ref={coverTextRef}>EXPLORE</h1>
-      </div>
-
       {/* Background Cards */}
       <div id="demo">
         {data.map((item, idx) => (

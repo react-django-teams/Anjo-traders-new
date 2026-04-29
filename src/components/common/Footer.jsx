@@ -3,7 +3,82 @@ import { Link } from 'react-router-dom';
 import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaGlobe } from 'react-icons/fa';
 import logoImage from '../../assets/images/videos/file_00000000845c71fa9a49b9abaaf9349c.png';
 
-const Footer = () => {
+const Footer = ({ isCompact = false }) => {
+  if (isCompact) {
+    return (
+      <footer className="bg-gradient-to-r from-orange-500 to-red-500 text-white relative overflow-hidden py-4 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-y-4 gap-x-12">
+            
+            {/* 1. Brand & Tagline + Address */}
+            <div className="flex flex-col gap-3 flex-shrink-0 max-w-sm">
+              <div className="flex items-center gap-4">
+                <img src={logoImage} alt="ANJO Traders" className="h-10 sm:h-14 w-auto object-contain" />
+                <div className="h-8 w-px bg-white/20 hidden sm:block" />
+                <p className="text-orange-600 bg-white px-3 py-1 rounded text-[11px] font-black tracking-widest uppercase leading-none shadow-sm">
+                  Export · Import
+                </p>
+              </div>
+              
+              <div className="text-[11px] sm:text-[12px] leading-relaxed text-orange-50 font-medium pl-1">
+                <span className="text-white font-bold block mb-0.5 text-[10px] uppercase tracking-wider">Head Office (India)</span>
+                11/625, Sahayamatha Pattanam, 5th Street,<br />
+                Mariya Mahal Road, Tuticorin – 628002, TN
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-white font-bold border-t border-white/10 pt-2 uppercase text-[10px] tracking-tight">
+                  <span className="opacity-80 flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-orange-300" />Colombo Branch</span>
+                  <span className="opacity-80 flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-orange-300" />Thailand Branch</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* 2. Contact Grid */}
+            <div className="flex flex-col gap-2.5 text-[13px] sm:text-[14px] text-white font-semibold">
+              <div className="flex items-center gap-3">
+                <FaPhone size={14} className="text-orange-200" />
+                <div className="flex gap-4">
+                  <span>+91 98943 22104</span>
+                  <span className="opacity-30">|</span>
+                  <span>+91 88704 00456</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <FaEnvelope size={14} className="text-orange-200" />
+                  <span className="border-b border-white/20 pb-0.5">info@anjotraders.com</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaGlobe size={14} className="text-orange-200" />
+                  <span className="border-b border-white/20 pb-0.5">www.anjotraders.com</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Socials & Legal */}
+            <div className="flex flex-col items-center lg:items-end gap-3">
+              <div className="flex gap-3">
+                {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram].map((Icon, i) => (
+                  <a key={i} href="/#" className="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white hover:text-orange-200 transition-all transform hover:scale-110">
+                    <Icon size={16} />
+                  </a>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-5 text-[10px] font-bold text-white uppercase tracking-widest">
+                <Link to="/privacy-policy" className="hover:text-orange-200 transition-colors">Privacy Policy</Link>
+                <Link to="/terms-and-conditions" className="hover:text-orange-200 transition-colors">Terms & Conditions</Link>
+              </div>
+              
+              <p className="text-orange-100/50 text-[10px] font-bold tracking-[0.1em] uppercase">
+                © {new Date().getFullYear()} ANJO Traders
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="bg-gradient-to-r from-orange-500 to-red-500 text-white relative overflow-hidden">
       {/* Rainbow accent line matching brochure */}
