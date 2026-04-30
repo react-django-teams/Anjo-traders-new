@@ -54,7 +54,8 @@ const ScrollRevealWatcher = () => {
 function AppContent() {
   const location = useLocation();
   // Don't show global footer on home page as it has its own compact footer in the same frame
-  const showFooter = ['/contact'].includes(location.pathname);
+  // Don't show global footer on home page or contact page
+  const showFooter = !['/', '/contact', '/business-solution', '/automobiles', '/green-link', '/container-commercialization', '/anjo-salt'].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col">

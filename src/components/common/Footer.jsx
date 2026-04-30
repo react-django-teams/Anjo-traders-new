@@ -35,10 +35,9 @@ const Footer = ({ isCompact = false }) => {
             <div className="flex flex-col gap-2.5 text-[13px] sm:text-[14px] text-white font-semibold">
               <div className="flex items-center gap-3">
                 <FaPhone size={14} className="text-orange-200" />
-                <div className="flex gap-4">
-                  <span>+91 98943 22104</span>
-                  <span className="opacity-30">|</span>
-                  <span>+91 88704 00456</span>
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+919994966061">+91 99949 66061</a>
+                  <a href="tel:+919994587749">+91 99945 87749</a>
                 </div>
               </div>
               
@@ -54,25 +53,7 @@ const Footer = ({ isCompact = false }) => {
               </div>
             </div>
 
-            {/* 3. Socials & Legal */}
-            <div className="flex flex-col items-center lg:items-end gap-3">
-              <div className="flex gap-3">
-                {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram].map((Icon, i) => (
-                  <a key={i} href="/#" className="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white hover:text-orange-200 transition-all transform hover:scale-110">
-                    <Icon size={16} />
-                  </a>
-                ))}
-              </div>
-              
-              <div className="flex items-center gap-5 text-[10px] font-bold text-white uppercase tracking-widest">
-                <Link to="/privacy-policy" className="hover:text-orange-200 transition-colors">Privacy Policy</Link>
-                <Link to="/terms-and-conditions" className="hover:text-orange-200 transition-colors">Terms & Conditions</Link>
-              </div>
-              
-              <p className="text-orange-100/50 text-[10px] font-bold tracking-[0.1em] uppercase">
-                © {new Date().getFullYear()} ANJO Traders
-              </p>
-            </div>
+
           </div>
         </div>
       </footer>
@@ -116,8 +97,8 @@ const Footer = ({ isCompact = false }) => {
                 <div className="flex items-center gap-3">
                   <FaPhone className="text-white/80 flex-shrink-0" size={14} />
                   <div className="text-orange-100 text-sm flex flex-wrap gap-x-4 gap-y-1">
-                    <span>+91 98943 22104</span>
-                    <span>+91 88704 00456</span>
+                    <span>+91 99949 66061</span>
+                    <span>+91 99945 87749</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -130,29 +111,11 @@ const Footer = ({ isCompact = false }) => {
                 </div>
               </div>
             </div>
-
-            <div className="flex gap-3 mt-6">
-              {[FaFacebook, FaLinkedin, FaTwitter, FaInstagram].map((Icon, i) => (
-                <a key={i} href="/#" className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-orange-100 hover:text-white hover:border-white transition-all hover:bg-white/20">
-                  <Icon size={14} />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom */}
-      <div className="border-t border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-orange-100/80 text-xs">© {new Date().getFullYear()} ANJO Traders. All rights reserved.</p>
-          <div className="flex gap-5">
-            {[['Privacy Policy', '/privacy-policy'], ['Terms & Conditions', '/terms-and-conditions']].map(([name, path]) => (
-              <Link key={name} to={path} className="text-orange-100/80 hover:text-white text-xs transition-colors">{name}</Link>
-            ))}
-          </div>
-        </div>
-      </div>
+
     </footer>
   );
 };

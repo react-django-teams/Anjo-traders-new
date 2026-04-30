@@ -87,7 +87,7 @@ export default function BusinessSolutionPage() {
   const anglePerSlice = 360 / SERVICES.length;
 
   return (
-    <div className="pbs-page h-screen overflow-hidden flex flex-col pt-16 bg-white">
+    <div className="pbs-page h-screen overflow-hidden flex flex-col pt-[105px] bg-white">
       
       {/* THE "ONE FRAME" DASHBOARD - Perfectly Balanced */}
       <div className="flex-grow flex flex-col overflow-hidden relative">

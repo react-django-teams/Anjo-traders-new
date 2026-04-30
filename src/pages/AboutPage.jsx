@@ -109,7 +109,7 @@ const AboutPage = () => {
       {/* CTA */}
       <section className="py-14 px-4 sm:px-6 lg:px-8 text-center" style={{ background: '#DC2626' }}>
         <h2 className="text-2xl sm:text-3xl font-black text-white mb-3 reveal font-display">Partner with ANJO Traders</h2>
-        <p className="text-red-200 mb-7 reveal text-sm" style={{ transitionDelay: '0.1s' }}>info@anjotraders.com · 98943 22104 · 88704 00456</p>
+        <p className="text-red-200 mb-7 reveal text-sm" style={{ transitionDelay: '0.1s' }}>info@anjotraders.com · 99949 66061 · 99945 87749</p>
         <Link to="/contact" className="btn-outline-white btn-shine inline-block px-10 py-4 rounded-lg font-bold text-base reveal" style={{ transitionDelay: '0.2s' }}>
           Get in Touch
         </Link>

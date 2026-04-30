@@ -18,7 +18,7 @@ const Navbar = () => {
   const isAutomobilesPage = location.pathname === '/automobiles';
   const isContactPage = location.pathname === '/contact';
   const isAnimatedGalleryPage = location.pathname === '/animated-gallery';
-  const isTransparentPage = isHomePage || isPrimePage || isAboutPage || isServicesPage || isResearchPage || isGreenLinkPage || isContainerPage || isSaltPage || isAutomobilesPage || isContactPage || isAnimatedGalleryPage;
+  const isTransparentPage = isHomePage || isPrimePage || isAboutPage || isServicesPage || isResearchPage || isGreenLinkPage || isContainerPage || isSaltPage || isAutomobilesPage || isAnimatedGalleryPage;
 
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -66,7 +66,7 @@ const Navbar = () => {
               <img
                 src={logoImage}
                 alt="ANJO Traders Logo"
-                className="h-10 sm:h-12 md:h-14 w-auto transition-all duration-300"
+                className="h-14 sm:h-16 md:h-20 lg:h-[85px] w-auto object-contain transition-all duration-300"
               />
             </Link>
           </div>
