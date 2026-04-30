@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Anjo-traders-new/static/css/main.300d044d.css",
-    "main.js": "/Anjo-traders-new/static/js/main.0510e469.js",
+    "main.css": "/Anjo-traders-new/static/css/main.3d76bfd3.css",
+    "main.js": "/Anjo-traders-new/static/js/main.6362c51b.js",
     "static/js/453.b0da00f8.chunk.js": "/Anjo-traders-new/static/js/453.b0da00f8.chunk.js",
     "static/media/fdactory_workers.mp4": "/Anjo-traders-new/static/media/fdactory_workers.80e6da3b2ee96bea5499.mp4",
     "static/media/file_png": "/Anjo-traders-new/static/media/file_00000000845c71fa9a49b9abaaf9349c.9f3310158f9b00847092.png",
@@ -48,12 +48,12 @@
     "static/media/whatsapp-image-2025-09-26-at-11.09.56-pm.jpeg": "/Anjo-traders-new/static/media/whatsapp-image-2025-09-26-at-11.09.56-pm.d759d64cdeaaf0619cb7.jpeg",
     "static/media/whatsapp-image-2025-09-27-at-3.21.14-am.jpeg": "/Anjo-traders-new/static/media/whatsapp-image-2025-09-27-at-3.21.14-am.7ccb63f8b022e0cda82f.jpeg",
     "index.html": "/Anjo-traders-new/index.html",
-    "main.300d044d.css.map": "/Anjo-traders-new/static/css/main.300d044d.css.map",
-    "main.0510e469.js.map": "/Anjo-traders-new/static/js/main.0510e469.js.map",
+    "main.3d76bfd3.css.map": "/Anjo-traders-new/static/css/main.3d76bfd3.css.map",
+    "main.6362c51b.js.map": "/Anjo-traders-new/static/js/main.6362c51b.js.map",
     "453.b0da00f8.chunk.js.map": "/Anjo-traders-new/static/js/453.b0da00f8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.300d044d.css",
-    "static/js/main.0510e469.js"
+    "static/css/main.3d76bfd3.css",
+    "static/js/main.6362c51b.js"
   ]
 }
